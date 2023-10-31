@@ -21,7 +21,7 @@ const WindowsXPModal = ({ title, content }) => {
 
   return (
     <Draggable nodeRef={modalRef}>
-      <ModalContainer ref={modalRef}>
+      <ModalContainer onMouseLeave={() => setIsFileOpen(false)} ref={modalRef}>
         <ModalTitle>
           <div>{title}</div>
         </ModalTitle>

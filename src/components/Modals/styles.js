@@ -58,17 +58,7 @@ export const ModalTitle = styled.section`
   }
 `;
 
-export const ModalContent = styled.section`
-  display: flex;
-  overflow: hidden;
-  flex-direction: column;
-  padding-top: 20px;
-  background: linear-gradient(
-    to right,
-    rgb(237, 237, 229) 0%,
-    rgb(237, 232, 205) 100%
-  );
-`;
+export const ModalContent = styled.section``;
 
 export const ModalDropDownMenu = styled.section`
   display: flex;
