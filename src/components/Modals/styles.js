@@ -164,3 +164,47 @@ export const SubMenu = styled.section`
     }
   }
 `;
+
+export const SearchMenu = styled.section`
+  height: 20px;
+  padding: 3px;
+  display: grid;
+  grid-template-columns: 0fr 1fr 0fr;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 13px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background: linear-gradient(
+    to right,
+    rgb(237, 237, 229) 0%,
+    rgb(237, 232, 205) 100%
+  );
+
+  button {
+    background: transparent;
+    border: none;
+    width: 5rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+
+    &:active {
+      background-color: rgb(222, 222, 222);
+      box-shadow: rgba(255, 255, 255, 0.7) 0px -1px 1px inset;
+      color: rgba(255, 255, 255, 0.7);
+    }
+  }
+`;
+
+export const FakeInputContainer = styled.div`
+  border: 1px solid rgba(122, 122, 255, 0.6);
+  background-color: white;
+  display: grid;
+  grid-template-columns: 0fr 1fr 0fr;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  height: 1.1rem;
+  padding: 2px;
+`;

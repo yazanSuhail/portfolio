@@ -8,9 +8,11 @@ import {
   DropBtn,
   DropdownContent,
   SubMenu,
+  SearchMenu,
+  FakeInputContainer,
 } from "./styles";
 
-import { windowsLogo } from "../../assets";
+import { windowsLogo, computer, Go, halfArrouwDown } from "../../assets";
 import { submenuItems } from "../../Mocks/DesktopMenuMock";
 
 const WindowsXPModal = ({ title, menus, content, isVisible, icone }) => {
@@ -69,6 +71,7 @@ const WindowsXPModal = ({ title, menus, content, isVisible, icone }) => {
                 )}
               </div>
             ))}
+
             <SubMenu onClick={() => setOpenMenu(null)}>
               {submenuItems.map((item, index) => (
                 <button key={index}>
@@ -77,6 +80,25 @@ const WindowsXPModal = ({ title, menus, content, isVisible, icone }) => {
                 </button>
               ))}
             </SubMenu>
+
+            <SearchMenu>
+              <div>Address</div>
+              <FakeInputContainer>
+                <div>
+                  <img src={computer} width={"18rem"} />
+                </div>
+                <div>My Computer</div>
+                <div>
+                  {" "}
+                  <img src={halfArrouwDown} alt="" />
+                </div>
+              </FakeInputContainer>
+              <div>
+                <button>
+                  <img src={Go} /> Go
+                </button>
+              </div>
+            </SearchMenu>
             <ModalContent>{content}</ModalContent>
           </ModalContainer>
         </Draggable>
