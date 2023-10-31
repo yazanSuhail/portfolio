@@ -6,7 +6,7 @@ export const ModalContainer = styled.div`
   border: 1px solid #000;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   padding: 2px;
-  max-width: 80%;
+  width: 80%;
   z-index: 1000;
   border: 3px solid #0831d9;
   border-radius: 11px 11px 0px 0px;
@@ -99,7 +99,7 @@ export const DropBtn = styled.span`
   }
 `;
 
-export const DropdownFileContent = styled.div`
+export const DropdownContent = styled.div`
   cursor: default;
   width: 12rem;
   display: grid;
@@ -119,156 +119,6 @@ export const DropdownFileContent = styled.div`
     border-top: 1px solid rgba(140, 140, 140, 0.71);
     margin: 2px;
     width: 88%;
-    &:hover {
-      color: #fff;
-      background-color: #0831d9;
-    }
-  }
-`;
-
-export const DropdownEditContent = styled.div`
-  cursor: default;
-  width: 12rem;
-  left: 3.2rem;
-  display: grid;
-  background-color: rgb(255, 255, 255);
-  position: absolute;
-  box-shadow: rgb(100, 100, 100) 2px 2px 1px;
-  border: 1px solid rgba(140, 140, 140, 0.71);
-  span {
-    padding: 0.1rem 0 0 18px;
-    font-size: 15px;
-    color: rgba(140, 140, 140, 0.71);
-  }
-
-  div {
-    padding: 0.2rem 0 0 15px;
-    font-size: 15px;
-    color: black;
-    border-top: 1px solid rgba(140, 140, 140, 0.71);
-    margin: 2px;
-    width: 88%;
-
-    &:hover {
-      color: #fff;
-      background-color: #0831d9;
-    }
-  }
-`;
-
-export const DropdownViewContent = styled.div`
-  cursor: default;
-  width: 12rem;
-  left: 6.1rem;
-  display: grid;
-  background-color: rgb(255, 255, 255);
-  position: absolute;
-  box-shadow: rgb(100, 100, 100) 2px 2px 1px;
-  border: 1px solid rgba(140, 140, 140, 0.71);
-  span {
-    padding: 0.1rem 0 0 18px;
-    font-size: 15px;
-    color: rgba(140, 140, 140, 0.71);
-  }
-
-  div {
-    padding: 0.2rem 0 0 15px;
-    font-size: 15px;
-    color: black;
-    border-top: 1px solid rgba(140, 140, 140, 0.71);
-    margin: 2px;
-    width: 88%;
-
-    &:hover {
-      color: #fff;
-      background-color: #0831d9;
-    }
-  }
-`;
-
-export const DropdownFavoritesContent = styled.div`
-  cursor: default;
-  width: 12rem;
-  left: 9.7rem;
-  display: grid;
-  background-color: rgb(255, 255, 255);
-  position: absolute;
-  box-shadow: rgb(100, 100, 100) 2px 2px 1px;
-  border: 1px solid rgba(140, 140, 140, 0.71);
-  span {
-    padding: 0.1rem 0 0 18px;
-    font-size: 15px;
-    color: rgba(140, 140, 140, 0.71);
-  }
-
-  div {
-    padding: 0.2rem 0 0 15px;
-    font-size: 15px;
-    color: black;
-    border-top: 1px solid rgba(140, 140, 140, 0.71);
-    margin: 2px;
-    width: 88%;
-
-    &:hover {
-      color: #fff;
-      background-color: #0831d9;
-    }
-  }
-`;
-
-export const DropdownToolsContent = styled.div`
-  cursor: default;
-  width: 12rem;
-  left: 15rem;
-  display: grid;
-  background-color: rgb(255, 255, 255);
-  position: absolute;
-  box-shadow: rgb(100, 100, 100) 2px 2px 1px;
-  border: 1px solid rgba(140, 140, 140, 0.71);
-  span {
-    padding: 0.1rem 0 0 18px;
-    font-size: 15px;
-    color: rgba(140, 140, 140, 0.71);
-  }
-
-  div {
-    padding: 0.2rem 0 0 15px;
-    font-size: 15px;
-    color: black;
-    border-top: 1px solid rgba(140, 140, 140, 0.71);
-    margin: 2px;
-    width: 88%;
-
-    &:hover {
-      color: #fff;
-      background-color: #0831d9;
-    }
-  }
-`;
-
-export const DropdownHelpContent = styled.div`
-  cursor: default;
-  width: 12rem;
-  left: 18.6rem;
-  display: grid;
-  background-color: rgb(255, 255, 255);
-  position: absolute;
-  box-shadow: rgb(100, 100, 100) 2px 2px 1px;
-  border: 1px solid rgba(140, 140, 140, 0.71);
-  span {
-    padding: 0.1rem 0 0 18px;
-    font-size: 15px;
-    color: rgba(140, 140, 140, 0.71);
-  }
-
-  div {
-    padding: 0.2rem 0 0 15px;
-    font-size: 15px;
-    color: black;
-    border-top: 1px solid rgba(140, 140, 140, 0.71);
-    margin: 2px;
-    width: 88%;
-
     &:hover {
       color: #fff;
       background-color: #0831d9;
