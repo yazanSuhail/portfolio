@@ -1,67 +1,16 @@
-import { useState } from "react";
-
-import "./App.css";
+import React from "react";
 import Header from "./components/MainStartMenu";
 import WindowsXPModal from "./components/Modals";
 import { computer } from "./assets";
+import {
+  fileMenu,
+  editMenu,
+  viewMenu,
+  toolsMenu,
+  helpMenu,
+} from "./Mocks/DesktopMenuMock";
+
 function App() {
-  const fileMenu = {
-    label: "File",
-    items: ["Create shortcut", "Delete", "Rename", "Properties", "close"],
-  };
-
-  const editMenu = {
-    label: "Edit",
-    items: [
-      "Undo",
-      "Cut",
-      "Copy",
-      "Paste",
-      "Paste Shortcut",
-      "Copy To Folder...",
-      "Move To Folder...",
-      "Select All",
-      "Invert Selection",
-    ],
-  };
-
-  const viewMenu = {
-    label: "View",
-    items: [
-      "ToolBars",
-      "Status Bar",
-      "Explorer Bar",
-      "Thumbnails",
-      "Titles",
-      "Icons",
-      "List",
-      "Details",
-      "Arrange Icons By",
-      "Choose Details",
-      "Go to",
-      "Refresh",
-    ],
-  };
-
-  const toolsMenu = {
-    label: "Tools",
-    items: [
-      "Map Network Drive...",
-      "Desconnect Network Drive",
-      "Syncronize...",
-      "FilderOptions",
-    ],
-  };
-
-  const helpMenu = {
-    label: "Help",
-    items: [
-      "Help and Support Center",
-      "Is this copy of Windows Legale",
-      "About Windows",
-    ],
-  };
-
   const menus = [fileMenu, editMenu, viewMenu, toolsMenu, helpMenu];
 
   const modalContent =

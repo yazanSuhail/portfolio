@@ -12,6 +12,7 @@ export const ModalContainer = styled.div`
   border-radius: 11px 11px 0px 0px;
   display: grid;
   padding: 0;
+  margin: 0 auto;
 `;
 
 export const ModalTitle = styled.section`
@@ -122,6 +123,44 @@ export const DropdownContent = styled.div`
     &:hover {
       color: #fff;
       background-color: #0831d9;
+    }
+  }
+`;
+
+export const SubMenu = styled.section`
+  height: 36px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  font-size: 11px;
+  padding: 2px 0 1px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+  background: linear-gradient(
+    to right,
+    rgb(237, 237, 229) 0%,
+    rgb(237, 232, 205) 100%
+  );
+
+  button {
+    display: flex;
+    height: 100%;
+    -webkit-box-align: center;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 3px;
+    background: transparent;
+    gap: 0.3rem;
+    &:hover {
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      box-shadow: rgba(0, 0, 0, 0.1) 0px -1px 1px inset;
+    }
+
+    &:active {
+      border: 1px solid rgb(185, 185, 185);
+      background-color: rgb(222, 222, 222);
+      box-shadow: rgba(255, 255, 255, 0.7) 0px -1px 1px inset;
+      color: rgba(255, 255, 255, 0.7);
     }
   }
 `;
