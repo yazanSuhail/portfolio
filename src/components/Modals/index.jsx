@@ -12,6 +12,7 @@ import {
   FakeInputContainer,
   Close,
   Items,
+  MenuContainer,
 } from "./styles";
 
 import { windowsLogo, computer, Go, halfArrouwDown } from "../../assets";
@@ -27,17 +28,21 @@ const WindowsXPModal = ({
 }) => {
   const modalRef = React.createRef();
   const [openMenu, setOpenMenu] = useState(null);
-  const [menuIsOpen, setMenuIsOpen] = useState(false);
-
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleDropdown = (menuItem) => {
-    setMenuIsOpen(true);
+    setIsMenuOpen(true);
     setOpenMenu((prevMenu) => (prevMenu === menuItem ? null : menuItem));
   };
 
-  const handleToggleDropdown = (menuItem) => {
-    if (menuIsOpen) {
-      toggleDropdown(menuItem);
+  const toggleDropdownOnHover = (menuItem) => {
+    if (isMenuOpen) {
+      setOpenMenu((prevMenu) => (prevMenu === menuItem ? null : menuItem));
     }
+  };
+
+  const handleIsMenuOpen = () => {
+    setIsMenuOpen(false);
+    setOpenMenu(null);
   };
 
   return (
@@ -50,16 +55,16 @@ const WindowsXPModal = ({
                 <div>
                   <img src={icone} alt="windows Logo" width="50rem" />
                 </div>
-              </div>{" "}
+              </div>
               <div>{title}</div>
             </ModalTitle>
-            <ModalDropDownMenu>
+            <ModalDropDownMenu onMouseEnter={() => handleIsMenuOpen()}>
               <div>
                 {menus.map((menu) => (
                   <DropBtn
-                    onMouseEnter={() => handleToggleDropdown(menu.label)}
                     key={menu.label}
-                    onClick={() => toggleDropdown(menu.label)}>
+                    onClick={() => toggleDropdown(menu.label)}
+                    onMouseEnter={() => toggleDropdownOnHover(menu.label)}>
                     {menu.label}
                   </DropBtn>
                 ))}
@@ -69,22 +74,22 @@ const WindowsXPModal = ({
               </div>
             </ModalDropDownMenu>
             {menus.map((menu) => (
-              <div key={menu.label}>
+              <MenuContainer name={menu.label} key={menu.label}>
                 {openMenu === menu.label && (
                   <DropdownContent>
                     {menu.items.map((item) => (
                       <div key={item.label}>
-                        <Items disabled={item.active} name={item.label}>
+                        <Items name={item.label} active={item.active}>
                           {item.label}
                         </Items>
                       </div>
                     ))}
                   </DropdownContent>
                 )}
-              </div>
+              </MenuContainer>
             ))}
 
-            <SubMenu onClick={() => setOpenMenu(null)}>
+            <SubMenu onMouseEnter={() => handleIsMenuOpen()}>
               {submenuItems.map((item, index) => (
                 <button key={index}>
                   {item.iconSrc && <img src={item.iconSrc} alt={item.label} />}
@@ -93,7 +98,7 @@ const WindowsXPModal = ({
               ))}
             </SubMenu>
 
-            <SearchMenu>
+            <SearchMenu onMouseEnter={() => handleIsMenuOpen()}>
               <div>Address</div>
               <FakeInputContainer>
                 <div>
@@ -111,7 +116,9 @@ const WindowsXPModal = ({
                 </button>
               </div>
             </SearchMenu>
-            <ModalContent>{content}</ModalContent>
+            <ModalContent onMouseEnter={() => handleIsMenuOpen()}>
+              {content}
+            </ModalContent>
           </ModalContainer>
         </Draggable>
       )}

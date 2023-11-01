@@ -115,6 +115,34 @@ export const DropdownContent = styled.div`
   }
 `;
 
+export const MenuContainer = styled.div`
+  ${(props) =>
+    props.name === "Edit" &&
+    `
+      margin-left:48px;
+  `}
+  ${(props) =>
+    props.name === "View" &&
+    `
+      margin-left:98px;
+  `}
+    ${(props) =>
+    props.name === "Tools" &&
+    `
+      margin-left:153px;
+  `}
+      ${(props) =>
+    props.name === "Help" &&
+    `
+      margin-left:212px;
+  `}
+        ${(props) =>
+    props.name === "Favorites" &&
+    `
+      margin-left:266px;
+  `}
+`;
+
 export const Close = styled.div`
   padding: 0.2rem 0 0 15px;
   font-size: 15px;
@@ -130,7 +158,7 @@ export const Close = styled.div`
 
 export const Items = styled.div`
   padding: 0.2rem 0 0 15px;
-  font-size: 15px;
+  font-size: 14px;
   color: black;
 
   margin: 2px;
@@ -139,6 +167,19 @@ export const Items = styled.div`
     color: #fff;
     background-color: #0831d9;
   }
+
+  ${(props) =>
+    props.name === "Close" &&
+    `
+   border-top: 1px solid rgba(140, 140, 140, 0.71);
+  `}
+
+  ${(props) =>
+    props.active === false &&
+    `
+   color:rgba(140, 140, 140, 0.71);
+  `}
+
   ${(props) =>
     props.name === "Explorer Bar" &&
     `

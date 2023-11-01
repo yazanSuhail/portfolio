@@ -16,7 +16,7 @@ export const fileMenu = {
     { label: "Delete", active: false },
     { label: "Rename", active: false },
     { label: "Properties", active: false },
-    { label: "close", active: true },
+    { label: "Close", active: true },
   ],
 };
 
