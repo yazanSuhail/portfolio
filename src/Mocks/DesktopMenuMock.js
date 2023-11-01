@@ -11,58 +11,74 @@ import {
 
 export const fileMenu = {
   label: "File",
-  items: ["Create shortcut", "Delete", "Rename", "Properties", "close"],
+  items: [
+    { label: "Create shortcut", active: false },
+    { label: "Delete", active: false },
+    { label: "Rename", active: false },
+    { label: "Properties", active: false },
+    { label: "close", active: true },
+  ],
 };
 
 export const editMenu = {
   label: "Edit",
   items: [
-    "Undo",
-    "Cut",
-    "Copy",
-    "Paste",
-    "Paste Shortcut",
-    "Copy To Folder...",
-    "Move To Folder...",
-    "Select All",
-    "Invert Selection",
+    { label: "Undo", active: false },
+    { label: "Cut", active: false },
+    { label: "Copy", active: false },
+    { label: "Paste", active: false },
+    { label: "Paste Shortcut", active: false },
+    { label: "Move To Folder...", active: false },
+    { label: "Select All", active: true },
+    { label: "Invert Selection", active: true },
   ],
 };
 
 export const viewMenu = {
   label: "View",
   items: [
-    "ToolBars",
-    "Status Bar",
-    "Explorer Bar",
-    "Thumbnails",
-    "Titles",
-    "Icons",
-    "List",
-    "Details",
-    "Arrange Icons By",
-    "Choose Details",
-    "Go to",
-    "Refresh",
+    { label: "ToolBars", active: false },
+    { label: "Status Bar", active: false },
+    { label: "Explorer Bar", active: true },
+    { label: "Thumbnails", active: true },
+    { label: "Titles", active: true },
+    { label: "Icons", active: true },
+    { label: "List", active: true },
+    { label: "Details", active: true },
+    { label: "Arrange Icons By", active: true },
+    { label: "Choose Details", active: true },
+    { label: "Go to", active: true },
+    { label: "Refresh", active: true },
   ],
 };
 
 export const toolsMenu = {
   label: "Tools",
   items: [
-    "Map Network Drive...",
-    "Desconnect Network Drive",
-    "Syncronize...",
-    "FilderOptions",
+    { label: "Map Network Drive...", active: false },
+    { label: "Desconnect Network Drive", active: false },
+    { label: "Syncronize...", active: false },
+    { label: "FilderOptions", active: false },
   ],
 };
 
 export const helpMenu = {
   label: "Help",
   items: [
-    "Help and Support Center",
-    "Is this copy of Windows Legal",
-    "About Windows",
+    { label: "Help and Support Center", active: false },
+    { label: "Is this copy of Windows Legal", active: false },
+    { label: "About Windows", active: false },
+  ],
+};
+
+export const favorites = {
+  label: "Favorites",
+  items: [
+    { label: "Add to Favorites", active: true },
+    { label: "Organize Favorites...", active: true },
+    { label: "Links", active: true },
+    { label: "MSN.com", active: true },
+    { label: "Radio Station Guide", active: true },
   ],
 };
 

@@ -113,18 +113,55 @@ export const DropdownContent = styled.div`
     font-size: 15px;
     color: rgba(140, 140, 140, 0.71);
   }
-  div {
-    padding: 0.2rem 0 0 15px;
-    font-size: 15px;
-    color: black;
-    border-top: 1px solid rgba(140, 140, 140, 0.71);
-    margin: 2px;
-    width: 88%;
-    &:hover {
-      color: #fff;
-      background-color: #0831d9;
-    }
+`;
+
+export const Close = styled.div`
+  padding: 0.2rem 0 0 15px;
+  font-size: 15px;
+  color: black;
+  border-top: 1px solid rgba(140, 140, 140, 0.71);
+  margin: 2px;
+  width: 88%;
+  &:hover {
+    color: #fff;
+    background-color: #0831d9;
   }
+`;
+
+export const Items = styled.div`
+  padding: 0.2rem 0 0 15px;
+  font-size: 15px;
+  color: black;
+
+  margin: 2px;
+  width: 88%;
+  &:hover {
+    color: #fff;
+    background-color: #0831d9;
+  }
+  ${(props) =>
+    props.name === "Explorer Bar" &&
+    `
+   border-bottom: 1px solid rgba(140, 140, 140, 0.71);
+  `}
+
+  ${(props) =>
+    props.name === "Details" &&
+    `
+   border-bottom: 1px solid rgba(140, 140, 140, 0.71);
+  `}
+
+${(props) =>
+    props.name === "Arrange Icons By" &&
+    `
+   border-bottom: 1px solid rgba(140, 140, 140, 0.71);
+  `}
+
+${(props) =>
+    props.name === "Paste Shortcut" &&
+    `
+   border-bottom: 1px solid rgba(140, 140, 140, 0.71);
+  `}
 `;
 
 export const SubMenu = styled.section`

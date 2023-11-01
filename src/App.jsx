@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./components/MainStartMenu";
 import WindowsXPModal from "./components/Modals";
 import { computer } from "./assets";
@@ -8,10 +8,12 @@ import {
   viewMenu,
   toolsMenu,
   helpMenu,
+  favorites,
 } from "./Mocks/DesktopMenuMock";
 
 function App() {
-  const menus = [fileMenu, editMenu, viewMenu, toolsMenu, helpMenu];
+  const [isVisible, setIsVisible] = useState(true);
+  const menus = [fileMenu, editMenu, viewMenu, toolsMenu, helpMenu, favorites];
 
   const modalContent =
     "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque quis corporis odio eos hic quae harum neque quo sequi labore, corrupti provident soluta laborum possimus enim laboriosam, nesciunt, deleniti porro.";
@@ -24,7 +26,8 @@ function App() {
         title="My Computer"
         menus={menus}
         content={modalContent}
-        isVisible={true}
+        isVisible={isVisible}
+        setIsVisible={setIsVisible}
       />
     </>
   );

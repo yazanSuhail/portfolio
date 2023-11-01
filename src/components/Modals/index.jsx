@@ -10,12 +10,21 @@ import {
   SubMenu,
   SearchMenu,
   FakeInputContainer,
+  Close,
+  Items,
 } from "./styles";
 
 import { windowsLogo, computer, Go, halfArrouwDown } from "../../assets";
 import { submenuItems } from "../../Mocks/DesktopMenuMock";
 
-const WindowsXPModal = ({ title, menus, content, isVisible, icone }) => {
+const WindowsXPModal = ({
+  title,
+  menus,
+  content,
+  isVisible,
+  icone,
+  setIsVisible,
+}) => {
   const modalRef = React.createRef();
   const [openMenu, setOpenMenu] = useState(null);
   const [menuIsOpen, setMenuIsOpen] = useState(false);
@@ -35,7 +44,7 @@ const WindowsXPModal = ({ title, menus, content, isVisible, icone }) => {
     <>
       {isVisible && (
         <Draggable nodeRef={modalRef}>
-          <ModalContainer onMouseLeave={() => setOpenMenu(null)} ref={modalRef}>
+          <ModalContainer ref={modalRef}>
             <ModalTitle>
               <div>
                 <div>
@@ -64,9 +73,12 @@ const WindowsXPModal = ({ title, menus, content, isVisible, icone }) => {
                 {openMenu === menu.label && (
                   <DropdownContent>
                     {menu.items.map((item) => (
-                      <span key={item}>{item}</span>
+                      <div key={item.label}>
+                        <Items disabled={item.active} name={item.label}>
+                          {item.label}
+                        </Items>
+                      </div>
                     ))}
-                    <div>Close</div>
                   </DropdownContent>
                 )}
               </div>
