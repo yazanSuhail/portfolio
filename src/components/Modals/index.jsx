@@ -13,6 +13,9 @@ import {
   Close,
   Items,
   MenuContainer,
+  GridSubContent,
+  LeftSideMenu,
+  RightSideContent,
 } from "./styles";
 
 import { windowsLogo, computer, Go, halfArrouwDown } from "../../assets";
@@ -117,7 +120,30 @@ const WindowsXPModal = ({
               </div>
             </SearchMenu>
             <ModalContent onMouseEnter={() => handleIsMenuOpen()}>
-              {content}
+              <GridSubContent>
+                <LeftSideMenu>
+                  <div>
+                    <span>System Tasks</span>
+                    <span>View system information</span>
+                    <span>Add or remove programs</span>
+                    <span>Change a setting</span>
+                  </div>
+                  <div>
+                    {" "}
+                    <span>Other Places</span>
+                    <span>View system information</span>
+                    <span>Add or remove programs</span>
+                    <span>Change a setting</span>
+                  </div>
+                  <div>
+                    <span>Details</span>
+                    <span>View system information</span>
+                    <span>Add or remove programs</span>
+                    <span>Change a setting</span>
+                  </div>
+                </LeftSideMenu>
+                <RightSideContent>{content}</RightSideContent>
+              </GridSubContent>
             </ModalContent>
           </ModalContainer>
         </Draggable>

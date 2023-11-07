@@ -286,3 +286,18 @@ export const FakeInputContainer = styled.div`
   height: 1.1rem;
   padding: 2px;
 `;
+
+export const GridSubContent = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+`;
+
+export const LeftSideMenu = styled.div`
+  > div {
+    outline: 1px solid red;
+    width: 180px;
+  }
+`;
+
+export const RightSideContent = styled.div``;
