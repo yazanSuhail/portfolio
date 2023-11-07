@@ -297,6 +297,7 @@ export const LeftSideMenu = styled.div`
   > div {
     outline: 1px solid red;
     width: 180px;
+    height: 100%;
   }
 `;
 
