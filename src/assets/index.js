@@ -18,3 +18,16 @@ export { default as halfArrouwDown } from "../assets/half-arrouw-down.png";
 export { default as Go } from "../assets/go-go-go.png";
 
 export { default as droparrows } from "../assets/droparrows.png";
+
+export { default as viewInfo } from "../assets/view-info.ico";
+
+export { default as ic2 } from "../assets/ic2.png";
+export { default as wFjS } from "../assets/wFjS.png";
+export { default as wf60 } from "../assets/wf60.png";
+
+export { default as DoJ } from "../assets/0DoJ.png";
+export { default as O0N } from "../assets/5O0N.png";
+export { default as github } from "../assets/github.png";
+export { default as ccec } from "../assets/ccec.png";
+export { default as mcu } from "../assets/mcu.png";
+export { default as vvfs } from "../assets/vvfs.png";
