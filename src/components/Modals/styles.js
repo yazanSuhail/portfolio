@@ -294,10 +294,58 @@ export const GridSubContent = styled.div`
 `;
 
 export const LeftSideMenu = styled.div`
-  > div {
-    outline: 1px solid red;
-    width: 180px;
-    height: 100%;
+  width: 180px;
+  background: linear-gradient(rgb(116, 138, 255) 0%, rgb(64, 87, 211) 100%);
+  overflow: auto;
+  padding: 10px;
+`;
+
+export const Inner = styled.div`
+  outline: 2px solid green;
+  width: 100%;
+`;
+
+export const Title = styled.div`
+  display: flex;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: rgb(12, 50, 125);
+  -webkit-box-align: center;
+  align-items: center;
+  justify-content: space-between;
+  height: 23px;
+  padding-left: 11px;
+  padding-right: 2px;
+  cursor: pointer;
+  background: linear-gradient(
+    to right,
+    rgb(240, 240, 255) 0px,
+    rgb(240, 240, 255) 30%,
+    rgb(168, 188, 255) 100%
+  );
+  background-color: rgb(241, 241, 241);
+  border-radius: 5px 5px 0 0;
+  border-width: 0px 1px 1px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.4);
+  border-image: initial;
+`;
+
+export const ListContainer = styled.div`
+  padding: 5px 10px;
+  background: linear-gradient(
+      to right,
+      rgb(180, 200, 251) 0%,
+      rgb(164, 185, 251) 50%,
+      rgb(180, 200, 251) 100%
+    )
+    rgba(198, 211, 255, 0.87);
+  font-size: 12px;
+  line-height: 14px;
+  display: grid;
+  color: rgb(12, 50, 125);
+  span {
+    padding: 2px 0 2px 0;
   }
 `;
 

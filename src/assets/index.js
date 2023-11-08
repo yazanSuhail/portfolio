@@ -16,3 +16,5 @@ export { default as folderWithBackToStart } from "../assets/folder-with-back-to-
 export { default as halfArrouwDown } from "../assets/half-arrouw-down.png";
 
 export { default as Go } from "../assets/go-go-go.png";
+
+export { default as droparrows } from "../assets/droparrows.png";

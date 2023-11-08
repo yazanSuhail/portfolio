@@ -16,9 +16,18 @@ import {
   GridSubContent,
   LeftSideMenu,
   RightSideContent,
+  Title,
+  Inner,
+  ListContainer,
 } from "./styles";
 
-import { windowsLogo, computer, Go, halfArrouwDown } from "../../assets";
+import {
+  windowsLogo,
+  computer,
+  Go,
+  halfArrouwDown,
+  droparrows,
+} from "../../assets";
 import { submenuItems } from "../../Mocks/DesktopMenuMock";
 
 const WindowsXPModal = ({
@@ -122,14 +131,17 @@ const WindowsXPModal = ({
             <ModalContent onMouseEnter={() => handleIsMenuOpen()}>
               <GridSubContent>
                 <LeftSideMenu>
+                  <Inner>
+                    <Title>
+                      System Tasks <img src={droparrows} />
+                    </Title>
+                    <ListContainer>
+                      <span>View system information</span>
+                      <span>Add or remove programs</span>
+                      <span>Change a setting</span>
+                    </ListContainer>
+                  </Inner>
                   <div>
-                    <span>System Tasks</span>
-                    <span>View system information</span>
-                    <span>Add or remove programs</span>
-                    <span>Change a setting</span>
-                  </div>
-                  <div>
-                    {" "}
                     <span>Other Places</span>
                     <span>View system information</span>
                     <span>Add or remove programs</span>
