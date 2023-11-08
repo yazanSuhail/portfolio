@@ -1,7 +1,13 @@
 import React from "react";
+import { StartMenuContainer } from "./styles";
 
-function Header() {
-  return <div>Header</div>;
+function StartMenu() {
+  return (
+    <StartMenuContainer>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto,
+      fugit.
+    </StartMenuContainer>
+  );
 }
 
-export default Header;
+export default StartMenu;
