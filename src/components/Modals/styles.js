@@ -7,6 +7,7 @@ export const ModalContainer = styled.div`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   padding: 2px;
   width: 80%;
+  height: 100%;
   z-index: 1000;
   border: 3px solid #0831d9;
   border-radius: 11px 11px 0px 0px;
@@ -60,6 +61,16 @@ export const ModalTitle = styled.section`
     margin-left: 4px;
     margin-right: -3px;
     margin-top: 6px;
+  }
+  div:nth-child(2) {
+    flex: 1 1 0%;
+    pointer-events: none;
+    padding-right: 5px;
+    letter-spacing: 0.5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 14px;
   }
 `;
 
@@ -281,7 +292,6 @@ export const FakeInputContainer = styled.div`
   display: grid;
   grid-template-columns: 0fr 1fr 0fr;
   justify-content: center;
-  align-items: center;
   gap: 5px;
   height: 1.1rem;
   padding: 2px;
@@ -289,16 +299,119 @@ export const FakeInputContainer = styled.div`
 
 export const GridSubContent = styled.div`
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 0fr 4fr;
   gap: 1rem;
 `;
 
 export const LeftSideMenu = styled.div`
-  > div {
-    outline: 1px solid red;
-    width: 180px;
-    height: 100%;
+  width: 180px;
+  background: linear-gradient(rgb(116, 138, 255) 0%, rgb(64, 87, 211) 100%);
+  overflow: auto;
+  padding: 10px;
+`;
+
+export const Inner = styled.div`
+  width: 100%;
+  margin-top: 10px;
+`;
+
+export const Title = styled.div`
+  display: flex;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: rgb(12, 50, 125);
+  -webkit-box-align: center;
+  align-items: center;
+  justify-content: space-between;
+  height: 23px;
+  padding-left: 11px;
+  padding-right: 2px;
+  cursor: pointer;
+  background: linear-gradient(
+    to right,
+    rgb(240, 240, 255) 0px,
+    rgb(240, 240, 255) 30%,
+    rgb(168, 188, 255) 100%
+  );
+  background-color: rgb(241, 241, 241);
+  border-radius: 5px 5px 0 0;
+  border-width: 0px 1px 1px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.4);
+  border-image: initial;
+`;
+
+export const ListContainer = styled.div`
+  padding: 5px 10px;
+  background: linear-gradient(
+      to right,
+      rgb(180, 200, 251) 0%,
+      rgb(164, 185, 251) 50%,
+      rgb(180, 200, 251) 100%
+    )
+    rgba(198, 211, 255, 0.87);
+  font-size: 12px;
+  line-height: 14px;
+  display: grid;
+  color: rgb(12, 50, 125);
+  span {
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 2px 0 2px 0;
+    &:hover {
+      color: blue;
+    }
   }
 `;
 
-export const RightSideContent = styled.div``;
+export const RightSideContent = styled.div`
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+`;
+
+export const Cell = styled.div`
+  img {
+    width: 45px;
+    height: 45px;
+  }
+`;
+export const CellContent = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 2fr);
+  padding: 1rem 0 1rem 0;
+  font-size: 11px;
+  div {
+    display: flex;
+    align-items: center;
+  }
+  img {
+    padding-right: 2px;
+    width: 40px;
+    height: 40px;
+  }
+`;
+
+export const CellTitle = styled.div`
+  width: 300px;
+  font-weight: bolder;
+  padding: 2px 0px 3px 0px;
+  position: relative;
+  font-size: 11px;
+  &:after {
+    content: "";
+    display: block;
+    background: linear-gradient(
+      to right,
+      rgb(112, 191, 255) 0px,
+      rgb(255, 255, 255) 100%
+    );
+    position: absolute;
+    bottom: 0px;
+    left: -12px;
+    height: 1px;
+    width: 100%;
+  }
+`;
