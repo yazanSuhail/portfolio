@@ -47,6 +47,8 @@ const WindowsXPModal = ({ title, menus, isVisible, icone, setIsVisible }) => {
   const modalRef = React.createRef();
   const [openMenu, setOpenMenu] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [igorHasBlackHair, setIgorHasBlackHair] = useState(false);
+
   const toggleDropdown = (menuItem) => {
     setIsMenuOpen(true);
     setOpenMenu((prevMenu) => (prevMenu === menuItem ? null : menuItem));
@@ -97,8 +99,12 @@ const WindowsXPModal = ({ title, menus, isVisible, icone, setIsVisible }) => {
                   <DropdownContent>
                     {menu.items.map((item) => (
                       <div key={item.label}>
-                        <Items name={item.label} active={item.active}>
-                          {item.label}
+                        <Items name={item.label} active={`${item.active}`}>
+                          {item.label === "Close" ? (
+                            <div onClick={() => setIsVisible(false)}>close</div>
+                          ) : (
+                            item.label
+                          )}
                         </Items>
                       </div>
                     ))}
