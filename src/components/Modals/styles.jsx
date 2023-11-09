@@ -119,11 +119,7 @@ export const DropdownContent = styled.div`
   position: absolute;
   box-shadow: rgb(100, 100, 100) 2px 2px 1px;
   border: 1px solid gray;
-  span {
-    padding: 0.1rem 0 0 18px;
-    font-size: 15px;
-    color: rgba(140, 140, 140, 0.71);
-  }
+  z-index: 99999;
 `;
 
 export const MenuContainer = styled.div`
@@ -168,12 +164,19 @@ export const Close = styled.div`
 `;
 
 export const Items = styled.div`
-  padding: 0.2rem 0 0 15px;
-  font-size: 14px;
-  color: black;
+  div {
+    padding: 0.2rem 0 0 15px;
+    font-size: 11px;
+    color: black;
+    margin: 2px;
+    width: 88%;
+  }
 
-  margin: 2px;
-  width: 88%;
+  span {
+    padding: 0.1rem 0 0 18px;
+    font-size: 11px;
+    color: rgba(140, 140, 140, 0.71);
+  }
   &:hover {
     color: #fff;
     background-color: #0831d9;
