@@ -10,7 +10,7 @@ import {
   SubMenu,
   SearchMenu,
   FakeInputContainer,
-  Close,
+  Icons,
   Items,
   MenuContainer,
   GridSubContent,
@@ -22,6 +22,7 @@ import {
   Cell,
   CellContent,
   CellTitle,
+  IconsContainer,
 } from "./styles";
 
 import {
@@ -39,18 +40,34 @@ import {
   DoJ,
   O0N,
   mcu,
+  minimize,
   vvfs,
+  closeIcon,
+  max,
 } from "../../assets";
 import { submenuItems } from "../../Mocks/DesktopMenuMock";
 
-const WindowsXPModal = ({ title, menus, isVisible, icone, setIsVisible }) => {
+const WindowsXPModal = ({ title, menus, isVisible, icone, closeModal }) => {
   const modalRef = React.createRef();
   const [openMenu, setOpenMenu] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isFullWidth, setIsFullWidth] = useState(false);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
 
   const toggleDropdown = (menuItem) => {
     setIsMenuOpen(true);
     setOpenMenu((prevMenu) => (prevMenu === menuItem ? null : menuItem));
+  };
+  console.log("isFullWidth", isFullWidth);
+  const setModalWidth = () => {
+    const currentPosition = { ...position };
+
+    setPosition({ x: 0, y: 0 });
+
+    setTimeout(() => {
+      setIsFullWidth((prevMenu) => !prevMenu);
+      setPosition(currentPosition);
+    }, 100);
   };
 
   const toggleDropdownOnHover = (menuItem) => {
@@ -68,14 +85,39 @@ const WindowsXPModal = ({ title, menus, isVisible, icone, setIsVisible }) => {
     <>
       {isVisible && (
         <Draggable nodeRef={modalRef}>
-          <ModalContainer ref={modalRef}>
+          <ModalContainer
+            onStop={(e, data) => setPosition({ x: data.x, y: data.y })}
+            isFullWidth={`${isFullWidth}`}
+            ref={modalRef}>
             <ModalTitle>
               <div>
                 <div>
-                  <img src={icone} alt="windows Logo" width="50rem" />
+                  <Icons src={icone} alt="windows Logo" width="50rem" />
                 </div>
               </div>
               <div>{title}</div>
+              <IconsContainer>
+                <Icons
+                  width="1.5rem"
+                  height="1.5rem"
+                  src={minimize}
+                  alt="minimize"
+                />
+                <Icons
+                  onClick={setModalWidth}
+                  width="1.5rem"
+                  height="1.5rem"
+                  src={max}
+                  alt="close"
+                />
+                <Icons
+                  width="1.5rem"
+                  height="1.5rem"
+                  src={closeIcon}
+                  alt="close"
+                  onClick={closeModal}
+                />
+              </IconsContainer>
             </ModalTitle>
             <ModalDropDownMenu onMouseEnter={() => handleIsMenuOpen()}>
               <div>
@@ -100,7 +142,7 @@ const WindowsXPModal = ({ title, menus, isVisible, icone, setIsVisible }) => {
                       <div key={item.label}>
                         <Items name={item.label} active={`${item.active}`}>
                           {item.label === "Close" ? (
-                            <div onClick={() => setIsVisible(false)}>close</div>
+                            <div onClick={closeModal}>close</div>
                           ) : (
                             <span>{item.label}</span>
                           )}

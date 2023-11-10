@@ -1,19 +1,38 @@
 import styled from "styled-components";
 
 export const ModalContainer = styled.div`
+  ${(props) =>
+    props.isFullWidth === "true" &&
+    `
+       width: 100%;
+       height: 94.5vh;
+       position:relative;
+       top:0;
+       right:0;
+        `}
+  ${(props) =>
+    props.isFullWidth === "false" &&
+    `width: 50%;
+       height: 100%;
+       position:relative;
+       top:0;
+       right:0;
+       `}
+
   transform: translate(-50%, -50%);
+
   background: white;
   border: 1px solid #000;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   padding: 2px;
-  width: 80%;
-  height: 100%;
   z-index: 1000;
   border: 3px solid #0831d9;
   border-radius: 11px 11px 0px 0px;
   display: grid;
   padding: 0;
   margin: 0 auto;
+  position: relative !important;
+  max-height: 80%;
 `;
 
 export const ModalTitle = styled.section`
@@ -36,7 +55,7 @@ export const ModalTitle = styled.section`
   );
 
   height: 28px;
-  pointer-events: none;
+
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   overflow: hidden;
@@ -44,33 +63,40 @@ export const ModalTitle = styled.section`
   justify-content: flex-start;
   align-items: center;
   gap: 0.7rem;
-
-  div {
-    font-weight: 700;
-    font-size: 18px;
-    font-family: "Noto Sans";
-    text-shadow: rgb(0, 0, 0) 1px 1px;
-    color: white;
-    -webkit-box-align: center;
-    align-items: center;
-  }
-
-  img {
-    width: 20px;
-    height: 20px;
-    margin-left: 4px;
-    margin-right: -3px;
-    margin-top: 6px;
-  }
+  color: #fff;
+  font-weight: bolder;
   div:nth-child(2) {
     flex: 1 1 0%;
-    pointer-events: none;
+
     padding-right: 5px;
     letter-spacing: 0.5px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     font-size: 14px;
+  }
+`;
+
+export const IconsContainer = styled.div`
+  margin: 7px 5px 13px 0;
+  gap: 0.1rem;
+  width: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Icons = styled.img`
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-left: 4px;
+  margin-right: -3px;
+  margin-top: 6px;
+  &:hover {
+    filter: brightness(1.2);
+  }
+  &:active {
+    filter: brightness(0.7);
   }
 `;
 

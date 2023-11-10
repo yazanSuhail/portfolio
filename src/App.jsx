@@ -10,10 +10,10 @@ import {
   helpMenu,
   favorites,
 } from "./Mocks/DesktopMenuMock";
-
+import { useModal } from "./contexts/use-modal";
 function App() {
-  const [isVisible, setIsVisible] = useState(true);
   const menus = [fileMenu, editMenu, viewMenu, toolsMenu, helpMenu, favorites];
+  const { isModalOpen, openModal, closeModal } = useModal();
 
   return (
     <>
@@ -22,9 +22,11 @@ function App() {
         title="My Computer"
         menus={menus}
         content={[]}
-        isVisible={isVisible}
-        setIsVisible={setIsVisible}
+        isVisible={isModalOpen}
+        closeModal={closeModal}
       />
+      <button onClick={openModal}>Open Modal</button>
+      <button onClick={closeModal}>Close Modal</button>
       <StartMenu />
     </>
   );
