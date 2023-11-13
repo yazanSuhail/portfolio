@@ -2,10 +2,16 @@ import styled from "styled-components";
 
 export const ModalContainer = styled.div`
   color: #000000;
+  background: white;
+  border: 1px solid #000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border: 3px solid #0831d9;
+  border-radius: 11px 11px 0px 0px;
+
   ${(props) =>
     props.isfullwidth === "true" &&
     `
-       width: 100%;
+       width: auto;
        height: 94.5vh;
        position:relative;
        top:0;
@@ -15,13 +21,7 @@ export const ModalContainer = styled.div`
     props.isfullwidth === "false" &&
     `
      width: 70%;
-     margin: 0 auto;
     `}
-  background: white;
-  border: 1px solid #000;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  border: 3px solid #0831d9;
-  border-radius: 11px 11px 0px 0px;
 `;
 
 export const ModalTitle = styled.section`
@@ -42,9 +42,7 @@ export const ModalTitle = styled.section`
     rgb(0, 64, 171) 94%,
     rgb(0, 48, 146) 100%
   );
-
   height: 28px;
-
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   overflow: hidden;
@@ -319,7 +317,12 @@ export const GridSubContent = styled.div`
   display: grid;
   grid-template-columns: 0fr 4fr;
   gap: 1rem;
-  height: 100%;
+
+  ${(props) =>
+    props.isfullwidth === "true" &&
+    `
+     height: 81.5vh;
+    `}
 `;
 
 export const LeftSideMenu = styled.div`

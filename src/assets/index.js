@@ -46,3 +46,5 @@ export { default as minimize } from "../assets/windows-minimize-icon-28.jpg";
 export { default as max } from "../assets/max.png";
 
 export { default as closeIcon } from "../assets/close.png";
+
+export { default as startMenuBtn } from "../assets/start-menu-btn.png";

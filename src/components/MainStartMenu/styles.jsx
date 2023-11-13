@@ -1,11 +1,15 @@
 import styled from "styled-components";
 
 export const StartMenuContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+  justify-content: center;
+  align-items: center;
   background-color: red;
   position: absolute;
   width: 100%;
   bottom: 0;
-  height: 30px;
+  height: 35px;
   background: linear-gradient(
     rgb(31, 47, 134) 0px,
     rgb(49, 101, 196) 3%,
@@ -24,6 +28,32 @@ export const StartMenuContainer = styled.div`
     rgb(29, 78, 192) 95%,
     rgb(25, 65, 165) 98%
   );
+`;
 
-  display: flex;
+export const StartMenuButton = styled.img`
+  height: 100%;
+  margin-right: 10px;
+
+  &:hover {
+    filter: brightness(1.2);
+  }
+  &:active {
+    filter: brightness(0.7);
+  }
+`;
+
+export const MinimizContainer = styled.div`
+  outline: 1px solid red;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  height: 30px;
+`;
+
+export const NotificationsContainer = styled.div`
+  outline: 1px solid black;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  height: 30px;
 `;

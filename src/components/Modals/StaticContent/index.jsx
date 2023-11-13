@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Draggable from "react-draggable";
 import {
   ModalContainer,
   ModalTitle,
@@ -185,7 +184,7 @@ const ModalStaticContent = ({
             </SearchMenu>
           </div>
           <ModalContent onMouseEnter={() => handleIsMenuOpen()}>
-            <GridSubContent>
+            <GridSubContent isfullwidth={`${isFullWidth}`}>
               <LeftSideMenu>
                 <Inner>
                   <Title>

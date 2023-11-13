@@ -15,6 +15,7 @@
 }
 
 body {
+  overflow: hidden;
   font-family: Tahoma, "Noto Sans", sans-serif;
   background-image: url("../src/assets/desktop-background.png");
   background-size: cover;
