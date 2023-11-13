@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 export const ModalContainer = styled.div`
+  color: #000000;
   ${(props) =>
-    props.isFullWidth === "true" &&
+    props.isfullwidth === "true" &&
     `
        width: 100%;
        height: 94.5vh;
@@ -11,28 +12,16 @@ export const ModalContainer = styled.div`
        right:0;
         `}
   ${(props) =>
-    props.isFullWidth === "false" &&
-    `width: 50%;
-       height: 100%;
-       position:relative;
-       top:0;
-       right:0;
-       `}
-
-  transform: translate(-50%, -50%);
-
+    props.isfullwidth === "false" &&
+    `
+     width: 70%;
+     margin: 0 auto;
+    `}
   background: white;
   border: 1px solid #000;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  padding: 2px;
-  z-index: 1000;
   border: 3px solid #0831d9;
   border-radius: 11px 11px 0px 0px;
-  display: grid;
-  padding: 0;
-  margin: 0 auto;
-  position: relative !important;
-  max-height: 80%;
 `;
 
 export const ModalTitle = styled.section`
@@ -330,6 +319,7 @@ export const GridSubContent = styled.div`
   display: grid;
   grid-template-columns: 0fr 4fr;
   gap: 1rem;
+  height: 100%;
 `;
 
 export const LeftSideMenu = styled.div`
@@ -399,6 +389,7 @@ export const ListContainer = styled.div`
 export const RightSideContent = styled.div`
   display: grid;
   grid-template-rows: repeat(4, 1fr);
+  max-height: 424px;
 `;
 
 export const Cell = styled.div`
