@@ -3,7 +3,7 @@ import { computer } from "../../assets";
 import Draggable from "react-draggable";
 import { IconsContainer, Icon } from "./styles";
 
-function DesktopIcons({ openModal }) {
+function DesktopIcons({ openModal, setType }) {
   const [numberOfClicks, setNumberOfClicks] = useState(0);
   const modalRef = React.createRef();
 
@@ -11,7 +11,7 @@ function DesktopIcons({ openModal }) {
     setNumberOfClicks(event.detail);
   };
 
-  console.log("numberOfClicks", numberOfClicks);
+  setType("myComputer");
   useEffect(() => {
     if (numberOfClicks === 2) {
       openModal();

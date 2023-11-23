@@ -15,22 +15,20 @@ import DesktopIcons from "./components/DesktopIcons";
 function App() {
   const menus = [fileMenu, editMenu, viewMenu, toolsMenu, helpMenu, favorites];
   const { isModalOpen, openModal, closeModal } = useModal();
+  const [type, setType] = useState("");
 
   return (
     <>
-      <DesktopIcons openModal={openModal} />
-
-      <div style={{ position: "absolute", zIndex: 2 }}>
-        <WindowsXPModal
-          icone={computer}
-          title="My Computer"
-          menus={menus}
-          content={[]}
-          isVisible={isModalOpen}
-          closeModal={closeModal}
-        />
-      </div>
-
+      <DesktopIcons openModal={openModal} setType={setType} />
+      <WindowsXPModal
+        icone={computer}
+        title="My Computer"
+        menus={menus}
+        content={[]}
+        isVisible={isModalOpen}
+        closeModal={closeModal}
+        type={type}
+      />
       <StartMenu />
     </>
   );

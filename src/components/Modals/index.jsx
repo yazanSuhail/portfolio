@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from "react";
 import Draggable from "react-draggable";
-
 import ModalStaticContent from "../Modals/StaticContent/index";
 
-const WindowsXPModal = ({ title, menus, isVisible, icone, closeModal }) => {
+const WindowsXPModal = ({
+  title,
+  menus,
+  isVisible,
+  icone,
+  closeModal,
+  type,
+}) => {
   const modalRef = React.createRef();
   const [isFullWidth, setIsFullWidth] = useState(false);
+
   return (
     <>
       {isVisible && (
@@ -15,6 +22,7 @@ const WindowsXPModal = ({ title, menus, isVisible, icone, closeModal }) => {
               isFullWidth={isFullWidth}
               setIsFullWidth={setIsFullWidth}
               icone={icone}
+              type={type}
               title={title}
               menus={menus}
               content={[]}
@@ -29,6 +37,7 @@ const WindowsXPModal = ({ title, menus, isVisible, icone, closeModal }) => {
                   setIsFullWidth={setIsFullWidth}
                   icone={icone}
                   title={title}
+                  type={type}
                   menus={menus}
                   content={[]}
                   isVisible={isVisible}

@@ -10,16 +10,15 @@ export const ModalContainer = styled.div`
 
   ${(props) =>
     props.isfullwidth === "true" &&
-    `
-       width: auto;
-       height: 94.5vh;
-       position:relative;
-       top:0;
-       right:0;
+    `margin:0 auto;
+    width: 100%;
+    position: absolute;
+    top: 0;
         `}
   ${(props) =>
     props.isfullwidth === "false" &&
     `
+    margin: 0 auto;
      width: 70%;
     `}
 `;

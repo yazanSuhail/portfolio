@@ -55,6 +55,7 @@ const ModalStaticContent = ({
   closeModal,
   isFullWidth,
   setIsFullWidth,
+  type,
 }) => {
   const [openMenu, setOpenMenu] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -85,11 +86,13 @@ const ModalStaticContent = ({
     setOpenMenu(null);
   };
 
+  console.log("type", type);
+
   return (
     <>
-      {isVisible && (
+      {isVisible && type === "myComputer" && (
         <ModalContainer isfullwidth={`${isFullWidth}`}>
-          <ModalTitle>
+          <ModalTitle onDoubleClick={setModalWidth}>
             <div>
               <div>
                 <Icons src={icone} alt="windows Logo" width="50rem" />
