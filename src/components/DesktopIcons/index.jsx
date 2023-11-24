@@ -7,8 +7,10 @@ function DesktopIcons({ openModal, setType }) {
   const [numberOfClicks, setnumberOfClicks] = useState(0);
   const modalRef = React.createRef();
 
-  const handleClick = (event) => {
+  const handleClick = (event, type) => {
+    console.log("type", type);
     setnumberOfClicks(event.detail);
+    setType(type);
   };
 
   useEffect(() => {
@@ -18,12 +20,12 @@ function DesktopIcons({ openModal, setType }) {
   }, [numberOfClicks]);
 
   return (
-    <IconsContainer onClick={() => setType("myComputer")}>
+    <IconsContainer>
       <Draggable nodeRef={modalRef}>
         <Icon
           numberofclicks={`${numberOfClicks}`}
           ref={modalRef}
-          onClick={handleClick}>
+          onClick={(e) => handleClick(e, "myComputer")}>
           <img src={computer} alt="My Computer" />
           <div>My Computer</div>
         </Icon>

@@ -12,6 +12,7 @@ import {
 } from "./Mocks/DesktopMenuMock";
 import { useModal } from "./contexts/use-modal";
 import DesktopIcons from "./components/DesktopIcons";
+
 function App() {
   const menus = [fileMenu, editMenu, viewMenu, toolsMenu, helpMenu, favorites];
   const { isModalOpen, openModal, closeModal } = useModal();
