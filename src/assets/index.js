@@ -48,3 +48,4 @@ export { default as max } from "../assets/max.png";
 export { default as closeIcon } from "../assets/close.png";
 
 export { default as startMenuBtn } from "../assets/start-menu-btn.png";
+export { default as duck } from "../assets/profile-picture-duck.jpg";

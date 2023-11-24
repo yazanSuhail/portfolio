@@ -5,7 +5,7 @@ export const Grid = styled.div`
   height: 100vh;
   width: 100%;
   background-color: #fff;
-  color: black;
+  color: #fff;
   display: grid;
   grid-template-rows: 1fr 7fr 1fr;
   padding: 0;
@@ -71,8 +71,46 @@ export const Center = styled.div`
 `;
 
 export const RightSideContent = styled.div`
-  display: grid;
-  place-items: flex-start;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  min-width: 400px;
+  max-width: 100%;
+
+  padding: 12px;
+  border-radius: 8px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border: 1px solid transparent;
+  border-right: 0;
+  background-clip: padding-box;
+  border: 1px solid transparent;
+
+  img {
+    opacity: 0.5;
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+    border: 3px solid #fff;
+    border-radius: 8px;
+    box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.3);
+  }
+
+  span {
+    opacity: 0.5;
+    font-size: 1.8rem;
+  }
+
+  &:hover {
+    span {
+      opacity: 100;
+    }
+    img {
+      outline: 1px solid yellow;
+      cursor: pointer;
+      opacity: 100;
+    }
+  }
 `;
 
 export const LeftSide = styled.div`

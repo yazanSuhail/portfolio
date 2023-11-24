@@ -8,6 +8,7 @@ import {
   RightSideContent,
   LeftSide,
 } from "./styles";
+import { duck } from "../../assets";
 import { useNavigate } from "react-router-dom";
 function Login() {
   const navigate = useNavigate();
@@ -17,10 +18,12 @@ function Login() {
       <Body>
         <Center>
           <LeftSide>
-            <button onClick={() => navigate("/desktop")}>LogIn</button>
+            <div onClick={() => navigate("/desktop")}>Adding the logo</div>
           </LeftSide>
+          <div></div>
           <RightSideContent>
-            <button onClick={() => navigate("/desktop")}>Logout</button>
+            <img src={duck} onClick={() => navigate("/desktop")} />{" "}
+            <span>LogIn</span>
           </RightSideContent>
         </Center>
       </Body>
