@@ -17,10 +17,26 @@ function App() {
   const menus = [fileMenu, editMenu, viewMenu, toolsMenu, helpMenu, favorites];
   const { isModalOpen, openModal, closeModal } = useModal();
   const [type, setType] = useState("");
+  const [selectedIcon, setSelectedIcon] = useState(null);
+
+  useEffect(() => {
+    const handleDocumentClick = () => {
+      setSelectedIcon(null);
+    };
+    document.addEventListener("click", handleDocumentClick);
+    return () => {
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, []);
 
   return (
     <>
-      <DesktopIcons openModal={openModal} setType={setType} />
+      <DesktopIcons
+        openModal={openModal}
+        setType={setType}
+        selectedIcon={selectedIcon}
+        setSelectedIcon={setSelectedIcon}
+      />
       <WindowsXPModal
         icone={computer}
         title="My Computer"

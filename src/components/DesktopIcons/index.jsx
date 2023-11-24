@@ -1,43 +1,42 @@
+import styled from "styled-components";
 import React, { useEffect, useState } from "react";
-import { computer, viewInfo, folder } from "../../assets";
+import { computer, folder } from "../../assets";
 import Draggable from "react-draggable";
 import { IconsContainer, Icon } from "./styles";
 
-function DesktopIcons({ openModal, setType }) {
-  const [numberOfClicks, setnumberOfClicks] = useState(0);
-  const modalRef = React.createRef();
-
-  const handleClick = (event, type) => {
-    console.log("type", type);
-    setnumberOfClicks(event.detail);
+function DesktopIcons({ openModal, setType, selectedIcon, setSelectedIcon }) {
+  const handleClick = (type) => {
+    event.stopPropagation();
+    setSelectedIcon(type);
     setType(type);
   };
 
   useEffect(() => {
-    if (numberOfClicks === 2) {
-      openModal();
+    if (selectedIcon) {
+      const newSelectedIcons = { myComputer: false, myProjects: false };
+      newSelectedIcons[selectedIcon] = true;
     }
-  }, [numberOfClicks]);
+  }, [selectedIcon]);
 
   return (
     <IconsContainer>
-      <Draggable nodeRef={modalRef}>
+      <Draggable>
         <Icon
-          numberofclicks={`${numberOfClicks}`}
-          ref={modalRef}
-          onClick={(e) => handleClick(e, "myComputer")}>
+          onDoubleClick={() => openModal()}
+          isSelected={selectedIcon === "myComputer"}
+          onClick={() => handleClick("myComputer")}>
           <img src={computer} alt="My Computer" />
-          <div>My Computer</div>
+          <span>My Computer</span>
         </Icon>
       </Draggable>
 
-      <Draggable nodeRef={modalRef}>
+      <Draggable>
         <Icon
-          numberofclicks={`${numberOfClicks}`}
-          ref={modalRef}
-          onClick={(e) => handleClick(e, "myProjects")}>
+          onDoubleClick={() => openModal()}
+          isSelected={selectedIcon === "myProjects"}
+          onClick={() => handleClick("myProjects")}>
           <img src={folder} alt="My Projects" />
-          <div>My Projects</div>
+          <span>My Projects</span>
         </Icon>
       </Draggable>
     </IconsContainer>
