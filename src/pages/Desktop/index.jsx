@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import StartMenu from "./components/MainStartMenu";
-import WindowsXPModal from "./components/Modals";
-import { computer } from "./assets";
+import StartMenu from "../../components/MainStartMenu";
+import WindowsXPModal from "../../components/Modals";
+import { computer } from "../../assets";
 import {
   fileMenu,
   editMenu,
@@ -9,11 +9,12 @@ import {
   toolsMenu,
   helpMenu,
   favorites,
-} from "./Mocks/DesktopMenuMock";
-import { useModal } from "./contexts/use-modal";
-import DesktopIcons from "./components/DesktopIcons";
+} from "../../Mocks/DesktopMenuMock";
+import { useModal } from "../../contexts/use-modal";
+import DesktopIcons from "../../components/DesktopIcons";
+import { DesktopContainer } from "./styles";
 
-function App() {
+function Desktop() {
   const menus = [fileMenu, editMenu, viewMenu, toolsMenu, helpMenu, favorites];
   const { isModalOpen, openModal, closeModal } = useModal();
   const [type, setType] = useState("");
@@ -30,7 +31,7 @@ function App() {
   }, []);
 
   return (
-    <>
+    <DesktopContainer>
       <DesktopIcons
         openModal={openModal}
         setType={setType}
@@ -47,8 +48,8 @@ function App() {
         type={type}
       />
       <StartMenu />
-    </>
+    </DesktopContainer>
   );
 }
 
-export default App;
+export default Desktop;

@@ -17,10 +17,6 @@
 body {
   overflow: hidden;
   font-family: Tahoma, "Noto Sans", sans-serif;
-  background-image: url("../src/assets/desktop-background.png");
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
   font-family: "Noto Sans TC", sans-serif;
   margin: 0;
   width: 100%;
