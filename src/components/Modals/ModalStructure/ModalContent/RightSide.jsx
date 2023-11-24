@@ -57,6 +57,7 @@ function RightSide({ type }) {
           </Cell>
         </>
       )}
+      {type === "myProjects" && <>In progress...</>}
     </RightSideContent>
   );
 }
