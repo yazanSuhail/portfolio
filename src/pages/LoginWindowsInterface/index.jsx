@@ -16,19 +16,12 @@ function Login() {
       <Head />
       <Body>
         <Center>
-          <RightSideContent>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
-            sint commodi natus consequuntur dolore, tenetur dicta autem quidem
-            perspiciatis eveniet velit nam repellendus nobis eligendi adipisci
-            ratione iusto facilis ipsum.
-          </RightSideContent>
           <LeftSide>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
-            sint commodi natus consequuntur dolore, tenetur dicta autem quidem
-            perspiciatis eveniet velit nam repellendus nobis eligendi adipisci
-            ratione iusto facilis ipsum.
             <button onClick={() => navigate("/desktop")}>LogIn</button>
           </LeftSide>
+          <RightSideContent>
+            <button onClick={() => navigate("/desktop")}>Logout</button>
+          </RightSideContent>
         </Center>
       </Body>
       <Footer>footer</Footer>

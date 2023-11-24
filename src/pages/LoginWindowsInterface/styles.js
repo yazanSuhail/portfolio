@@ -71,6 +71,11 @@ export const Center = styled.div`
 `;
 
 export const RightSideContent = styled.div`
+  display: grid;
+  place-items: flex-start;
+`;
+
+export const LeftSide = styled.div`
   border-image-source: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0) 0%,
@@ -83,8 +88,5 @@ export const RightSideContent = styled.div`
   );
   border-image-slice: 0 1 0 0;
   border-right-style: solid;
-`;
-export const LeftSide = styled.div`
-  display: grid;
-  place-items: flex-start;
+  padding: 3rem;
 `;
