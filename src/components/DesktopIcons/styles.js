@@ -20,7 +20,7 @@ export const Icon = styled.div`
   gap: 0.5rem;
   cursor: default;
   ${(props) =>
-    props.isSelected &&
+    props.isselected === "true" &&
     `
     > span {
       background-color: rgb(11, 97, 255);
