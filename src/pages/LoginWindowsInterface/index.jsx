@@ -1,17 +1,34 @@
 import React from "react";
-import { Grid, Head, Body, Footer, Center } from "./styles";
+import {
+  Grid,
+  Head,
+  Body,
+  Footer,
+  Center,
+  RightSideContent,
+  LeftSide,
+} from "./styles";
 import { useNavigate } from "react-router-dom";
 function Login() {
   const navigate = useNavigate();
   return (
     <Grid>
-      <Head>header</Head>
+      <Head />
       <Body>
         <Center>
-          <div>body1</div>
-          <div>
+          <RightSideContent>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
+            sint commodi natus consequuntur dolore, tenetur dicta autem quidem
+            perspiciatis eveniet velit nam repellendus nobis eligendi adipisci
+            ratione iusto facilis ipsum.
+          </RightSideContent>
+          <LeftSide>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
+            sint commodi natus consequuntur dolore, tenetur dicta autem quidem
+            perspiciatis eveniet velit nam repellendus nobis eligendi adipisci
+            ratione iusto facilis ipsum.
             <button onClick={() => navigate("/desktop")}>LogIn</button>
-          </div>
+          </LeftSide>
         </Center>
       </Body>
       <Footer>footer</Footer>

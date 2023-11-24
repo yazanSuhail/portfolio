@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import RightSide from "../../components/Modals/ModalStructure/ModalContent/RightSide";
 
 export const Grid = styled.div`
   height: 100vh;
@@ -63,7 +64,27 @@ export const Center = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 90%;
   height: 100%;
   gap: 2rem;
+  margin: 0 auto;
+`;
+
+export const RightSideContent = styled.div`
+  border-image-source: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0) 5%,
+    rgba(255, 255, 255, 0.5) 15%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0.5) 85%,
+    rgba(255, 255, 255, 0) 95%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  border-image-slice: 0 1 0 0;
+  border-right-style: solid;
+`;
+export const LeftSide = styled.div`
+  display: grid;
+  place-items: flex-start;
 `;
