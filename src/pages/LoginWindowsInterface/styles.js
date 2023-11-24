@@ -106,7 +106,7 @@ export const RightSideContent = styled.div`
       opacity: 100;
     }
     img {
-      outline: 1px solid yellow;
+      outline: 3px solid #ffd700;
       cursor: pointer;
       opacity: 100;
     }

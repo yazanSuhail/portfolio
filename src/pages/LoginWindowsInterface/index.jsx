@@ -20,14 +20,13 @@ function Login() {
           <LeftSide>
             <div onClick={() => navigate("/desktop")}>Adding the logo</div>
           </LeftSide>
-          <div></div>
           <RightSideContent>
             <img src={duck} onClick={() => navigate("/desktop")} />{" "}
-            <span>LogIn</span>
+            <span>The Dark Knight</span>
           </RightSideContent>
         </Center>
       </Body>
-      <Footer>footer</Footer>
+      <Footer />
     </Grid>
   );
 }
