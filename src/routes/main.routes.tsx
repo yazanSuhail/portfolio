@@ -6,11 +6,11 @@ import LoginWindowsInterface from "../pages/LoginWindowsInterface";
 
 const routes: RouteObject[] = [
   {
-    path: "/",
+    path: "/desktop",
     element: <Desktop />,
   },
   {
-    path: "/lol",
+    path: "/",
     element: <LoginWindowsInterface />,
   },
 ];
