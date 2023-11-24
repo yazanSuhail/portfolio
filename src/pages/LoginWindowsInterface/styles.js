@@ -58,13 +58,24 @@ export const Footer = styled.div`
     #004da3 100%
   );
   border-width: 4px 0 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  img {
+    position: relative;
+    top: 10px;
+    left: -10px;
+    cursor: pointer;
+    width: 2.4rem;
+    border-radius: 5px;
+  }
 `;
 
 export const Center = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 90%;
+  width: 100%;
   height: 100%;
   gap: 2rem;
   margin: 0 auto;
@@ -114,6 +125,7 @@ export const RightSideContent = styled.div`
 `;
 
 export const LeftSide = styled.div`
+  font-size: 2rem;
   border-image-source: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0) 0%,

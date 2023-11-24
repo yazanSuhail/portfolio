@@ -8,7 +8,7 @@ import {
   RightSideContent,
   LeftSide,
 } from "./styles";
-import { duck } from "../../assets";
+import { duck, windowsXPLogo, turnoffwindows } from "../../assets";
 import { useNavigate } from "react-router-dom";
 function Login() {
   const navigate = useNavigate();
@@ -18,7 +18,8 @@ function Login() {
       <Body>
         <Center>
           <LeftSide>
-            <div onClick={() => navigate("/desktop")}>Adding the logo</div>
+            <img src={windowsXPLogo} alt="windows XP Logo" />
+            <div>To begin, click your user name</div>
           </LeftSide>
           <RightSideContent>
             <img src={duck} onClick={() => navigate("/desktop")} />{" "}
@@ -26,7 +27,16 @@ function Login() {
           </RightSideContent>
         </Center>
       </Body>
-      <Footer />
+      <Footer>
+        <span>
+          {" "}
+          <img src={turnoffwindows} /> Turn Off computer
+        </span>
+        <span>
+          After you log on, you can add or change accounts. <br /> Just go to
+          Control Panel and click User Accounts.
+        </span>
+      </Footer>
     </Grid>
   );
 }
