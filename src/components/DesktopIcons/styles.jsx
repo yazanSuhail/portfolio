@@ -17,7 +17,7 @@ export const Icon = styled.div`
   gap: 0.5rem;
   cursor: default;
   ${(props) =>
-    props.numberOfClicks === 1 &&
+    props.numberofclicks === "1" &&
     `
   > div {
     background-color: rgb(11, 97, 255);

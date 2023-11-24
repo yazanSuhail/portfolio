@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Draggable from "react-draggable";
-import ModalStaticContent from "../Modals/StaticContent/index";
+import ModalStaticContent from "../Modals/StaticContent";
 
 const WindowsXPModal = ({
   title,

@@ -23,7 +23,7 @@ export const ModalContainer = styled.div`
     `}
 `;
 
-export const ModalTitle = styled.section`
+export const ModalHeaderContainer = styled.section`
   background: linear-gradient(
     rgb(0, 88, 238) 0%,
     rgb(53, 147, 255) 4%,

@@ -1,17 +1,8 @@
 import React, { useEffect, useState } from "react";
 import {
   ModalContainer,
-  ModalTitle,
   ModalContent,
-  ModalDropDownMenu,
-  DropBtn,
-  DropdownContent,
   SubMenu,
-  SearchMenu,
-  FakeInputContainer,
-  Icons,
-  Items,
-  MenuContainer,
   GridSubContent,
   LeftSideMenu,
   RightSideContent,
@@ -21,14 +12,9 @@ import {
   Cell,
   CellContent,
   CellTitle,
-  IconsContainer,
 } from "../styles";
 
 import {
-  windowsLogo,
-  computer,
-  Go,
-  halfArrouwDown,
   droparrows,
   viewInfo,
   ic2,
@@ -47,6 +33,14 @@ import {
 
 import { submenuItems } from "../../../Mocks/DesktopMenuMock";
 
+import ModalHeader from "../ModalStructure/ModalHeader";
+
+import ModalDropDownSubMenu from "../ModalStructure/ModalDropDownMenu";
+
+import FakeSearchMenu from "../ModalStructure/FakeSearchMenu";
+
+import NavSubMenu from "../ModalStructure/NavSubMenu";
+
 const ModalStaticContent = ({
   title,
   menus,
@@ -61,11 +55,6 @@ const ModalStaticContent = ({
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
-  const toggleDropdown = (menuItem) => {
-    setIsMenuOpen(true);
-    setOpenMenu((prevMenu) => (prevMenu === menuItem ? null : menuItem));
-  };
-
   const setModalWidth = () => {
     const currentPosition = { ...position };
     setPosition({ x: 0, y: 0 });
@@ -75,117 +64,38 @@ const ModalStaticContent = ({
     }, 100);
   };
 
-  const toggleDropdownOnHover = (menuItem) => {
-    if (isMenuOpen) {
-      setOpenMenu((prevMenu) => (prevMenu === menuItem ? null : menuItem));
-    }
-  };
-
   const handleIsMenuOpen = () => {
     setIsMenuOpen(false);
     setOpenMenu(null);
   };
 
-  console.log("type", type);
-
   return (
     <>
       {isVisible && type === "myComputer" && (
         <ModalContainer isfullwidth={`${isFullWidth}`}>
-          <ModalTitle onDoubleClick={setModalWidth}>
-            <div>
-              <div>
-                <Icons src={icone} alt="windows Logo" width="50rem" />
-              </div>
-            </div>
-            <div>{title}</div>
-            <IconsContainer>
-              <Icons
-                width="1.5rem"
-                height="1.5rem"
-                src={minimize}
-                alt="minimize"
-              />
-              <Icons
-                onClick={setModalWidth}
-                width="1.5rem"
-                height="1.5rem"
-                src={max}
-                alt="close"
-              />
-              <Icons
-                width="1.5rem"
-                height="1.5rem"
-                src={closeIcon}
-                alt="close"
-                onClick={closeModal}
-              />
-            </IconsContainer>
-          </ModalTitle>
-          <div>
-            <ModalDropDownMenu onMouseEnter={() => handleIsMenuOpen()}>
-              <div>
-                {menus.map((menu) => (
-                  <DropBtn
-                    key={menu.label}
-                    onClick={() => toggleDropdown(menu.label)}
-                    onMouseEnter={() => toggleDropdownOnHover(menu.label)}>
-                    {menu.label}
-                  </DropBtn>
-                ))}
-              </div>
-              <div>
-                <img src={windowsLogo} alt="windows Logo" width="50rem" />
-              </div>
-            </ModalDropDownMenu>
-            {menus.map((menu) => (
-              <MenuContainer name={menu.label} key={menu.label}>
-                {openMenu === menu.label && (
-                  <DropdownContent>
-                    {menu.items.map((item) => (
-                      <div key={item.label}>
-                        <Items name={item.label} active={`${item.active}`}>
-                          {item.label === "Close" ? (
-                            <div onClick={closeModal}>close</div>
-                          ) : (
-                            <span>{item.label}</span>
-                          )}
-                        </Items>
-                      </div>
-                    ))}
-                  </DropdownContent>
-                )}
-              </MenuContainer>
-            ))}
-
-            <SubMenu onMouseEnter={() => handleIsMenuOpen()}>
-              {submenuItems.map((item, index) => (
-                <button key={index}>
-                  {item.iconSrc && <img src={item.iconSrc} alt={item.label} />}
-                  <span>{item.label}</span>
-                </button>
-              ))}
-            </SubMenu>
-
-            <SearchMenu onMouseEnter={() => handleIsMenuOpen()}>
-              <div>Address</div>
-              <FakeInputContainer>
-                <div>
-                  <img src={computer} width={"18rem"} />
-                </div>
-                <div>My Computer</div>
-                <div>
-                  {" "}
-                  <img src={halfArrouwDown} alt="" />
-                </div>
-              </FakeInputContainer>
-              <div>
-                <button>
-                  <img src={Go} /> Go
-                </button>
-              </div>
-            </SearchMenu>
-          </div>
+          <ModalHeader
+            onDoubleClick={setModalWidth}
+            setModalWidth={setModalWidth}
+            icone={icone}
+            title={title}
+            minimize={minimize}
+            max={max}
+            closeIcon={closeIcon}
+            closeModal={closeModal}
+          />
+          <ModalDropDownSubMenu
+            setIsMenuOpen={setIsMenuOpen}
+            menus={menus}
+            isMenuOpen={isMenuOpen}
+            setOpenMenu={setOpenMenu}
+            openMenu={openMenu}
+            closeModal={closeModal}
+          />
+          <NavSubMenu
+            handleIsMenuOpen={handleIsMenuOpen}
+            submenuItems={submenuItems}
+          />
+          <FakeSearchMenu handleIsMenuOpen={handleIsMenuOpen} />
           <ModalContent onMouseEnter={() => handleIsMenuOpen()}>
             <GridSubContent isfullwidth={`${isFullWidth}`}>
               <LeftSideMenu>

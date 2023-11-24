@@ -4,14 +4,13 @@ import Draggable from "react-draggable";
 import { IconsContainer, Icon } from "./styles";
 
 function DesktopIcons({ openModal, setType }) {
-  const [numberOfClicks, setNumberOfClicks] = useState(0);
+  const [numberOfClicks, setnumberOfClicks] = useState(0);
   const modalRef = React.createRef();
 
   const handleClick = (event) => {
-    setNumberOfClicks(event.detail);
+    setnumberOfClicks(event.detail);
   };
 
-  setType("myComputer");
   useEffect(() => {
     if (numberOfClicks === 2) {
       openModal();
@@ -19,10 +18,10 @@ function DesktopIcons({ openModal, setType }) {
   }, [numberOfClicks]);
 
   return (
-    <IconsContainer>
+    <IconsContainer onClick={() => setType("myComputer")}>
       <Draggable nodeRef={modalRef}>
         <Icon
-          numberOfClicks={numberOfClicks}
+          numberofclicks={`${numberOfClicks}`}
           ref={modalRef}
           onClick={handleClick}>
           <img src={computer} alt="My Computer" />
