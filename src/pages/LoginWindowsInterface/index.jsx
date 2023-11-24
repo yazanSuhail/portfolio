@@ -7,8 +7,10 @@ import {
   Center,
   RightSideContent,
   LeftSide,
+  MainUser,
+  GuestUser,
 } from "./styles";
-import { duck, windowsXPLogo, turnoffwindows } from "../../assets";
+import { duck, windowsXPLogo, turnoffwindows, chess } from "../../assets";
 import { useNavigate } from "react-router-dom";
 function Login() {
   const navigate = useNavigate();
@@ -22,8 +24,13 @@ function Login() {
             <div>To begin, click your user name</div>
           </LeftSide>
           <RightSideContent>
-            <img src={duck} onClick={() => navigate("/desktop")} />{" "}
-            <span>The Dark Knight</span>
+            <MainUser>
+              <img src={duck} /> <span>The Dark Knight</span>
+            </MainUser>
+            <GuestUser>
+              <img src={chess} onClick={() => navigate("/desktop")} />{" "}
+              <span>Guest</span>
+            </GuestUser>
           </RightSideContent>
         </Center>
       </Body>

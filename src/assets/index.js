@@ -53,3 +53,5 @@ export { default as duck } from "../assets/profile-picture-duck.jpg";
 export { default as windowsXPLogo } from "../assets/windows-xp-logo-white-text-transparent-bg-cropped.png";
 
 export { default as turnoffwindows } from "../assets/turnoffwindows.png";
+
+export { default as chess } from "../assets/profile-picture-chess.png";

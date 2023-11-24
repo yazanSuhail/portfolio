@@ -84,10 +84,9 @@ export const Center = styled.div`
 export const RightSideContent = styled.div`
   outline: none;
   cursor: pointer;
-  display: flex;
+  display: grid;
   min-width: 400px;
   max-width: 100%;
-
   padding: 12px;
   border-radius: 8px;
   border-top-right-radius: 0;
@@ -96,7 +95,41 @@ export const RightSideContent = styled.div`
   border-right: 0;
   background-clip: padding-box;
   border: 1px solid transparent;
+  gap: 1rem;
+`;
 
+export const MainUser = styled.div`
+  display: flex;
+
+  img {
+    opacity: 0.5;
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+    border: 3px solid #fff;
+    border-radius: 8px;
+    box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.3);
+  }
+
+  span {
+    opacity: 0.5;
+    font-size: 1.8rem;
+  }
+
+  &:hover {
+    span {
+      opacity: 100;
+    }
+    img {
+      outline: 3px solid #ffd700;
+      cursor: pointer;
+      opacity: 100;
+    }
+  }
+`;
+
+export const GuestUser = styled.div`
+  display: flex;
   img {
     opacity: 0.5;
     width: 80px;
