@@ -43,7 +43,7 @@ function Login() {
     if (inputValue === "evanescence2008") {
       setIsLoading(true);
       setTimeout(() => {
-        navigate("/desktop");
+        navigate("/home");
       }, 3000);
     } else {
       setPasswordError(true);
@@ -54,7 +54,7 @@ function Login() {
     if (account === "Guest") {
       setIsLoading(true);
       setTimeout(() => {
-        navigate("/desktop");
+        navigate("/home");
       }, 3000);
     }
   }, [account]);

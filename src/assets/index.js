@@ -55,3 +55,18 @@ export { default as windowsXPLogo } from "../assets/windows-xp-logo-white-text-t
 export { default as turnoffwindows } from "../assets/turnoffwindows.png";
 
 export { default as chess } from "../assets/profile-picture-chess.png";
+
+export { default as findMe } from "../assets/find-my.svg";
+
+export { default as safari } from "../assets/safari.svg";
+
+export { default as calculator } from "../assets/calculator.svg";
+export { default as camera } from "../assets/camera.svg";
+export { default as wallet } from "../assets/wallet.svg";
+export { default as contacts } from "../assets/contacts.svg";
+export { default as appleMusic } from "../assets/apple-music.svg";
+export { default as notes } from "../assets/notes.svg";
+export { default as homebtn } from "../assets/homebutton.jpeg";
+export { default as iMessage } from "../assets/ios-message.svg";
+export { default as appleTv } from "../assets/apple-tv.svg";
+export { default as facetime } from "../assets/facetime.svg";

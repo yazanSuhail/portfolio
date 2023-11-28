@@ -13,12 +13,13 @@ import {
 import { useModal } from "../../contexts/use-modal";
 import DesktopIcons from "../../components/DesktopIcons";
 import { DesktopContainer } from "./styles";
-
-function Desktop() {
+import Mobile from "../Mobile";
+function MainPage() {
   const menus = [fileMenu, editMenu, viewMenu, toolsMenu, helpMenu, favorites];
   const { isModalOpen, openModal, closeModal } = useModal();
   const [type, setType] = useState("");
   const [selectedIcon, setSelectedIcon] = useState(null);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     const handleDocumentClick = () => {
@@ -30,26 +31,45 @@ function Desktop() {
     };
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+      console.log("screenWidth", window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
-    <DesktopContainer>
-      <DesktopIcons
-        openModal={openModal}
-        setType={setType}
-        selectedIcon={selectedIcon}
-        setSelectedIcon={setSelectedIcon}
-      />
-      <WindowsXPModal
-        icone={computer}
-        title="My Computer"
-        menus={menus}
-        content={[]}
-        isVisible={isModalOpen}
-        closeModal={closeModal}
-        type={type}
-      />
-      <StartMenu />
-    </DesktopContainer>
+    <>
+      {screenWidth <= 720 ? (
+        <Mobile />
+      ) : (
+        <DesktopContainer>
+          <DesktopIcons
+            openModal={openModal}
+            setType={setType}
+            selectedIcon={selectedIcon}
+            setSelectedIcon={setSelectedIcon}
+          />
+          <WindowsXPModal
+            icone={computer}
+            title="My Computer"
+            menus={menus}
+            content={[]}
+            isVisible={isModalOpen}
+            closeModal={closeModal}
+            type={type}
+          />
+          <StartMenu />
+        </DesktopContainer>
+      )}
+    </>
   );
 }
 
-export default Desktop;
+export default MainPage;
