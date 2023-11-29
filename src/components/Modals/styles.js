@@ -18,6 +18,10 @@ export const ModalContainer = styled.div`
   ${(props) =>
     props.isfullwidth === "false" &&
     `
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 830px;
     margin: 0 auto;
      width: 70%;
     `}
@@ -326,6 +330,7 @@ export const GridSubContent = styled.div`
 
 export const LeftSideMenu = styled.div`
   width: 180px;
+  height: 685px;
   background: linear-gradient(rgb(116, 138, 255) 0%, rgb(64, 87, 211) 100%);
   overflow: auto;
   padding: 10px;
