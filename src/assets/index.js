@@ -70,3 +70,6 @@ export { default as homebtn } from "../assets/homebutton.jpeg";
 export { default as iMessage } from "../assets/ios-message.svg";
 export { default as appleTv } from "../assets/apple-tv.svg";
 export { default as facetime } from "../assets/facetime.svg";
+export { default as firewall } from "../assets/firwall.png";
+export { default as sound } from "../assets/sound.png";
+export { default as usb } from "../assets/usb.png";

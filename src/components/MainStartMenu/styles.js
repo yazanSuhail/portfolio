@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StartMenuContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 5fr 1fr;
+  grid-template-columns: 1fr 5fr 0fr;
   justify-content: center;
   align-items: center;
   background-color: red;
@@ -51,9 +51,68 @@ export const MinimizContainer = styled.div`
 `;
 
 export const NotificationsContainer = styled.div`
-  outline: 1px solid black;
   position: relative;
-  width: 100%;
+  width: 150px;
   overflow: hidden;
   height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  background: linear-gradient(
+    rgb(12, 89, 185) 1%,
+    rgb(19, 158, 233) 6%,
+    rgb(24, 181, 242) 10%,
+    rgb(19, 155, 235) 14%,
+    rgb(18, 144, 232) 19%,
+    rgb(13, 141, 234) 63%,
+    rgb(13, 159, 241) 81%,
+    rgb(15, 158, 237) 88%,
+    rgb(17, 155, 233) 91%,
+    rgb(19, 146, 226) 94%,
+    rgb(19, 126, 215) 97%,
+    rgb(9, 91, 201) 100%
+  );
+  border-left: 1px solid rgb(16, 66, 175);
+  box-shadow: rgb(24, 187, 255) 1px 0px 1px inset;
+  padding: 0px 10px;
+
+  span {
+    font-size: 0.8rem;
+  }
+`;
+
+export const ToolTip = styled.div`
+  position: absolute;
+  bottom: 2.5rem;
+  left: 72%;
+  border: 1px solid black;
+  border-radius: 7px;
+  padding: 6px 28px 10px 10px;
+  background-color: rgb(255, 255, 225);
+  font-size: 11px;
+  white-space: nowrap;
+  color: black;
+
+  span {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: bolder;
+  }
+`;
+
+export const Triangle = styled.div`
+  width: 0;
+  height: 0;
+  position: relative;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 10px solid rgb(255, 255, 225);
+  position: relative;
+  left: 212px;
+  top: 18px;
+  transform: rotate(-19deg);
 `;
