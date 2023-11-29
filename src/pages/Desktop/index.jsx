@@ -14,6 +14,7 @@ import { useModal } from "../../contexts/use-modal";
 import DesktopIcons from "../../components/DesktopIcons";
 import { DesktopContainer } from "./styles";
 import Mobile from "../Mobile";
+
 function MainPage() {
   const menus = [fileMenu, editMenu, viewMenu, toolsMenu, helpMenu, favorites];
   const { isModalOpen, openModal, closeModal } = useModal();

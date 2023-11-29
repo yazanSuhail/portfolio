@@ -438,7 +438,7 @@ export const CellTitle = styled.div`
   }
 `;
 
-export const FirstProject = styled.div`
+export const Project = styled.div`
   cursor: pointer;
 
   width: 300px;

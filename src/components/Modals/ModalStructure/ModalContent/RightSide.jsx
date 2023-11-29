@@ -4,7 +4,7 @@ import {
   Cell,
   CellContent,
   CellTitle,
-  FirstProject,
+  Project,
   ProjectsContainer,
 } from "../../styles";
 
@@ -19,8 +19,15 @@ import {
   freelance,
 } from "../../../../assets";
 
-function RightSide({ type }) {
-  const [project, setProject] = useState("");
+import CarouselComponent from "../../../Carousel";
+
+function RightSide({ type, setProject }) {
+  const [isActive, setIsActive] = useState(true);
+  const carouselItems = [
+    { image: panelUolhostGif, legend: "Uol Host Domains and emails manager" },
+    { image: IBM, legend: "Legend 2" },
+  ];
+
   return (
     <RightSideContent>
       {type === "myComputer" && (
@@ -74,19 +81,34 @@ function RightSide({ type }) {
           </Cell>
         </>
       )}
-      {type === "myProjects" && (
-        <ProjectsContainer>
-          <FirstProject>
-            <img width="100rem" height="40rem" src={UOL_logo} alt="UOL logo" />
-          </FirstProject>
-          <FirstProject>
-            <img width="100rem" height="40rem" src={IBM} alt="UOL logo" />
-          </FirstProject>
-          <FirstProject>
-            <img width="160rem" height="60rem" src={freelance} alt="UOL logo" />
-          </FirstProject>
-        </ProjectsContainer>
-      )}
+      {type === "myProjects" &&
+        (isActive ? (
+          <CarouselComponent carouselItems={carouselItems} />
+        ) : (
+          <>
+            <ProjectsContainer>
+              <Project onClick={() => setProject("uol")}>
+                <img
+                  width="100rem"
+                  height="40rem"
+                  src={UOL_logo}
+                  alt="UOL logo"
+                />
+              </Project>
+              <Project onClick={() => setProject("IBM")}>
+                <img width="100rem" height="40rem" src={IBM} alt="IBM logo" />
+              </Project>
+              <Project onClick={() => setProject("freelance")}>
+                <img
+                  width="160rem"
+                  height="60rem"
+                  src={freelance}
+                  alt="freelance logo"
+                />
+              </Project>
+            </ProjectsContainer>
+          </>
+        ))}
     </RightSideContent>
   );
 }
