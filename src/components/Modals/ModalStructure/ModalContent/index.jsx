@@ -11,7 +11,7 @@ function ModalContentController({ handleIsMenuOpen, isFullWidth, type }) {
     <ModalContent onMouseEnter={() => handleIsMenuOpen()}>
       <GridSubContent isfullwidth={`${isFullWidth}`}>
         <LeftSideMenuContent />
-        <RightSide type={type} setProject={setProject} />
+        <RightSide project={project} type={type} setProject={setProject} />
       </GridSubContent>
     </ModalContent>
   );

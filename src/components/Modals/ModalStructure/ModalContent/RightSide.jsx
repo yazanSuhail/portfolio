@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   RightSideContent,
   Cell,
@@ -20,13 +20,52 @@ import {
 } from "../../../../assets";
 
 import CarouselComponent from "../../../Carousel";
+import { useShowPreviewContext } from "../../../../contexts/useBoolean";
 
-function RightSide({ type, setProject }) {
-  const [isActive, setIsActive] = useState(true);
-  const carouselItems = [
-    { image: panelUolhostGif, legend: "Uol Host Domains and emails manager" },
-    { image: IBM, legend: "Legend 2" },
+function RightSide({ type, setProject, project }) {
+  const { showPreview, togglePreview } = useShowPreviewContext();
+
+  const [isActive, setIsActive] = useState(false);
+  const [projectsItems, setProjectsItems] = useState([]);
+
+  const ibmItems = [
+    { image: IBM, legend: "Uol Host Domains and emails manager" },
   ];
+
+  const uolItems = [
+    { image: panelUolhostGif, legend: "Uol Host Domains and emails manager" },
+  ];
+
+  const freelanceItems = [
+    { image: ccec, legend: "Uol Host Domains and emails manager" },
+  ];
+
+  const handleClick = (projectName) => {
+    setProject(projectName);
+  };
+
+  useEffect(() => {
+    if (project !== "") {
+      setIsActive(true);
+    }
+
+    if (project === "ibm") {
+      setProjectsItems(ibmItems);
+    }
+    if (project === "uol") {
+      setProjectsItems(uolItems);
+    }
+    if (project === "freelance") {
+      setProjectsItems(freelanceItems);
+    }
+  }, [project]);
+
+  useEffect(() => {
+    if (showPreview) {
+      setIsActive(false);
+      togglePreview();
+    }
+  }, [showPreview]);
 
   return (
     <RightSideContent>
@@ -83,11 +122,11 @@ function RightSide({ type, setProject }) {
       )}
       {type === "myProjects" &&
         (isActive ? (
-          <CarouselComponent carouselItems={carouselItems} />
+          <CarouselComponent carouselItems={projectsItems} />
         ) : (
           <>
             <ProjectsContainer>
-              <Project onClick={() => setProject("uol")}>
+              <Project onClick={() => handleClick("uol")}>
                 <img
                   width="100rem"
                   height="40rem"
@@ -95,10 +134,10 @@ function RightSide({ type, setProject }) {
                   alt="UOL logo"
                 />
               </Project>
-              <Project onClick={() => setProject("IBM")}>
+              <Project onClick={() => handleClick("ibm")}>
                 <img width="100rem" height="40rem" src={IBM} alt="IBM logo" />
               </Project>
-              <Project onClick={() => setProject("freelance")}>
+              <Project onClick={() => handleClick("freelance")}>
                 <img
                   width="160rem"
                   height="60rem"

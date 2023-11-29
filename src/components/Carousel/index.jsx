@@ -3,12 +3,10 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Container } from "./styles";
 
-import { IBM, freelance } from "../../assets";
-
 const CarouselComponent = ({ carouselItems }) => {
   return (
     <Container>
-      <Carousel>
+      <Carousel showIndicators showArrows showStatus>
         {carouselItems?.map((item, index) => (
           <div key={index}>
             <img src={item.image} alt={`Slide ${index + 1}`} />

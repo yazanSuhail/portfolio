@@ -1,5 +1,11 @@
 import { ReactNode } from "react";
 import { ModalProvider } from "../contexts/use-modal";
-const AppProvider = ({ children }) => <ModalProvider>{children}</ModalProvider>;
+import { ShowPreviewContextProvider } from "../contexts/useBoolean";
+
+const AppProvider = ({ children }) => (
+  <ModalProvider>
+    <ShowPreviewContextProvider>{children}</ShowPreviewContextProvider>
+  </ModalProvider>
+);
 
 export { AppProvider };
