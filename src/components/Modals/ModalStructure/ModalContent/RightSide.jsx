@@ -16,6 +16,7 @@ import {
   panelUolhostGif,
   UOL_logo,
   IBM,
+  UOLDrive,
   freelance,
 } from "../../../../assets";
 
@@ -34,6 +35,7 @@ function RightSide({ type, setProject, project }) {
 
   const uolItems = [
     { image: panelUolhostGif, legend: "Uol Host Domains and emails manager" },
+    { image: UOLDrive, legend: "UOLDrive E-mails backup manager" },
   ];
 
   const freelanceItems = [
@@ -64,6 +66,8 @@ function RightSide({ type, setProject, project }) {
     if (showPreview) {
       setIsActive(false);
       togglePreview();
+      setProject("");
+      setProjectsItems([]);
     }
   }, [showPreview]);
 

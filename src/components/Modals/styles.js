@@ -391,7 +391,7 @@ export const ListContainer = styled.div`
 export const RightSideContent = styled.div`
   display: grid;
   grid-template-rows: repeat(4, 1fr);
-  max-height: 424px;
+  max-height: 523px;
 `;
 
 export const Cell = styled.div`
