@@ -75,3 +75,5 @@ export { default as sound } from "../assets/sound.png";
 export { default as usb } from "../assets/usb.png";
 export { default as panelUolhostGif } from "../assets/panel-uolhost.gif";
 export { default as UOL_logo } from "../assets/UOL_logo.png";
+export { default as IBM } from "../assets/ibm.svg";
+export { default as freelance } from "../assets/freelance.png";

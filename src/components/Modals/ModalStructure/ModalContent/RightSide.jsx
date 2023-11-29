@@ -5,6 +5,7 @@ import {
   CellContent,
   CellTitle,
   FirstProject,
+  ProjectsContainer,
 } from "../../styles";
 
 import {
@@ -14,6 +15,8 @@ import {
   vvfs,
   panelUolhostGif,
   UOL_logo,
+  IBM,
+  freelance,
 } from "../../../../assets";
 
 function RightSide({ type }) {
@@ -72,10 +75,17 @@ function RightSide({ type }) {
         </>
       )}
       {type === "myProjects" && (
-        <FirstProject>
-          <img width="100rem" height="40rem" src={UOL_logo} alt="UOL logo" />
-          <span>Click me to see a gif of the project</span>
-        </FirstProject>
+        <ProjectsContainer>
+          <FirstProject>
+            <img width="100rem" height="40rem" src={UOL_logo} alt="UOL logo" />
+          </FirstProject>
+          <FirstProject>
+            <img width="100rem" height="40rem" src={IBM} alt="UOL logo" />
+          </FirstProject>
+          <FirstProject>
+            <img width="160rem" height="60rem" src={freelance} alt="UOL logo" />
+          </FirstProject>
+        </ProjectsContainer>
       )}
     </RightSideContent>
   );

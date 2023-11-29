@@ -439,6 +439,8 @@ export const CellTitle = styled.div`
 `;
 
 export const FirstProject = styled.div`
+  cursor: pointer;
+
   width: 300px;
   font-weight: bolder;
   padding: 20px 0px 20px 10px;
@@ -463,4 +465,11 @@ export const FirstProject = styled.div`
     left: -100px;
     top: 20px;
   }
+`;
+
+export const ProjectsContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  padding: 2rem;
 `;
