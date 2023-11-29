@@ -437,3 +437,30 @@ export const CellTitle = styled.div`
     width: 100%;
   }
 `;
+
+export const FirstProject = styled.div`
+  width: 300px;
+  font-weight: bolder;
+  padding: 20px 0px 20px 10px;
+  position: relative;
+  font-size: 11px;
+  &:after {
+    content: "";
+    display: block;
+    background: linear-gradient(
+      to right,
+      rgb(112, 191, 255) 0px,
+      rgb(255, 255, 255) 100%
+    );
+    position: absolute;
+    bottom: 0px;
+    left: -12px;
+    height: 1px;
+    width: 100%;
+  }
+  span {
+    position: relative;
+    left: -100px;
+    top: 20px;
+  }
+`;

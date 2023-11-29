@@ -1,9 +1,23 @@
-import React from "react";
-import { RightSideContent, Cell, CellContent, CellTitle } from "../../styles";
+import React, { useState } from "react";
+import {
+  RightSideContent,
+  Cell,
+  CellContent,
+  CellTitle,
+  FirstProject,
+} from "../../styles";
 
-import { ccec, github, mcu, vvfs } from "../../../../assets";
+import {
+  ccec,
+  github,
+  mcu,
+  vvfs,
+  panelUolhostGif,
+  UOL_logo,
+} from "../../../../assets";
 
 function RightSide({ type }) {
+  const [project, setProject] = useState("");
   return (
     <RightSideContent>
       {type === "myComputer" && (
@@ -57,7 +71,12 @@ function RightSide({ type }) {
           </Cell>
         </>
       )}
-      {type === "myProjects" && <>In progress...</>}
+      {type === "myProjects" && (
+        <FirstProject>
+          <img width="100rem" height="40rem" src={UOL_logo} alt="UOL logo" />
+          <span>Click me to see a gif of the project</span>
+        </FirstProject>
+      )}
     </RightSideContent>
   );
 }

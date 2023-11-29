@@ -73,3 +73,5 @@ export { default as facetime } from "../assets/facetime.svg";
 export { default as firewall } from "../assets/firwall.png";
 export { default as sound } from "../assets/sound.png";
 export { default as usb } from "../assets/usb.png";
+export { default as panelUolhostGif } from "../assets/panel-uolhost.gif";
+export { default as UOL_logo } from "../assets/UOL_logo.png";
