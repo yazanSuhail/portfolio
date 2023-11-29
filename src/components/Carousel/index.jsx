@@ -11,7 +11,7 @@ const CarouselComponent = ({ carouselItems }) => {
       <Carousel>
         {carouselItems?.map((item, index) => (
           <div key={index}>
-            <img height="100%" src={item.image} alt={`Slide ${index + 1}`} />
+            <img src={item.image} alt={`Slide ${index + 1}`} />
             <p className="legend">{item.legend}</p>
           </div>
         ))}
