@@ -28,6 +28,7 @@ function MobileInterface() {
   return (
     <MobileContainer>
       <GridContainer>
+        Still Working on Mobile, please use Desktop view for now!
         <TopContent>
           <div onClick={handleIconClick}>
             <img width="60px" src={findMe} alt="findMe" />
