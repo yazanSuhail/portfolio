@@ -10,20 +10,20 @@ export const ModalContainer = styled.div`
 
   ${(props) =>
     props.isfullwidth === "true" &&
-    `margin:0 auto;
+    `
+    margin:0 auto;
     width: 100%;
+    height:100%;
     position: absolute;
     top: 0;
         `}
   ${(props) =>
     props.isfullwidth === "false" &&
     `
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 830px;
+    height: 600px;
     margin: 0 auto;
-     width: 70%;
+    width: 70%;
+    height:100%
     `}
 `;
 
@@ -90,7 +90,9 @@ export const Icons = styled.img`
   }
 `;
 
-export const ModalContent = styled.section``;
+export const ModalContent = styled.section`
+  height: 100%;
+`;
 
 export const ModalDropDownMenu = styled.section`
   display: flex;
@@ -308,29 +310,45 @@ export const SearchMenu = styled.section`
 export const FakeInputContainer = styled.div`
   border: 1px solid rgba(122, 122, 255, 0.6);
   background-color: white;
-  display: grid;
-  grid-template-columns: 0fr 1fr 0fr;
-  justify-content: center;
+  display: flex;
+  justify-content: space-between;
   gap: 5px;
-  height: 1.1rem;
-  padding: 2px;
+  height: 100%;
+  padding: 0;
+  div:first-child {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    img {
+      width: 1.3rem;
+    }
+  }
+  div:nth-child(2) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    img {
+      width: 1.1rem;
+    }
+  }
 `;
 
 export const GridSubContent = styled.div`
-  display: grid;
-  grid-template-columns: 0fr 4fr;
+  display: flex;
+  justify-content: flex-start;
   gap: 1rem;
-
-  ${(props) =>
-    props.isfullwidth === "true" &&
-    `
-     height: 81.5vh;
-    `}
+  position: relative;
+  align-items: flex-start;
+  height: 82.5%;
 `;
 
 export const LeftSideMenu = styled.div`
   width: 180px;
-  height: 685px;
+  height: 100%;
+  position: relative;
   background: linear-gradient(rgb(116, 138, 255) 0%, rgb(64, 87, 211) 100%);
   overflow: auto;
   padding: 10px;
@@ -395,8 +413,6 @@ export const ListContainer = styled.div`
 
 export const RightSideContent = styled.div`
   display: grid;
-  grid-template-rows: repeat(4, 1fr);
-  max-height: 523px;
 `;
 
 export const Cell = styled.div`

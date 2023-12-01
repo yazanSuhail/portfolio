@@ -10,8 +10,8 @@ function FakeSearchMenu({ handleIsMenuOpen }) {
       <FakeInputContainer>
         <div>
           <img src={computer} width={"18rem"} />
+          <span>My Computer</span>
         </div>
-        <div>My Computer</div>
         <div>
           {" "}
           <img src={halfArrouwDown} alt="" />

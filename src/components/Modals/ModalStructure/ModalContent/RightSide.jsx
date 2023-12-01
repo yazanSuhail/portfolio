@@ -18,6 +18,8 @@ import {
   IBM,
   UOLDrive,
   freelance,
+  BOL,
+  uolMail,
 } from "../../../../assets";
 
 import CarouselComponent from "../../../Carousel";
@@ -30,12 +32,28 @@ function RightSide({ type, setProject, project }) {
   const [projectsItems, setProjectsItems] = useState([]);
 
   const ibmItems = [
-    { image: IBM, legend: "Uol Host Domains and emails manager" },
+    {
+      image: IBM,
+      legend: "still working on it",
+    },
   ];
 
   const uolItems = [
-    { image: panelUolhostGif, legend: "Uol Host Domains and emails manager" },
-    { image: UOLDrive, legend: "UOLDrive E-mails backup manager" },
+    {
+      image: panelUolhostGif,
+      legend:
+        "Uol Host Domains and emails manager - Created with single spa micro frontend. You can manage your domains, E-mails, and groups. creating Email boxes and updating logos, emails, and more!",
+    },
+    {
+      image: UOLDrive,
+      legend: "UOLDrive E-mails backup manager  - Created with  Reactjs",
+    },
+    { image: BOL, legend: "e-commerce pages  - Created with  Nextjs" },
+    {
+      image: uolMail,
+      legend:
+        "E-mail, exactly like Gmail - Created with Angularjs, Ruby on rails. This is the paid version.",
+    },
   ];
 
   const freelanceItems = [
@@ -44,6 +62,7 @@ function RightSide({ type, setProject, project }) {
 
   const handleClick = (projectName) => {
     setProject(projectName);
+    setOpen(true);
   };
 
   useEffect(() => {
@@ -71,63 +90,70 @@ function RightSide({ type, setProject, project }) {
     }
   }, [showPreview]);
 
+  const [open, setOpen] = React.useState(false);
+
   return (
-    <RightSideContent>
-      {type === "myComputer" && (
-        <>
-          <Cell>
-            <CellTitle>Files Stored on This Computer</CellTitle>
-            <CellContent>
-              <div>
-                <img src={ccec} />
-                <span>Shared Documents</span>
-              </div>
-              <div>
-                <img src={ccec} />
-                <span>Shared Documents</span>
-              </div>
-            </CellContent>
-          </Cell>
-          <Cell>
-            <CellTitle>Hard Disk Drives</CellTitle>
-            <CellContent>
-              <div>
-                <img src={mcu} /> <span> Local Disk ( C:)</span>
-              </div>
-            </CellContent>
-          </Cell>
-          <Cell>
-            <CellTitle>Devices with Removable Storage</CellTitle>
-            <CellContent>
-              <div>
-                <img src={vvfs} />
-                <span>CD Drive (D:)</span>
-              </div>
-            </CellContent>
-          </Cell>
-          <Cell>
-            <CellTitle>Files Stored on This Computer</CellTitle>
-            <CellContent>
-              <div>
-                <a
-                  target="_blank"
-                  href="https://www.linkedin.com/in/yazan-alzubi-023603204/">
-                  <img src="https://static.licdn.com/aero-v1/sc/h/8s162nmbcnfkg7a0k8nq9wwqo" />
-                </a>
-              </div>
-              <div>
-                <a target="_blank" href="https://github.com/yazanSuhail">
-                  <img width="15rem" src={github} />
-                </a>
-              </div>
-            </CellContent>
-          </Cell>
-        </>
+    <>
+      {isActive && (
+        <CarouselComponent
+          open={open}
+          setOpen={setOpen}
+          carouselItems={projectsItems}
+        />
       )}
-      {type === "myProjects" &&
-        (isActive ? (
-          <CarouselComponent carouselItems={projectsItems} />
-        ) : (
+      <RightSideContent>
+        {type === "myComputer" && (
+          <>
+            <Cell>
+              <CellTitle>Files Stored on This Computer</CellTitle>
+              <CellContent>
+                <div>
+                  <img src={ccec} />
+                  <span>Shared Documents</span>
+                </div>
+                <div>
+                  <img src={ccec} />
+                  <span>Shared Documents</span>
+                </div>
+              </CellContent>
+            </Cell>
+            <Cell>
+              <CellTitle>Hard Disk Drives</CellTitle>
+              <CellContent>
+                <div>
+                  <img src={mcu} /> <span> Local Disk ( C:)</span>
+                </div>
+              </CellContent>
+            </Cell>
+            <Cell>
+              <CellTitle>Devices with Removable Storage</CellTitle>
+              <CellContent>
+                <div>
+                  <img src={vvfs} />
+                  <span>CD Drive (D:)</span>
+                </div>
+              </CellContent>
+            </Cell>
+            <Cell>
+              <CellTitle>Files Stored on This Computer</CellTitle>
+              <CellContent>
+                <div>
+                  <a
+                    target="_blank"
+                    href="https://www.linkedin.com/in/yazan-alzubi-023603204/">
+                    <img src="https://static.licdn.com/aero-v1/sc/h/8s162nmbcnfkg7a0k8nq9wwqo" />
+                  </a>
+                </div>
+                <div>
+                  <a target="_blank" href="https://github.com/yazanSuhail">
+                    <img width="15rem" src={github} />
+                  </a>
+                </div>
+              </CellContent>
+            </Cell>
+          </>
+        )}
+        {type === "myProjects" && (
           <>
             <ProjectsContainer>
               <Project onClick={() => handleClick("uol")}>
@@ -151,8 +177,9 @@ function RightSide({ type, setProject, project }) {
               </Project>
             </ProjectsContainer>
           </>
-        ))}
-    </RightSideContent>
+        )}
+      </RightSideContent>
+    </>
   );
 }
 

@@ -79,3 +79,5 @@ export { default as IBM } from "../assets/ibm.svg";
 export { default as freelance } from "../assets/freelance.png";
 
 export { default as UOLDrive } from "../assets/UOLDrive.gif";
+export { default as BOL } from "../assets/pagina-vendas.gif";
+export { default as uolMail } from "../assets/uolMail.gif";
