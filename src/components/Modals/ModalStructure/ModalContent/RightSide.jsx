@@ -20,6 +20,8 @@ import {
   freelance,
   BOL,
   uolMail,
+  ibmCom,
+  events,
 } from "../../../../assets";
 
 import CarouselComponent from "../../../Carousel";
@@ -27,14 +29,17 @@ import { useShowPreviewContext } from "../../../../contexts/useBoolean";
 
 function RightSide({ type, setProject, project }) {
   const { showPreview, togglePreview } = useShowPreviewContext();
-
   const [isActive, setIsActive] = useState(false);
   const [projectsItems, setProjectsItems] = useState([]);
 
   const ibmItems = [
     {
-      image: IBM,
-      legend: "still working on it",
+      image: ibmCom,
+      legend: "https://www.ibm.com/br-pt",
+    },
+    {
+      image: events,
+      legend: "https://www.ibm.com/events",
     },
   ];
 
@@ -69,7 +74,6 @@ function RightSide({ type, setProject, project }) {
     if (project !== "") {
       setIsActive(true);
     }
-
     if (project === "ibm") {
       setProjectsItems(ibmItems);
     }
