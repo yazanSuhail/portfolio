@@ -15,8 +15,7 @@ const style = {
   width: "70%",
   bgcolor: "background.paper",
   border: "2px solid #000",
-  boxShadow: 24,
-  maxHeight: "100%",
+  boxShadow: 50,
   p: 4,
 };
 
@@ -35,10 +34,22 @@ const CarouselComponent = ({ carouselItems, open, setOpen }) => {
             <CloseIcon onClick={handleClose} />
           </CloseBtn>
           <Container>
-            <Carousel showIndicators showArrows showStatus>
+            <Carousel
+              autoPlay
+              centerSlidePercentage={70}
+              centerMode={true}
+              showIndicators
+              showArrows
+              showThumbs={false}
+              autoFocus
+              showStatus>
               {carouselItems?.map((item, index) => (
                 <div key={index}>
-                  <img src={item.image} alt={`Slide ${index + 1}`} />
+                  <img
+                    style={{ paddingRight: "25px", paddingLeft: "25px" }}
+                    src={item.image}
+                    alt={`Slide ${index + 1}`}
+                  />
                   <p className="legend">{item.legend}</p>
                 </div>
               ))}
