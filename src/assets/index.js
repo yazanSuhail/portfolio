@@ -86,3 +86,9 @@ export { default as ibmCom } from "../assets/ibm.gif";
 export { default as events } from "../assets/events.gif";
 
 export { default as Carbon } from "../assets/Carbon.gif";
+
+export { default as ibmSpeed } from "../assets/ibmSpeed.gif";
+export { default as starwood } from "../assets/starwood.gif";
+export { default as PvUol } from "../assets/PvUol.gif";
+
+export { default as wordpress } from "../assets/wordpress.gif";

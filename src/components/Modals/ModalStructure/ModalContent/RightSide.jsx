@@ -23,6 +23,10 @@ import {
   ibmCom,
   events,
   Carbon,
+  ibmSpeed,
+  starwood,
+  wordpress,
+  PvUol,
 } from "../../../../assets";
 
 import CarouselComponent from "../../../Carousel";
@@ -46,6 +50,10 @@ function RightSide({ type, setProject, project }) {
       image: events,
       legend: "https://www.ibm.com/events",
     },
+    {
+      image: ibmSpeed,
+      legend: "https://www.ibm.com/br-pt/partnerplus",
+    },
   ];
 
   const uolItems = [
@@ -58,16 +66,33 @@ function RightSide({ type, setProject, project }) {
       image: UOLDrive,
       legend: "UOLDrive E-mails backup manager  - Created with  Reactjs",
     },
-    { image: BOL, legend: "e-commerce pages  - Created with  Nextjs" },
+    {
+      image: BOL,
+      legend:
+        "https://produtos.uol.com.br/bol - static page - Created with  ReactJs",
+    },
     {
       image: uolMail,
       legend:
         "E-mail, exactly like Gmail - Created with Angularjs, Ruby on rails. This is the paid version.",
     },
+    {
+      image: PvUol,
+      legend:
+        "https://email.uol.com.br/bem-vindo - static page  - Created with  velocity",
+    },
   ];
 
   const freelanceItems = [
-    { image: ccec, legend: "Uol Host Domains and emails manager" },
+    {
+      image: starwood,
+      legend:
+        "https://starwood-treppenshop.de/ - Created with Integrate Adobe Commerce - Magento",
+    },
+    {
+      image: wordpress,
+      legend: "Created with Wordpress",
+    },
   ];
 
   const handleClick = (projectName) => {
