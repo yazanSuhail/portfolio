@@ -84,3 +84,5 @@ export { default as uolMail } from "../assets/uolMail.gif";
 
 export { default as ibmCom } from "../assets/ibm.gif";
 export { default as events } from "../assets/events.gif";
+
+export { default as Carbon } from "../assets/Carbon.gif";

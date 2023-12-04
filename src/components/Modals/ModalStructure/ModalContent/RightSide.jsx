@@ -22,6 +22,7 @@ import {
   uolMail,
   ibmCom,
   events,
+  Carbon,
 } from "../../../../assets";
 
 import CarouselComponent from "../../../Carousel";
@@ -33,6 +34,10 @@ function RightSide({ type, setProject, project }) {
   const [projectsItems, setProjectsItems] = useState([]);
 
   const ibmItems = [
+    {
+      image: Carbon,
+      legend: "Carbon design system",
+    },
     {
       image: ibmCom,
       legend: "https://www.ibm.com/br-pt",
