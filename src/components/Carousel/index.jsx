@@ -35,7 +35,6 @@ const CarouselComponent = ({ carouselItems, open, setOpen }) => {
           </CloseBtn>
           <Container>
             <Carousel
-              autoPlay
               centerSlidePercentage={70}
               centerMode={true}
               showIndicators
