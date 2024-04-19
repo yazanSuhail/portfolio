@@ -26,6 +26,16 @@ export const GridItem2 = styled.div`
 outline: 1px solid green;
 width:100%;
 height: 100%;
+display: flex;
+justify-content: space-between;
+
+div:first-child{
+    border:2px solid gray ;
+   }
+   
+   div{
+    width: 100%;
+   }
 `;
 
 export const GridItem3 = styled.div`
