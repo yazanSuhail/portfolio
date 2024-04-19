@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import StartMenu from "../../components/MainStartMenu";
 import WindowsXPModal from "../../components/Modals";
-import { computer } from "../../assets";
+import { computer, firewall } from "../../assets";
 import {
   fileMenu,
   editMenu,
@@ -12,7 +12,7 @@ import {
 } from "../../Mocks/DesktopMenuMock";
 import { useModal } from "../../contexts/use-modal";
 import DesktopIcons from "../../components/DesktopIcons";
-import { DesktopContainer } from "./styles";
+import { DesktopContainer, ToolTip } from "./styles";
 import Mobile from "../Mobile";
 
 function MainPage() {
@@ -66,6 +66,17 @@ function MainPage() {
             closeModal={closeModal}
             type={type}
           />
+          <ToolTip>
+            <div>
+              <span>
+                <img src={firewall} alt="firewall" />
+                Your computer might be at risk
+              </span>{" "}
+              <br />
+              Antivirus software might not be installed, <br />
+              Click this balloon to fix this problem.
+            </div>
+          </ToolTip>
           <StartMenu />
         </DesktopContainer>
       )}

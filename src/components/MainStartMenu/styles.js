@@ -82,37 +82,3 @@ export const NotificationsContainer = styled.div`
     font-size: 0.8rem;
   }
 `;
-
-export const ToolTip = styled.div`
-  position: absolute;
-  bottom: 2.5rem;
-  left: 72%;
-  border: 1px solid black;
-  border-radius: 7px;
-  padding: 6px 28px 10px 10px;
-  background-color: rgb(255, 255, 225);
-  font-size: 11px;
-  white-space: nowrap;
-  color: black;
-
-  span {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 0.5rem;
-    font-weight: bolder;
-  }
-`;
-
-export const Triangle = styled.div`
-  width: 0;
-  height: 0;
-  position: relative;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 10px solid rgb(255, 255, 225);
-  position: relative;
-  left: 212px;
-  top: 18px;
-  transform: rotate(-19deg);
-`;

@@ -31,6 +31,8 @@ function Login() {
   const [passwordError, setPasswordError] = useState(false);
   const [account, setAccount] = useState("");
   console.log("account", account);
+
+
   const handleLogin = (account) => {
     if (account === "Main") {
       setAccount("Main");
@@ -43,18 +45,19 @@ function Login() {
     if (inputValue === "evanescence2008") {
       setIsLoading(true);
       setTimeout(() => {
-        navigate("/home");
+        navigate("/home", { state: account });
       }, 3000);
     } else {
       setPasswordError(true);
     }
   };
 
+
   useEffect(() => {
     if (account === "Guest") {
       setIsLoading(true);
       setTimeout(() => {
-        navigate("/home");
+        navigate("/home", { state: account });
       }, 3000);
     }
   }, [account]);

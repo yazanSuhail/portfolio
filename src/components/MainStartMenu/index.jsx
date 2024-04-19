@@ -1,34 +1,21 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   StartMenuContainer,
   StartMenuButton,
   MinimizContainer,
   NotificationsContainer,
-  ToolTip,
-  Triangle,
 } from "./styles";
-import { startMenuBtn, firewall, sound, usb } from "../../assets";
+import { startMenuBtn, sound, usb, firewall } from "../../assets";
+import { useLocation } from 'react-router-dom';
+import { StartMenuList } from "../StartMenuList";
 
 function StartMenu() {
   const date = new Date();
   const [currentTime, setCurrentTime] = useState(date);
-  const [showTooltip, setShowTooltip] = useState(false);
-  const [tooltipCounter, setTooltipCounter] = useState(0);
-
-  useEffect(() => {
-    const tooltipIntervalId = setInterval(() => {
-      if (tooltipCounter < 3) {
-        setShowTooltip(true);
-        setTooltipCounter((prevCounter) => prevCounter + 1);
-      } else {
-        setShowTooltip(false);
-        clearInterval(tooltipIntervalId);
-      }
-    }, 3000);
-
-    return () => clearInterval(tooltipIntervalId);
-  }, [tooltipCounter]);
-
+  const [openList, setOpenList] = useState(false);
+  // state can be Main or Guest
+  const { state } = useLocation();
+  console.log("state", state)
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentTime(date);
@@ -44,27 +31,19 @@ function StartMenu() {
 
   return (
     <>
+      {openList &&
+        <>
+          <StartMenuList state={state} />
+        </>
+      }
+
       <StartMenuContainer>
-        <StartMenuButton src={startMenuBtn} alt="start Menu button" />
+        <div onClick={() => setOpenList(prevState => !prevState)}>
+          <StartMenuButton src={startMenuBtn} alt="start Menu button" />
+        </div>
         <MinimizContainer></MinimizContainer>
-        {showTooltip && (
-          <ToolTip>
-            <div>
-              <span>
-                <img src={firewall} alt="firewall" />
-                Your computer might be at risk
-              </span>{" "}
-              <br />
-              Antivirus software might not be installed, <br />
-              Click this balloon to fix this problem.
-            </div>
-            <Triangle />
-          </ToolTip>
-        )}
         <NotificationsContainer>
           <img
-            onMouseEnter={() => setShowTooltip(true)}
-            onMouseLeave={() => setShowTooltip(false)}
             src={firewall}
             alt="firewall"
           />
@@ -73,6 +52,7 @@ function StartMenu() {
           <span>{formattedTime}</span>
         </NotificationsContainer>
       </StartMenuContainer>
+
     </>
   );
 }
