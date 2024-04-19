@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-padding-left: 3px;
-position: relative;
-bottom: -71.2%;
+    padding-left: 3px;
+    position: absolute;
+    bottom: 37px;
+    width: 530px;
 `;
 
 export const InnerContainer = styled.div`
-    width: 40%;
+    width: 100%;
     outline: 3px solid red;
 
 `;
@@ -32,7 +33,7 @@ justify-content: space-between;
 div:first-child{
     border:2px solid gray ;
    }
-   
+
    div{
     width: 100%;
    }
