@@ -9,7 +9,7 @@ function ModalContentController({ handleIsMenuOpen, isFullWidth, type }) {
   const [project, setProject] = useState("");
 
   return (
-    <ModalContent onMouseEnter={() => handleIsMenuOpen()}>
+    <ModalContent  onMouseEnter={() => handleIsMenuOpen()}>
       <GridSubContent isfullwidth={`${isFullWidth}`}>
         <LeftSideMenuContent />
         <RightSide project={project} type={type} setProject={setProject} />

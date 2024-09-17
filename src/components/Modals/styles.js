@@ -346,11 +346,9 @@ export const GridSubContent = styled.div`
 
 export const LeftSideMenu = styled.div`
   min-width: 180px;
-  height: 100%;
-  position: relative;
   background: linear-gradient(rgb(116, 138, 255) 0%, rgb(64, 87, 211) 100%);
-  overflow: auto;
   padding: 10px;
+  min-height: 22.5rem;
 `;
 
 export const Inner = styled.div`
@@ -414,6 +412,7 @@ export const RightSideContent = styled.div`
   display: grid;
   overflow: auto;
   min-height: 21.9rem;
+  padding-left: 1rem;
 `;
 
 export const Cell = styled.div`
