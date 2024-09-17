@@ -43,7 +43,6 @@ export const StartMenuButton = styled.img`
 `;
 
 export const MinimizContainer = styled.div`
-  outline: 1px solid red;
   position: relative;
   width: 100%;
   overflow: hidden;
