@@ -314,9 +314,8 @@ export const FakeInputContainer = styled.div`
   justify-content: space-between;
   gap: 5px;
   height: 100%;
-  padding: 0;
+  padding-left: 1rem;
   div:first-child {
-    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
