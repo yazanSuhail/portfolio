@@ -42,6 +42,7 @@ export const AudioPlayer = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
+  height: 30rem;
   transform: translate(-50%, -50%);
   background: lightgray;
   width: 30rem;
@@ -49,5 +50,8 @@ export const AudioPlayer = styled.div`
   display: grid;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* Ensures the player is always on top */
+  z-index: 1000;
+  img {
+    width: 1rem;
+  }
 `;

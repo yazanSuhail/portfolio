@@ -71,7 +71,8 @@ function DesktopIcons({ openModal, setType, selectedIcon, setSelectedIcon }) {
       {shouldShowMusicPlayer && 
         <Draggable>
           <AudioPlayer>
-          <span onClick={()=>setShouldShowMusicPlayer(false)}> <img src={closeIcon} alt="" /> </span>
+            This will be windows xp player
+          <div onClick={()=>setShouldShowMusicPlayer(false)} > <img src={closeIcon} alt="" /> </div>
             <audio ref={audioRef} controls>
               <source src={song} type="audio/mpeg" />
               Your browser does not support the audio element.
