@@ -339,14 +339,13 @@ export const FakeInputContainer = styled.div`
 export const GridSubContent = styled.div`
   display: flex;
   justify-content: flex-start;
-  gap: 1rem;
   position: relative;
   align-items: flex-start;
   height: 82.5%;
 `;
 
 export const LeftSideMenu = styled.div`
-  width: 180px;
+  min-width: 180px;
   height: 100%;
   position: relative;
   background: linear-gradient(rgb(116, 138, 255) 0%, rgb(64, 87, 211) 100%);
@@ -413,6 +412,8 @@ export const ListContainer = styled.div`
 
 export const RightSideContent = styled.div`
   display: grid;
+  overflow: auto;
+  min-height: 21.9rem;
 `;
 
 export const Cell = styled.div`

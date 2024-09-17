@@ -32,11 +32,13 @@ import {
 import CarouselComponent from "../../../Carousel";
 import { useShowPreviewContext } from "../../../../contexts/useBoolean";
 
+// eslint-disable-next-line react/prop-types
 function RightSide({ type, setProject, project }) {
   const { showPreview, togglePreview } = useShowPreviewContext();
   const [isActive, setIsActive] = useState(false);
   const [projectsItems, setProjectsItems] = useState([]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const ibmItems = [
     {
       image: Carbon,
@@ -56,6 +58,7 @@ function RightSide({ type, setProject, project }) {
     },
   ];
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const uolItems = [
     {
       image: panelUolhostGif,
@@ -83,6 +86,7 @@ function RightSide({ type, setProject, project }) {
     },
   ];
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const freelanceItems = [
     {
       image: starwood,
@@ -113,7 +117,7 @@ function RightSide({ type, setProject, project }) {
     if (project === "freelance") {
       setProjectsItems(freelanceItems);
     }
-  }, [project]);
+  }, [freelanceItems, ibmItems, project, uolItems]);
 
   useEffect(() => {
     if (showPreview) {
@@ -122,7 +126,7 @@ function RightSide({ type, setProject, project }) {
       setProject("");
       setProjectsItems([]);
     }
-  }, [showPreview]);
+  }, [setProject, showPreview, togglePreview]);
 
   const [open, setOpen] = React.useState(false);
 
@@ -174,12 +178,12 @@ function RightSide({ type, setProject, project }) {
                 <div>
                   <a
                     target="_blank"
-                    href="https://www.linkedin.com/in/yazan-alzubi-023603204/">
+                    href="https://www.linkedin.com/in/yazan-alzubi-023603204/" rel="noreferrer">
                     <img src="https://static.licdn.com/aero-v1/sc/h/8s162nmbcnfkg7a0k8nq9wwqo" />
                   </a>
                 </div>
                 <div>
-                  <a target="_blank" href="https://github.com/yazanSuhail">
+                  <a target="_blank" href="https://github.com/yazanSuhail" rel="noreferrer">
                     <img width="15rem" src={github} />
                   </a>
                 </div>
