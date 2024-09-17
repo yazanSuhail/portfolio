@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { computer, folder } from "../../assets";
 import Draggable from "react-draggable";
 import { IconsContainer, Icon } from "./styles";
 
+// eslint-disable-next-line react/prop-types
 function DesktopIcons({ openModal, setType, selectedIcon, setSelectedIcon }) {
   const iconRef1 = useRef(null);
   const iconRef2 = useRef(null);

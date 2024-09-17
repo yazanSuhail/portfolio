@@ -348,6 +348,7 @@ export const LeftSideMenu = styled.div`
   background: linear-gradient(rgb(116, 138, 255) 0%, rgb(64, 87, 211) 100%);
   padding: 10px;
   min-height: 22.5rem;
+  height: 100%;
 `;
 
 export const Inner = styled.div`

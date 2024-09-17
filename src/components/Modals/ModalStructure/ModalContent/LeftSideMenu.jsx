@@ -1,4 +1,3 @@
-import React from "react";
 import { LeftSideMenu, Title, Inner, ListContainer } from "../../styles";
 
 import {
@@ -69,7 +68,7 @@ function LeftSideMenuContent() {
           </span>
           <span>
             <img width="15rem" src={github} />
-            <a target="_blank" href="https://github.com/yazanSuhail">
+            <a target="_blank" href="https://github.com/yazanSuhail" rel="noreferrer">
               Github
             </a>
           </span>
@@ -81,7 +80,7 @@ function LeftSideMenuContent() {
             />
             <a
               target="_blank"
-              href="https://www.linkedin.com/in/yazan-alzubi-023603204/">
+              href="https://www.linkedin.com/in/yazan-alzubi-023603204/" rel="noreferrer">
               Linkedin
             </a>
           </span>
