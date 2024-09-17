@@ -92,3 +92,6 @@ export { default as starwood } from "../assets/starwood.gif";
 export { default as PvUol } from "../assets/PvUol.gif";
 
 export { default as wordpress } from "../assets/wordpress.gif";
+
+export { default as song } from "../assets/Please-hire-me-song.mp3";
+export { default as music } from "../assets/music.png";

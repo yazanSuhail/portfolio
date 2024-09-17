@@ -8,6 +8,7 @@ export const IconsContainer = styled.div`
   img {
     width: 2.5rem;
   }
+
   > div {
     font-size: 13px;
   }
@@ -29,4 +30,24 @@ export const Icon = styled.div`
       padding: 0;
     }
   `}
+  .image {
+    width: 6rem !important;
+  }
+  .song {
+    margin-top: -1rem;
+  }
+`;
+
+export const AudioPlayer = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: lightgray;
+  width: 30rem;
+  height: 5rem;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensures the player is always on top */
 `;
