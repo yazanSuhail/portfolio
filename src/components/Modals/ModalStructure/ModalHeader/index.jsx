@@ -1,5 +1,11 @@
 import React from "react";
-import { ModalHeaderContainer, IconsContainer, Icons } from "../../styles";
+import {
+  ModalHeaderContainer,
+  ModalTitleIcon,
+  ModalTitleText,
+  WindowControls,
+  Icons,
+} from "../../styles";
 
 function ModalHeader({
   setModalWidth,
@@ -16,44 +22,34 @@ function ModalHeader({
       className="modal-drag-handle"
       onDoubleClick={setModalWidth}
     >
-      <div>
-        <div>
-          <Icons src={icone} alt="windows Logo" width="50rem" />
-        </div>
-      </div>
-      <div>{title}</div>
-      <IconsContainer>
+      <ModalTitleIcon src={icone} alt="" />
+      <ModalTitleText>{title}</ModalTitleText>
+      <WindowControls>
         <Icons
-          width="1.5rem"
-          height="1.5rem"
           src={minimize}
-          alt="minimize"
+          alt="Minimize"
           onClick={(e) => {
             e.stopPropagation();
             onMinimize?.();
           }}
         />
         <Icons
+          src={max}
+          alt="Maximize"
           onClick={(e) => {
             e.stopPropagation();
             setModalWidth();
           }}
-          width="1.5rem"
-          height="1.5rem"
-          src={max}
-          alt="maximize"
         />
         <Icons
-          width="1.5rem"
-          height="1.5rem"
           src={closeIcon}
-          alt="close"
+          alt="Close"
           onClick={(e) => {
             e.stopPropagation();
             closeModal();
           }}
         />
-      </IconsContainer>
+      </WindowControls>
     </ModalHeaderContainer>
   );
 }

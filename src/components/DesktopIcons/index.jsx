@@ -3,13 +3,24 @@ import { computer, folder, song, music, closeIcon } from "../../assets"; // Make
 import Draggable from "react-draggable";
 import { IconsContainer, Icon, AudioPlayer } from "./styles";
 
-// eslint-disable-next-line react/prop-types
-function DesktopIcons({ openModal, setType, selectedIcon, setSelectedIcon }) {
+function DesktopIcons({
+  openModal,
+  setType,
+  selectedIcon,
+  setSelectedIcon,
+  showMusicPlayer = false,
+  setShowMusicPlayer,
+}) {
   const iconRef1 = useRef(null);
   const iconRef2 = useRef(null);
   const iconRef3 = useRef(null);
-  const audioRef = useRef(null); // Ref for the <audio> tag itself
-  const [shouldShowMusicPlayer, setShouldShowMusicPlayer] = useState(false);
+  const audioRef = useRef(null);
+  const [localMusicPlayer, setLocalMusicPlayer] = useState(false);
+
+  const shouldShowMusicPlayer = setShowMusicPlayer
+    ? showMusicPlayer
+    : localMusicPlayer;
+  const setMusicPlayerVisible = setShowMusicPlayer ?? setLocalMusicPlayer;
 
   const handleClick = (type) => {
     event.stopPropagation();
@@ -17,9 +28,9 @@ function DesktopIcons({ openModal, setType, selectedIcon, setSelectedIcon }) {
     setType(type);
 
     if (type === "myMusic") {
-      setShouldShowMusicPlayer(true); // Show the music player
+      setMusicPlayerVisible(true);
       if (audioRef.current) {
-        audioRef.current.play(); // Play the music directly
+        audioRef.current.play();
       }
     }
   };
@@ -72,7 +83,9 @@ function DesktopIcons({ openModal, setType, selectedIcon, setSelectedIcon }) {
         <Draggable>
           <AudioPlayer>
             This will be windows xp player
-          <div onClick={()=>setShouldShowMusicPlayer(false)} > <img src={closeIcon} alt="" /> </div>
+          <div onClick={() => setMusicPlayerVisible(false)}>
+            <img src={closeIcon} alt="" />
+          </div>
             <audio ref={audioRef} controls>
               <source src={song} type="audio/mpeg" />
               Your browser does not support the audio element.

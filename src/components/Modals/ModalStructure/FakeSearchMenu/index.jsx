@@ -1,5 +1,10 @@
 import React from "react";
-import { SearchMenu, FakeInputContainer } from "../../styles";
+import {
+  SearchMenu,
+  AddressLabel,
+  FakeInputContainer,
+  GoButton,
+} from "../../styles";
 
 import { Go, halfArrouwDown } from "../../../../assets";
 
@@ -8,22 +13,20 @@ function FakeSearchMenu({ handleIsMenuOpen, address }) {
 
   return (
     <SearchMenu onMouseEnter={() => handleIsMenuOpen()}>
-      <div>Address</div>
+      <AddressLabel>Address</AddressLabel>
       <FakeInputContainer>
-        <div>
-          {icon && <img src={icon} width={"18rem"} alt="" />}
+        <div className="address-content">
+          {icon && <img src={icon} alt="" />}
           <span>{label}</span>
         </div>
-        <div>
-          {" "}
+        <div className="address-dropdown">
           <img src={halfArrouwDown} alt="" />
         </div>
       </FakeInputContainer>
-      <div>
-        <button>
-          <img src={Go} /> Go
-        </button>
-      </div>
+      <GoButton type="button">
+        <img src={Go} alt="" />
+        Go
+      </GoButton>
     </SearchMenu>
   );
 }

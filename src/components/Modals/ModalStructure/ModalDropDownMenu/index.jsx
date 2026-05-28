@@ -1,7 +1,7 @@
 import React from "react";
-import { windowsLogo } from "../../../../assets";
 import {
   ModalDropDownMenu,
+  MenuBarItems,
   DropBtn,
   MenuContainer,
   DropdownContent,
@@ -33,42 +33,36 @@ function ModalDropDownSubMenu({
   };
 
   return (
-    <>
-      <ModalDropDownMenu onMouseEnter={() => handleIsMenuOpen()}>
-        <div>
-          {menus.map((menu) => (
+    <ModalDropDownMenu onMouseEnter={() => handleIsMenuOpen()}>
+      <MenuBarItems>
+        {menus.map((menu) => (
+          <MenuContainer name={menu.label} key={menu.label}>
             <DropBtn
-              key={menu.label}
+              type="button"
               onClick={() => toggleDropdown(menu.label)}
-              onMouseEnter={() => toggleDropdownOnHover(menu.label)}>
+              onMouseEnter={() => toggleDropdownOnHover(menu.label)}
+            >
               {menu.label}
             </DropBtn>
-          ))}
-        </div>
-        <div>
-          <img src={windowsLogo} alt="windows Logo" width="50rem" />
-        </div>
-      </ModalDropDownMenu>
-      {menus.map((menu) => (
-        <MenuContainer name={menu.label} key={menu.label}>
-          {openMenu === menu.label && (
-            <DropdownContent>
-              {menu.items.map((item) => (
-                <div key={item.label}>
-                  <Items name={item.label} active={`${item.active}`}>
-                    {item.label === "Close" ? (
-                      <div onClick={closeModal}>close</div>
-                    ) : (
-                      <span>{item.label}</span>
-                    )}
-                  </Items>
-                </div>
-              ))}
-            </DropdownContent>
-          )}
-        </MenuContainer>
-      ))}
-    </>
+            {openMenu === menu.label && (
+              <DropdownContent>
+                {menu.items.map((item) => (
+                  <div key={item.label}>
+                    <Items name={item.label} active={`${item.active}`}>
+                      {item.label === "Close" ? (
+                        <div onClick={closeModal}>Close</div>
+                      ) : (
+                        <span>{item.label}</span>
+                      )}
+                    </Items>
+                  </div>
+                ))}
+              </DropdownContent>
+            )}
+          </MenuContainer>
+        ))}
+      </MenuBarItems>
+    </ModalDropDownMenu>
   );
 }
 

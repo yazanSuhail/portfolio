@@ -11,20 +11,18 @@ import {
   SecurityBalloonBody,
 } from "./styles";
 import { startMenuBtn, sound, usb, firewall } from "../../assets";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 import { StartMenuList } from "../StartMenuList";
 import TaskbarWindows from "../TaskbarWindows";
 
-function StartMenu() {
-  const date = new Date();
-  const [currentTime, setCurrentTime] = useState(date);
+function StartMenu({ onStartMenuAction }) {
+  const [currentTime, setCurrentTime] = useState(() => new Date());
   const [openList, setOpenList] = useState(false);
-  // state can be Main or Guest
-  const { state } = useLocation();
-  console.log("state", state)
+  const { state: account } = useLocation();
+
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setCurrentTime(date);
+      setCurrentTime(new Date());
     }, 1000);
 
     return () => clearInterval(intervalId);
@@ -35,18 +33,28 @@ function StartMenu() {
     minute: "2-digit",
   });
 
+  const closeStartMenu = () => setOpenList(false);
+
+  const startMenuHandlers = {
+    onClose: closeStartMenu,
+    onAction: (action) => {
+      onStartMenuAction?.(action);
+    },
+  };
+
   return (
     <>
-      {openList &&
-        <>
-          <StartMenuList state={state} />
-        </>
-      }
+      {openList && (
+        <StartMenuList account={account} handlers={startMenuHandlers} />
+      )}
 
       <StartMenuContainer>
         <StartButtonWrapper
           type="button"
-          onClick={() => setOpenList((prevState) => !prevState)}
+          onClick={(event) => {
+            event.stopPropagation();
+            setOpenList((prev) => !prev);
+          }}
         >
           <StartMenuButton src={startMenuBtn} alt="start Menu button" />
         </StartButtonWrapper>
@@ -73,7 +81,6 @@ function StartMenu() {
           <span>{formattedTime}</span>
         </NotificationsContainer>
       </StartMenuContainer>
-
     </>
   );
 }

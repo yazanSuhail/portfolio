@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import StartMenu from "../../components/MainStartMenu";
 import WindowsXPModal from "../../components/Modals";
 import { computer, folder } from "../../assets";
@@ -20,7 +21,9 @@ import { DesktopContainer } from "./styles";
 import Mobile from "../Mobile";
 
 function MainPage() {
+  const navigate = useNavigate();
   const menus = [fileMenu, editMenu, viewMenu, toolsMenu, helpMenu, favorites];
+  const [showMusicPlayer, setShowMusicPlayer] = useState(false);
   const {
     explorerWindow,
     isExplorerVisible,
@@ -60,6 +63,51 @@ function MainPage() {
     openExplorer(modalType);
   };
 
+  const handleStartMenuAction = useCallback(
+    (action) => {
+      switch (action) {
+        case "myComputer":
+        case "controlPanel":
+        case "help":
+        case "search":
+          setType("myComputer");
+          openExplorer("myComputer");
+          break;
+        case "myProjects":
+        case "myDocuments":
+        case "myPictures":
+          setType("myProjects");
+          openExplorer("myProjects");
+          break;
+        case "myMusic":
+        case "mediaPlayer":
+          setShowMusicPlayer(true);
+          break;
+        case "internet":
+          window.open("https://github.com/yazanSuhail", "_blank", "noopener,noreferrer");
+          break;
+        case "email":
+        case "linkedin":
+          window.open(
+            "https://www.linkedin.com/in/yazan-alzubi-023603204/",
+            "_blank",
+            "noopener,noreferrer"
+          );
+          break;
+        case "github":
+          window.open("https://github.com/yazanSuhail", "_blank", "noopener,noreferrer");
+          break;
+        case "logOff":
+        case "turnOff":
+          navigate("/");
+          break;
+        default:
+          break;
+      }
+    },
+    [navigate, openExplorer]
+  );
+
   return (
     <>
       {screenWidth <= 720 ? (
@@ -71,6 +119,8 @@ function MainPage() {
             setType={setType}
             selectedIcon={selectedIcon}
             setSelectedIcon={setSelectedIcon}
+            showMusicPlayer={showMusicPlayer}
+            setShowMusicPlayer={setShowMusicPlayer}
           />
           {isExplorerVisible && (
             <WindowsXPModal
@@ -98,7 +148,7 @@ function MainPage() {
               onFocus={() => focusWindow(gifWindow.id)}
             />
           ))}
-          <StartMenu />
+          <StartMenu onStartMenuAction={handleStartMenuAction} />
         </DesktopContainer>
       )}
     </>

@@ -60,14 +60,15 @@ export const GifViewerPortal = styled.div`
 `;
 
 export const NotepadWindow = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  pointer-events: auto;
-  width: min(640px, 90vw);
-  border: 3px solid #0831d9;
-  border-radius: 11px 11px 0 0;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #0058e6;
+  border-radius: 8px 8px 0 0;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.35),
+    4px 4px 12px rgba(0, 0, 0, 0.35);
   background: #fff;
   font-family: Tahoma, "MS Sans Serif", sans-serif;
   overflow: hidden;
@@ -75,22 +76,16 @@ export const NotepadWindow = styled.div`
   ${(props) =>
     props.isfullwidth === "true" &&
     `
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    max-width: none;
-    display: flex;
-    flex-direction: column;
+    border-radius: 0;
   `}
 `;
 
 export const NotepadBody = styled.div`
+  flex: 1;
+  min-height: 0;
   padding: 8px;
   background: #fffffe;
   overflow: auto;
-  max-height: 70vh;
 
   p {
     margin: 0 0 10px;

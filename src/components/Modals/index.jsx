@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import Draggable from "react-draggable";
 import ModalStaticContent from "../Modals/StaticContent";
+import ResizableDraggableWindow from "../ResizableWindow/ResizableDraggableWindow";
 import { useTaskbarWindows } from "../../contexts/taskbar-windows";
+
+const EXPLORER_DEFAULT_SIZE = { width: 920, height: 620 };
 
 const WindowsXPModal = ({
   windowId,
@@ -14,53 +16,44 @@ const WindowsXPModal = ({
   onFocus,
   type,
 }) => {
-  const modalRef = React.createRef();
   const [isFullWidth, setIsFullWidth] = useState(false);
   const { getWindowZIndex } = useTaskbarWindows();
 
   const zIndex = getWindowZIndex(windowId);
 
-  const modalContent = (
-    <ModalStaticContent
-      isFullWidth={isFullWidth}
-      setIsFullWidth={setIsFullWidth}
-      icone={icone}
-      type={type}
-      title={title}
-      menus={menus}
-      content={[]}
-      isVisible={isVisible}
-      closeModal={closeModal}
-      onMinimize={onMinimize}
-    />
-  );
+  if (!isVisible) return null;
 
   return (
-    <>
-      {isVisible && (
-        <div
-          style={{
-            position: "fixed",
-            inset: 0,
-            zIndex,
-            pointerEvents: "none",
-          }}
-          onMouseDownCapture={onFocus}
-        >
-          {isFullWidth ? (
-            <div style={{ pointerEvents: "auto", height: "100%" }}>
-              {modalContent}
-            </div>
-          ) : (
-            <Draggable nodeRef={modalRef} handle=".modal-drag-handle">
-              <div ref={modalRef} style={{ pointerEvents: "auto" }}>
-                {modalContent}
-              </div>
-            </Draggable>
-          )}
-        </div>
-      )}
-    </>
+    <div
+      style={{
+        position: "fixed",
+        inset: 0,
+        zIndex,
+        pointerEvents: "none",
+      }}
+      onMouseDownCapture={onFocus}
+    >
+      <ResizableDraggableWindow
+        isMaximized={isFullWidth}
+        onToggleMaximize={() => setIsFullWidth((prev) => !prev)}
+        defaultSize={EXPLORER_DEFAULT_SIZE}
+        defaultPosition={{ x: 48, y: 24 }}
+      >
+        {({ toggleMaximize, isMaximized }) => (
+          <ModalStaticContent
+            isFullWidth={isMaximized}
+            onToggleMaximize={toggleMaximize}
+            icone={icone}
+            type={type}
+            title={title}
+            menus={menus}
+            isVisible
+            closeModal={closeModal}
+            onMinimize={onMinimize}
+          />
+        )}
+      </ResizableDraggableWindow>
+    </div>
   );
 };
 

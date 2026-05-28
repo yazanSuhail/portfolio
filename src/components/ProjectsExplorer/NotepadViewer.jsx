@@ -1,43 +1,21 @@
-import Draggable from "react-draggable";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { createPortal } from "react-dom";
 import { closeIcon, max, minimize } from "../../assets";
 import { getProjectFileName } from "../../Mocks/projectsData";
 import { useTaskbarWindows } from "../../contexts/taskbar-windows";
 import ModalHeader from "../Modals/ModalStructure/ModalHeader";
+import ResizableDraggableWindow from "../ResizableWindow/ResizableDraggableWindow";
 import { GifViewerPortal, NotepadWindow, NotepadBody } from "./styles";
 
+const NOTEPAD_DEFAULT_SIZE = { width: 640, height: 480 };
+
 function NotepadViewer({ windowId, file, onClose, onMinimize, onFocus }) {
-  const nodeRef = useRef(null);
   const [isFullWidth, setIsFullWidth] = useState(false);
   const { getWindowZIndex } = useTaskbarWindows();
 
   if (!file) return null;
 
   const zIndex = getWindowZIndex(windowId);
-
-  const toggleFullWidth = () => {
-    setIsFullWidth((prev) => !prev);
-  };
-
-  const windowContent = (
-    <NotepadWindow isfullwidth={`${isFullWidth}`}>
-      <ModalHeader
-        setModalWidth={toggleFullWidth}
-        icone={file.image}
-        title={getProjectFileName(file)}
-        minimize={minimize}
-        max={max}
-        closeIcon={closeIcon}
-        closeModal={onClose}
-        onMinimize={onMinimize}
-      />
-      <NotepadBody isfullwidth={`${isFullWidth}`}>
-        <p>{file.description}</p>
-        <img src={file.image} alt={getProjectFileName(file)} />
-      </NotepadBody>
-    </NotepadWindow>
-  );
 
   return createPortal(
     <GifViewerPortal
@@ -48,17 +26,33 @@ function NotepadViewer({ windowId, file, onClose, onMinimize, onFocus }) {
         onFocus?.();
       }}
     >
-      {isFullWidth ? (
-        windowContent
-      ) : (
-        <Draggable
-          nodeRef={nodeRef}
-          handle=".modal-drag-handle"
-          defaultPosition={{ x: 160, y: 96 }}
-        >
-          <div ref={nodeRef}>{windowContent}</div>
-        </Draggable>
-      )}
+      <ResizableDraggableWindow
+        isMaximized={isFullWidth}
+        onToggleMaximize={() => setIsFullWidth((prev) => !prev)}
+        defaultSize={NOTEPAD_DEFAULT_SIZE}
+        defaultPosition={{ x: 160, y: 96 }}
+        minWidth={360}
+        minHeight={280}
+      >
+        {({ toggleMaximize, isMaximized }) => (
+          <NotepadWindow isfullwidth={`${isMaximized}`}>
+            <ModalHeader
+              setModalWidth={toggleMaximize}
+              icone={file.image}
+              title={getProjectFileName(file)}
+              minimize={minimize}
+              max={max}
+              closeIcon={closeIcon}
+              closeModal={onClose}
+              onMinimize={onMinimize}
+            />
+            <NotepadBody isfullwidth={`${isMaximized}`}>
+              <p>{file.description}</p>
+              <img src={file.image} alt={getProjectFileName(file)} />
+            </NotepadBody>
+          </NotepadWindow>
+        )}
+      </ResizableDraggableWindow>
     </GifViewerPortal>,
     document.body
   );

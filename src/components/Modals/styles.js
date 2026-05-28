@@ -1,131 +1,151 @@
 import styled from "styled-components";
 
+const xp = {
+  titleBar: `linear-gradient(
+    180deg,
+    #3a8cef 0%,
+    #448ee9 4%,
+    #3b7fe0 12%,
+    #2f6fce 50%,
+    #255eb8 88%,
+    #1e4f9f 100%
+  )`,
+  chromeFace: `linear-gradient(180deg, #f6f4ec 0%, #ece9d8 100%)`,
+  border: "#aca899",
+  borderDark: "#716f64",
+  selection: "#316ac5",
+  addressBorder: "#7f9db9",
+};
+
 export const ModalContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
   color: #000000;
   background: white;
-  border: 1px solid #000;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  border: 3px solid #0831d9;
-  border-radius: 11px 11px 0px 0px;
+  border: 1px solid #0058e6;
+  border-radius: 8px 8px 0 0;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.35),
+    4px 4px 12px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  font-family: Tahoma, "MS Sans Serif", sans-serif;
 
   ${(props) =>
     props.isfullwidth === "true" &&
     `
-    margin:0 auto;
     width: 100%;
-    height:100%;
-    position: absolute;
-    top: 0;
-        `}
+    height: 100%;
+    border-radius: 0;
+  `}
+
   ${(props) =>
     props.isfullwidth === "false" &&
     `
-    height: 600px;
-    margin: 0 auto;
-    width: 70%;
-    height:100%
-    `}
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+  `}
 `;
 
 export const ModalHeaderContainer = styled.section`
-  background: linear-gradient(
-    rgb(0, 88, 238) 0%,
-    rgb(53, 147, 255) 4%,
-    rgb(40, 142, 255) 6%,
-    rgb(18, 125, 255) 8%,
-    rgb(3, 111, 252) 10%,
-    rgb(2, 98, 238) 14%,
-    rgb(0, 87, 229) 20%,
-    rgb(0, 84, 227) 24%,
-    rgb(0, 85, 235) 56%,
-    rgb(0, 91, 245) 66%,
-    rgb(2, 106, 254) 76%,
-    rgb(0, 98, 239) 86%,
-    rgb(0, 82, 214) 92%,
-    rgb(0, 64, 171) 94%,
-    rgb(0, 48, 146) 100%
-  );
-  height: 28px;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  overflow: hidden;
   display: flex;
-  justify-content: flex-start;
   align-items: center;
-  gap: 0.7rem;
+  gap: 6px;
+  height: 30px;
+  padding: 0 4px 0 6px;
+  background: ${xp.titleBar};
   color: #fff;
-  font-weight: bolder;
-  div:nth-child(2) {
-    flex: 1 1 0%;
-
-    padding-right: 5px;
-    letter-spacing: 0.5px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    font-size: 14px;
-  }
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  overflow: hidden;
+  flex-shrink: 0;
 `;
 
-export const IconsContainer = styled.div`
-  margin: 7px 5px 13px 0;
-  gap: 0.1rem;
-  width: 80px;
+export const ModalTitleIcon = styled.img`
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  object-fit: contain;
+`;
+
+export const ModalTitleText = styled.div`
+  flex: 1;
+  min-width: 0;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+`;
+
+export const WindowControls = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+  padding-right: 2px;
 `;
+
+export const IconsContainer = WindowControls;
 
 export const Icons = styled.img`
-  width: 1.5rem;
-  height: 1.5rem;
-  margin-left: 4px;
-  margin-right: -3px;
-  margin-top: 6px;
+  width: 21px;
+  height: 21px;
+  display: block;
+  cursor: pointer;
+
   &:hover {
-    filter: brightness(1.2);
+    filter: brightness(1.08);
   }
+
   &:active {
-    filter: brightness(0.7);
+    filter: brightness(0.85);
   }
 `;
 
 export const ModalContent = styled.section`
-  height: 100%;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const ModalDropDownMenu = styled.section`
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  border: 1px solid rgba(0, 0, 0, 0.1);
   position: relative;
-  background: linear-gradient(
-    to right,
-    rgb(237, 237, 229) 0%,
-    rgb(237, 232, 205) 100%
-  );
-  height: 29px;
-  div:first-child {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-  }
-  img {
-    position: relative;
-    top: 4px;
-  }
+  height: 22px;
+  padding: 0 2px;
+  background: ${xp.chromeFace};
+  border-bottom: 1px solid ${xp.border};
+  flex-shrink: 0;
 `;
 
-export const DropBtn = styled.span`
-  padding: 0.3rem;
-  font-size: 14px;
-  font-weight: 400;
+export const MenuBarItems = styled.div`
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+`;
+
+export const DropBtn = styled.button`
+  padding: 3px 7px;
+  border: 1px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  font-family: Tahoma, "MS Sans Serif", sans-serif;
+  font-size: 11px;
+  font-weight: normal;
+  color: #000;
   cursor: default;
+  line-height: 1;
+
   &:hover {
     color: #fff;
-    background-color: #0831d9;
+    background-color: ${xp.selection};
+    border-color: ${xp.selection};
   }
 `;
 
@@ -133,39 +153,20 @@ export const DropdownContent = styled.div`
   cursor: default;
   width: 12rem;
   display: grid;
-  background-color: rgb(255, 255, 255);
+  background-color: #fff;
   position: absolute;
-  box-shadow: rgb(100, 100, 100) 2px 2px 1px;
-  border: 1px solid gray;
+  top: 100%;
+  left: 0;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  border: 1px solid ${xp.borderDark};
   z-index: 99999;
+  font-family: Tahoma, "MS Sans Serif", sans-serif;
 `;
 
 export const MenuContainer = styled.div`
-  ${(props) =>
-    props.name === "Edit" &&
-    `
-      margin-left:48px;
-  `}
-  ${(props) =>
-    props.name === "View" &&
-    `
-      margin-left:98px;
-  `}
-    ${(props) =>
-    props.name === "Tools" &&
-    `
-      margin-left:153px;
-  `}
-      ${(props) =>
-    props.name === "Help" &&
-    `
-      margin-left:212px;
-  `}
-        ${(props) =>
-    props.name === "Favorites" &&
-    `
-      margin-left:266px;
-  `}
+  position: relative;
+  display: flex;
+  align-items: center;
 `;
 
 export const Close = styled.div`
@@ -177,7 +178,7 @@ export const Close = styled.div`
   width: 88%;
   &:hover {
     color: #fff;
-    background-color: #0831d9;
+    background-color: ${xp.selection};
   }
 `;
 
@@ -197,7 +198,7 @@ export const Items = styled.div`
   }
   &:hover {
     color: #fff;
-    background-color: #0831d9;
+    background-color: ${xp.selection};
   }
 
   ${(props) =>
@@ -238,116 +239,163 @@ ${(props) =>
 `;
 
 export const SubMenu = styled.section`
-  height: 36px;
   display: flex;
-  -webkit-box-align: center;
   align-items: center;
+  gap: 2px;
+  height: 32px;
+  padding: 2px 6px;
   font-size: 11px;
-  padding: 2px 0 1px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background: ${xp.chromeFace};
+  border-bottom: 1px solid ${xp.border};
   flex-shrink: 0;
-  background: linear-gradient(
-    to right,
-    rgb(237, 237, 229) 0%,
-    rgb(237, 232, 205) 100%
-  );
 
   button {
     display: flex;
-    height: 100%;
-    -webkit-box-align: center;
     align-items: center;
-    border: 1px solid rgba(0, 0, 0, 0);
+    justify-content: center;
+    gap: 4px;
+    height: 26px;
+    padding: 0 6px;
+    border: 1px solid transparent;
     border-radius: 3px;
     background: transparent;
-    gap: 0.3rem;
+    font-family: Tahoma, "MS Sans Serif", sans-serif;
+    font-size: 11px;
     color: #000;
+    cursor: default;
+
+    img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+      display: block;
+    }
 
     span {
       color: #000;
+      white-space: nowrap;
     }
 
     &:hover {
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      box-shadow: rgba(0, 0, 0, 0.1) 0px -1px 1px inset;
-      color: #000;
+      border-color: ${xp.border};
+      background: linear-gradient(180deg, #fff 0%, #ece9d8 100%);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.6);
     }
 
     &:active {
-      border: 1px solid rgb(185, 185, 185);
-      background-color: rgb(222, 222, 222);
-      box-shadow: rgba(255, 255, 255, 0.7) 0px -1px 1px inset;
-      color: #000;
+      border-color: ${xp.borderDark};
+      background: #dcd9ce;
+      box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.15);
     }
   }
 `;
 
 export const SearchMenu = styled.section`
-  height: 20px;
-  padding: 3px;
-  display: grid;
-  grid-template-columns: 0fr 1fr 0fr;
+  display: flex;
   align-items: center;
-  gap: 0.3rem;
-  font-size: 13px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  background: linear-gradient(
-    to right,
-    rgb(237, 237, 229) 0%,
-    rgb(237, 232, 205) 100%
-  );
+  gap: 6px;
+  height: 26px;
+  padding: 3px 6px 4px;
+  font-size: 11px;
+  color: #000;
+  background: ${xp.chromeFace};
+  border-bottom: 1px solid ${xp.border};
+  flex-shrink: 0;
+`;
 
-  button {
-    background: transparent;
-    border: none;
-    width: 5rem;
+export const AddressLabel = styled.span`
+  flex-shrink: 0;
+  padding: 0 2px;
+  font-size: 11px;
+  color: #000;
+`;
+
+export const FakeInputContainer = styled.div`
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  height: 20px;
+  padding: 0 4px 0 6px;
+  background: #fff;
+  border: 1px solid ${xp.addressBorder};
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.08);
+
+  .address-content {
     display: flex;
-    justify-content: flex-start;
     align-items: center;
-    gap: 1rem;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
 
-    &:active {
-      background-color: rgb(222, 222, 222);
-      box-shadow: rgba(255, 255, 255, 0.7) 0px -1px 1px inset;
-      color: rgba(255, 255, 255, 0.7);
+    img {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    span {
+      font-size: 11px;
+      color: #000;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .address-dropdown {
+    display: flex;
+    align-items: center;
+    padding-left: 4px;
+    border-left: 1px solid ${xp.border};
+
+    img {
+      width: 14px;
+      height: 14px;
+      display: block;
     }
   }
 `;
 
-export const FakeInputContainer = styled.div`
-  border: 1px solid rgba(122, 122, 255, 0.6);
-  background-color: white;
+export const GoButton = styled.button`
   display: flex;
-  justify-content: space-between;
-  gap: 5px;
-  height: 100%;
-  padding-left: 1rem;
-  div:first-child {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    img {
-      width: 1.3rem;
-    }
+  align-items: center;
+  gap: 4px;
+  height: 22px;
+  padding: 0 10px;
+  border: 1px solid ${xp.borderDark};
+  border-radius: 3px;
+  background: linear-gradient(180deg, #fff 0%, #ece9d8 100%);
+  box-shadow: inset 0 1px 0 #fff;
+  font-family: Tahoma, "MS Sans Serif", sans-serif;
+  font-size: 11px;
+  color: #000;
+  cursor: default;
+  flex-shrink: 0;
+
+  img {
+    width: 14px;
+    height: 14px;
   }
-  div:nth-child(2) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    img {
-      width: 1.1rem;
-    }
+
+  &:hover {
+    background: linear-gradient(180deg, #fff 0%, #f5f3ea 100%);
+  }
+
+  &:active {
+    background: #dcd9ce;
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.12);
   }
 `;
 
 export const GridSubContent = styled.div`
   display: flex;
-  justify-content: flex-start;
+  flex: 1;
+  min-height: 0;
   position: relative;
-  align-items: flex-start;
-  height: 82.5%;
+  align-items: stretch;
+  overflow: hidden;
 `;
 
 export const LeftSideMenu = styled.div`
@@ -416,9 +464,11 @@ export const ListContainer = styled.div`
 `;
 
 export const RightSideContent = styled.div`
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
   display: grid;
   overflow: auto;
-  min-height: 21.9rem;
   padding-left: 1rem;
 `;
 

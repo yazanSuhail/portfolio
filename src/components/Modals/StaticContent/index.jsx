@@ -23,14 +23,13 @@ const ModalStaticContent = ({
   icone,
   closeModal,
   isFullWidth,
-  setIsFullWidth,
+  onToggleMaximize,
   type,
   onMinimize,
 }) => {
   const { updateExplorer } = useTaskbarWindows();
   const [openMenu, setOpenMenu] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
   const projectsNav = useProjectsNavigation(type);
   const address = getProjectsAddress(type, projectsNav.projectsPath);
   const windowTitle =
@@ -42,15 +41,6 @@ const ModalStaticContent = ({
     updateExplorer(windowTitle, icone);
   }, [windowTitle, icone, updateExplorer]);
 
-  const setModalWidth = () => {
-    const currentPosition = { ...position };
-    setPosition({ x: 0, y: 0 });
-    setTimeout(() => {
-      setIsFullWidth((prevMenu) => !prevMenu);
-      setPosition(currentPosition);
-    }, 100);
-  };
-
   const handleIsMenuOpen = () => {
     setIsMenuOpen(false);
     setOpenMenu(null);
@@ -61,7 +51,7 @@ const ModalStaticContent = ({
       {isVisible && (
         <ModalContainer isfullwidth={`${isFullWidth}`}>
           <WindowHeader
-            setModalWidth={setModalWidth}
+            setModalWidth={onToggleMaximize}
             icone={icone}
             title={windowTitle}
             minimize={minimize}
