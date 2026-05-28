@@ -1,7 +1,9 @@
-import { useEffect, useRef, useState } from "react";
-import { computer, folder, song, music, closeIcon } from "../../assets"; // Make sure song is correctly imported
+import { useRef } from "react";
+import { computer, folder, song, music, closeIcon } from "../../assets";
 import Draggable from "react-draggable";
+import DraggableDesktopIcon from "./DraggableDesktopIcon";
 import { IconsContainer, Icon, AudioPlayer } from "./styles";
+import { DESKTOP_ICON_META } from "../../Mocks/DesktopContextMenuMock";
 
 function DesktopIcons({
   openModal,
@@ -10,89 +12,123 @@ function DesktopIcons({
   setSelectedIcon,
   showMusicPlayer = false,
   setShowMusicPlayer,
+  showDesktopIcons = true,
+  iconPositions,
+  setIconPositions,
+  iconOrder,
+  alignToGrid,
+  iconSize,
+  onIconContextMenu,
 }) {
-  const iconRef1 = useRef(null);
-  const iconRef2 = useRef(null);
-  const iconRef3 = useRef(null);
+  const containerRef = useRef(null);
   const audioRef = useRef(null);
-  const [localMusicPlayer, setLocalMusicPlayer] = useState(false);
+  const assets = { myComputer: computer, myProjects: folder, myMusic: music };
+  const { iconPx, fontSize, labelMaxWidth, layout } = iconSize;
+  const getIconPx = (iconId) =>
+    iconId === "myMusic" ? Math.round(iconPx * 1.69) : iconPx;
 
-  const shouldShowMusicPlayer = setShowMusicPlayer
-    ? showMusicPlayer
-    : localMusicPlayer;
-  const setMusicPlayerVisible = setShowMusicPlayer ?? setLocalMusicPlayer;
+  const handlePositionChange = (iconId, position) => {
+    setIconPositions((prev) => ({
+      ...prev,
+      [iconId]: position,
+    }));
+  };
 
-  const handleClick = (type) => {
-    event.stopPropagation();
-    setSelectedIcon(type);
-    setType(type);
-
-    if (type === "myMusic") {
-      setMusicPlayerVisible(true);
-      if (audioRef.current) {
-        audioRef.current.play();
-      }
+  const handleSelect = (iconId) => {
+    setSelectedIcon(iconId);
+    setType(iconId);
+    if (iconId === "myMusic") {
+      setShowMusicPlayer?.(true);
+      audioRef.current?.play();
     }
   };
 
-  useEffect(() => {
-    if (selectedIcon) {
-      const newSelectedIcons = { myComputer: false, myProjects: false, myMusic: false };
-      newSelectedIcons[selectedIcon] = true;
+  const handleOpen = (iconId) => {
+    setType(iconId);
+    if (iconId === "myMusic") {
+      setShowMusicPlayer?.(true);
+      audioRef.current?.play();
+      return;
     }
-  }, [selectedIcon]);
+    openModal(iconId);
+  };
+
+  if (!showDesktopIcons) {
+    return (
+      <>
+        {showMusicPlayer && (
+          <Draggable>
+            <AudioPlayer>
+              This will be windows xp player
+              <div onClick={() => setShowMusicPlayer(false)}>
+                <img src={closeIcon} alt="" />
+              </div>
+              <audio ref={audioRef} controls>
+                <source src={song} type="audio/mpeg" />
+                Your browser does not support the audio element.
+              </audio>
+            </AudioPlayer>
+          </Draggable>
+        )}
+      </>
+    );
+  }
 
   return (
-    <IconsContainer>
-      <Draggable nodeRef={iconRef1}>
-        <Icon
-          ref={iconRef1}
-          onDoubleClick={() => openModal()}
-          isselected={`${selectedIcon === "myComputer"}`}
-          onClick={() => handleClick("myComputer")}
-        >
-          <img src={computer} alt="My Computer" />
-          <span>My Computer</span>
-        </Icon>
-      </Draggable>
+    <IconsContainer ref={containerRef}>
+      {iconOrder.map((iconId) => {
+        const meta = DESKTOP_ICON_META[iconId];
+        const position = iconPositions[iconId];
 
-      <Draggable nodeRef={iconRef2}>
-        <Icon
-          ref={iconRef2}
-          onDoubleClick={() => openModal()}
-          isselected={`${selectedIcon === "myProjects"}`}
-          onClick={() => handleClick("myProjects")}
-        >
-          <img src={folder} alt="My Projects" />
-          <span>My Projects</span>
-        </Icon>
-      </Draggable>
+        return (
+          <DraggableDesktopIcon
+            key={iconId}
+            iconId={iconId}
+            position={position}
+            alignToGrid={alignToGrid}
+            containerRef={containerRef}
+            iconLayout={layout}
+            slotWidth={layout.slotWidth}
+            slotHeight={layout.slotHeight}
+            onPositionChange={handlePositionChange}
+            isSelected={selectedIcon === iconId}
+            onSelect={handleSelect}
+            onOpen={handleOpen}
+            onContextMenu={(e) => onIconContextMenu?.(iconId, e)}
+          >
+            <Icon
+              className="desktop-icon"
+              $iconPx={getIconPx(iconId)}
+              $fontSize={fontSize}
+              $labelMaxWidth={labelMaxWidth}
+              $isMusic={iconId === "myMusic"}
+              $labelPull={
+                iconId === "myMusic"
+                  ? Math.round(iconPx * 0.32)
+                  : 0
+              }
+            >
+              <img src={assets[iconId]} alt={meta.name} draggable={false} />
+              <span>{meta.name}</span>
+            </Icon>
+          </DraggableDesktopIcon>
+        );
+      })}
 
-      <Draggable nodeRef={iconRef3}>
-        <Icon
-          ref={iconRef3}
-          isselected={`${selectedIcon === "myMusic"}`}
-          onClick={() => handleClick("myMusic")}
-        >
-          <img className="image" src={music} alt="My Music" />
-          <span className="song">My Favorite Song</span>
-        </Icon>
-      </Draggable>
-
-      {shouldShowMusicPlayer && 
+      {showMusicPlayer && (
         <Draggable>
           <AudioPlayer>
             This will be windows xp player
-          <div onClick={() => setMusicPlayerVisible(false)}>
-            <img src={closeIcon} alt="" />
-          </div>
+            <div onClick={() => setShowMusicPlayer(false)}>
+              <img src={closeIcon} alt="" />
+            </div>
             <audio ref={audioRef} controls>
               <source src={song} type="audio/mpeg" />
               Your browser does not support the audio element.
             </audio>
           </AudioPlayer>
         </Draggable>
-      }
+      )}
     </IconsContainer>
   );
 }
