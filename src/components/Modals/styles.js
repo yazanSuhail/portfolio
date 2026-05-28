@@ -261,16 +261,23 @@ export const SubMenu = styled.section`
     border-radius: 3px;
     background: transparent;
     gap: 0.3rem;
+    color: #000;
+
+    span {
+      color: #000;
+    }
+
     &:hover {
       border: 1px solid rgba(0, 0, 0, 0.1);
       box-shadow: rgba(0, 0, 0, 0.1) 0px -1px 1px inset;
+      color: #000;
     }
 
     &:active {
       border: 1px solid rgb(185, 185, 185);
       background-color: rgb(222, 222, 222);
       box-shadow: rgba(255, 255, 255, 0.7) 0px -1px 1px inset;
-      color: rgba(255, 255, 255, 0.7);
+      color: #000;
     }
   }
 `;

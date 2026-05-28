@@ -16,6 +16,7 @@ function WindowHeader({
   max,
   closeIcon,
   closeModal,
+  onMinimize,
   setIsMenuOpen,
   menus,
   isMenuOpen,
@@ -23,6 +24,9 @@ function WindowHeader({
   openMenu,
   handleIsMenuOpen,
   submenuItems,
+  type,
+  address,
+  onProjectsBack,
 }) {
   return (
     <>
@@ -35,6 +39,7 @@ function WindowHeader({
         max={max}
         closeIcon={closeIcon}
         closeModal={closeModal}
+        onMinimize={onMinimize}
       />
       <ModalDropDownSubMenu
         setIsMenuOpen={setIsMenuOpen}
@@ -47,8 +52,10 @@ function WindowHeader({
       <NavSubMenu
         handleIsMenuOpen={handleIsMenuOpen}
         submenuItems={submenuItems}
+        type={type}
+        onProjectsBack={onProjectsBack}
       />
-      <FakeSearchMenu handleIsMenuOpen={handleIsMenuOpen} />
+      <FakeSearchMenu handleIsMenuOpen={handleIsMenuOpen} address={address} />
     </>
   );
 }

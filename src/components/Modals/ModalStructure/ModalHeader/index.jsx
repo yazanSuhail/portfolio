@@ -9,9 +9,13 @@ function ModalHeader({
   max,
   closeIcon,
   closeModal,
+  onMinimize,
 }) {
   return (
-    <ModalHeaderContainer onDoubleClick={setModalWidth}>
+    <ModalHeaderContainer
+      className="modal-drag-handle"
+      onDoubleClick={setModalWidth}
+    >
       <div>
         <div>
           <Icons src={icone} alt="windows Logo" width="50rem" />
@@ -19,20 +23,35 @@ function ModalHeader({
       </div>
       <div>{title}</div>
       <IconsContainer>
-        <Icons width="1.5rem" height="1.5rem" src={minimize} alt="minimize" />
         <Icons
-          onClick={setModalWidth}
+          width="1.5rem"
+          height="1.5rem"
+          src={minimize}
+          alt="minimize"
+          onClick={(e) => {
+            e.stopPropagation();
+            onMinimize?.();
+          }}
+        />
+        <Icons
+          onClick={(e) => {
+            e.stopPropagation();
+            setModalWidth();
+          }}
           width="1.5rem"
           height="1.5rem"
           src={max}
-          alt="close"
+          alt="maximize"
         />
         <Icons
           width="1.5rem"
           height="1.5rem"
           src={closeIcon}
           alt="close"
-          onClick={closeModal}
+          onClick={(e) => {
+            e.stopPropagation();
+            closeModal();
+          }}
         />
       </IconsContainer>
     </ModalHeaderContainer>

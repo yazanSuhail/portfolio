@@ -1,16 +1,18 @@
 import React from "react";
 import { SearchMenu, FakeInputContainer } from "../../styles";
 
-import { computer, Go, halfArrouwDown } from "../../../../assets";
+import { Go, halfArrouwDown } from "../../../../assets";
 
-function FakeSearchMenu({ handleIsMenuOpen }) {
+function FakeSearchMenu({ handleIsMenuOpen, address }) {
+  const { icon, label } = address ?? { icon: null, label: "My Computer" };
+
   return (
     <SearchMenu onMouseEnter={() => handleIsMenuOpen()}>
       <div>Address</div>
       <FakeInputContainer>
         <div>
-          <img src={computer} width={"18rem"} />
-          <span>My Computer</span>
+          {icon && <img src={icon} width={"18rem"} alt="" />}
+          <span>{label}</span>
         </div>
         <div>
           {" "}

@@ -1,13 +1,19 @@
 import { useState, useEffect } from "react";
 import {
   StartMenuContainer,
+  StartButtonWrapper,
   StartMenuButton,
   MinimizContainer,
   NotificationsContainer,
+  FirewallWrapper,
+  SecurityBalloon,
+  SecurityBalloonTitle,
+  SecurityBalloonBody,
 } from "./styles";
 import { startMenuBtn, sound, usb, firewall } from "../../assets";
 import { useLocation } from 'react-router-dom';
 import { StartMenuList } from "../StartMenuList";
+import TaskbarWindows from "../TaskbarWindows";
 
 function StartMenu() {
   const date = new Date();
@@ -38,15 +44,30 @@ function StartMenu() {
       }
 
       <StartMenuContainer>
-        <div onClick={() => setOpenList(prevState => !prevState)}>
+        <StartButtonWrapper
+          type="button"
+          onClick={() => setOpenList((prevState) => !prevState)}
+        >
           <StartMenuButton src={startMenuBtn} alt="start Menu button" />
-        </div>
-        <MinimizContainer></MinimizContainer>
+        </StartButtonWrapper>
+        <MinimizContainer>
+          <TaskbarWindows />
+        </MinimizContainer>
         <NotificationsContainer>
-          <img
-            src={firewall}
-            alt="firewall"
-          />
+          <FirewallWrapper>
+            <SecurityBalloon>
+              <SecurityBalloonTitle>
+                <img src={firewall} alt="" />
+                Your computer might be at risk
+              </SecurityBalloonTitle>
+              <SecurityBalloonBody>
+                Antivirus software might not be installed.
+                <br />
+                Click this balloon to fix this problem.
+              </SecurityBalloonBody>
+            </SecurityBalloon>
+            <img src={firewall} alt="Windows Security Center" />
+          </FirewallWrapper>
           <img src={sound} alt="sound" />
           <img src={usb} alt="usb" />
           <span>{formattedTime}</span>

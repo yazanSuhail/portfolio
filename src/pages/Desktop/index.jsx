@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import StartMenu from "../../components/MainStartMenu";
 import WindowsXPModal from "../../components/Modals";
-import { computer, firewall } from "../../assets";
+import { computer, folder } from "../../assets";
 import {
   fileMenu,
   editMenu,
@@ -10,17 +10,31 @@ import {
   helpMenu,
   favorites,
 } from "../../Mocks/DesktopMenuMock";
-import { useModal } from "../../contexts/use-modal";
+import {
+  EXPLORER_WINDOW_ID,
+  useTaskbarWindows,
+} from "../../contexts/taskbar-windows";
 import DesktopIcons from "../../components/DesktopIcons";
-import { DesktopContainer, ToolTip } from "./styles";
+import NotepadViewer from "../../components/ProjectsExplorer/NotepadViewer";
+import { DesktopContainer } from "./styles";
 import Mobile from "../Mobile";
 
 function MainPage() {
   const menus = [fileMenu, editMenu, viewMenu, toolsMenu, helpMenu, favorites];
-  const { isModalOpen, openModal, closeModal } = useModal();
+  const {
+    explorerWindow,
+    isExplorerVisible,
+    visibleGifWindows,
+    openExplorer,
+    closeWindow,
+    minimizeWindow,
+    focusWindow,
+  } = useTaskbarWindows();
   const [type, setType] = useState("");
   const [selectedIcon, setSelectedIcon] = useState(null);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  const explorerType = explorerWindow?.explorerType ?? type;
 
   useEffect(() => {
     const handleDocumentClick = () => {
@@ -35,15 +49,16 @@ function MainPage() {
   useEffect(() => {
     const handleResize = () => {
       setScreenWidth(window.innerWidth);
-      console.log("screenWidth", window.innerWidth);
     };
 
     window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const handleOpenExplorer = (modalType) => {
+    setType(modalType);
+    openExplorer(modalType);
+  };
 
   return (
     <>
@@ -52,31 +67,37 @@ function MainPage() {
       ) : (
         <DesktopContainer>
           <DesktopIcons
-            openModal={openModal}
+            openModal={() => handleOpenExplorer(type)}
             setType={setType}
             selectedIcon={selectedIcon}
             setSelectedIcon={setSelectedIcon}
           />
-          <WindowsXPModal
-            icone={computer}
-            title="My Computer"
-            menus={menus}
-            content={[]}
-            isVisible={isModalOpen}
-            closeModal={closeModal}
-            type={type}
-          />
-          <ToolTip>
-            <div>
-              <span>
-                <img src={firewall} alt="firewall" />
-                Your computer might be at risk
-              </span>{" "}
-              <br />
-              Antivirus software might not be installed, <br />
-              Click this balloon to fix this problem.
-            </div>
-          </ToolTip>
+          {isExplorerVisible && (
+            <WindowsXPModal
+              windowId={EXPLORER_WINDOW_ID}
+              icone={explorerType === "myProjects" ? folder : computer}
+              title={
+                explorerType === "myProjects" ? "My Projects" : "My Computer"
+              }
+              menus={menus}
+              content={[]}
+              isVisible
+              closeModal={() => closeWindow(EXPLORER_WINDOW_ID)}
+              onMinimize={() => minimizeWindow(EXPLORER_WINDOW_ID)}
+              onFocus={() => focusWindow(EXPLORER_WINDOW_ID)}
+              type={explorerType}
+            />
+          )}
+          {visibleGifWindows.map((gifWindow) => (
+            <NotepadViewer
+              key={gifWindow.id}
+              windowId={gifWindow.id}
+              file={gifWindow.gifProject}
+              onClose={() => closeWindow(gifWindow.id)}
+              onMinimize={() => minimizeWindow(gifWindow.id)}
+              onFocus={() => focusWindow(gifWindow.id)}
+            />
+          ))}
           <StartMenu />
         </DesktopContainer>
       )}

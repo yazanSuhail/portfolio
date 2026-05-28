@@ -1,13 +1,20 @@
 /* eslint-disable react/prop-types */
-import  { useState } from "react";
+import { useState, useEffect } from "react";
 import { ModalContainer } from "../styles";
 
 import { minimize, closeIcon, max } from "../../../assets";
 
 import { submenuItems } from "../../../Mocks/DesktopMenuMock";
 
-import ModalContentController from "../ModalStructure/ModalContent";
+import ModalContentController, {
+  useProjectsNavigation,
+} from "../ModalStructure/ModalContent";
 import WindowHeader from "../ModalStructure/ModalContent/WindowHeader";
+import {
+  getProjectsAddress,
+  getProjectsWindowTitle,
+} from "../ModalStructure/getProjectsAddress";
+import { useTaskbarWindows } from "../../../contexts/taskbar-windows";
 
 const ModalStaticContent = ({
   title,
@@ -18,10 +25,22 @@ const ModalStaticContent = ({
   isFullWidth,
   setIsFullWidth,
   type,
+  onMinimize,
 }) => {
+  const { updateExplorer } = useTaskbarWindows();
   const [openMenu, setOpenMenu] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const projectsNav = useProjectsNavigation(type);
+  const address = getProjectsAddress(type, projectsNav.projectsPath);
+  const windowTitle =
+    type === "myProjects"
+      ? getProjectsWindowTitle(projectsNav.projectsPath)
+      : title;
+
+  useEffect(() => {
+    updateExplorer(windowTitle, icone);
+  }, [windowTitle, icone, updateExplorer]);
 
   const setModalWidth = () => {
     const currentPosition = { ...position };
@@ -44,11 +63,12 @@ const ModalStaticContent = ({
           <WindowHeader
             setModalWidth={setModalWidth}
             icone={icone}
-            title={title}
+            title={windowTitle}
             minimize={minimize}
             max={max}
             closeIcon={closeIcon}
             closeModal={closeModal}
+            onMinimize={onMinimize}
             setIsMenuOpen={setIsMenuOpen}
             menus={menus}
             isMenuOpen={isMenuOpen}
@@ -56,12 +76,17 @@ const ModalStaticContent = ({
             openMenu={openMenu}
             handleIsMenuOpen={handleIsMenuOpen}
             submenuItems={submenuItems}
+            type={type}
+            address={address}
+            onProjectsBack={projectsNav.handleProjectsBack}
           />
 
           <ModalContentController
             handleIsMenuOpen={handleIsMenuOpen}
             isFullWidth={isFullWidth}
             type={type}
+            projectsPath={projectsNav.projectsPath}
+            setProjectsPath={projectsNav.setProjectsPath}
           />
         </ModalContainer>
       )}
