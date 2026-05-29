@@ -11,6 +11,7 @@ export { default as search } from "../assets/search-icone.png";
 
 export { default as folder } from "../assets/folder.png";
 export { default as textFile } from "../assets/59209.png";
+export { default as pdfIcon } from "../assets/pdf-icon.svg";
 
 export { default as folderWithList } from "../assets/folder-with-list.png";
 

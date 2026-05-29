@@ -70,6 +70,7 @@ export const ICON_CONTEXT_MENUS = {
     { id: "properties", label: "Properties" },
   ],
   myProjects: iconMenuBase,
+  myResume: iconMenuBase,
   myMusic: [
     { id: "open", label: "Open" },
     { type: "separator" },
@@ -94,6 +95,12 @@ export const DESKTOP_ICON_META = {
     location: "Portfolio Desktop",
     target: "myProjects",
   },
+  myResume: {
+    name: "Resume.pdf",
+    type: "Adobe PDF Document",
+    location: "Portfolio Desktop",
+    target: "myResume",
+  },
   myMusic: {
     name: "My Favorite Song",
     type: "MP3 Audio",
@@ -104,10 +111,11 @@ export const DESKTOP_ICON_META = {
 
 export const DEFAULT_ICON_POSITIONS = {
   myComputer: { x: 16, y: 16 },
-  myProjects: { x: 16, y: 130 },
-  myMusic: { x: 16, y: 244 },
+  myResume: { x: 16, y: 130 },
+  myProjects: { x: 16, y: 244 },
+  myMusic: { x: 16, y: 358 },
 };
 
-export const ICON_ORDER = ["myComputer", "myProjects", "myMusic"];
+export const ICON_ORDER = ["myComputer", "myResume", "myProjects", "myMusic"];
 
 export const GRID_SIZE = 8;

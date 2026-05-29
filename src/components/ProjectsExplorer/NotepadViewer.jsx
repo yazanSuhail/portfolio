@@ -47,7 +47,6 @@ function NotepadViewer({ windowId, file, onClose, onMinimize, onFocus }) {
               onMinimize={onMinimize}
             />
             <NotepadBody isfullwidth={`${isMaximized}`}>
-              <p>{file.description}</p>
               <img src={file.image} alt={getProjectFileName(file)} />
             </NotepadBody>
           </NotepadWindow>

@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { computer, folder, song, music, closeIcon } from "../../assets";
+import { computer, folder, song, music, closeIcon, pdfIcon } from "../../assets";
 import Draggable from "react-draggable";
 import DraggableDesktopIcon from "./DraggableDesktopIcon";
 import { IconsContainer, Icon, AudioPlayer } from "./styles";
@@ -7,6 +7,7 @@ import { DESKTOP_ICON_META } from "../../Mocks/DesktopContextMenuMock";
 
 function DesktopIcons({
   openModal,
+  onOpenResume,
   setType,
   selectedIcon,
   setSelectedIcon,
@@ -22,7 +23,12 @@ function DesktopIcons({
 }) {
   const containerRef = useRef(null);
   const audioRef = useRef(null);
-  const assets = { myComputer: computer, myProjects: folder, myMusic: music };
+  const assets = {
+    myComputer: computer,
+    myProjects: folder,
+    myResume: pdfIcon,
+    myMusic: music,
+  };
   const { iconPx, fontSize, labelMaxWidth, layout } = iconSize;
   const getIconPx = (iconId) =>
     iconId === "myMusic" ? Math.round(iconPx * 1.69) : iconPx;
@@ -48,6 +54,10 @@ function DesktopIcons({
     if (iconId === "myMusic") {
       setShowMusicPlayer?.(true);
       audioRef.current?.play();
+      return;
+    }
+    if (iconId === "myResume") {
+      onOpenResume?.();
       return;
     }
     openModal(iconId);

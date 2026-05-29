@@ -18,6 +18,7 @@ import TaskbarWindows from "../TaskbarWindows";
 function StartMenu({ onStartMenuAction }) {
   const [currentTime, setCurrentTime] = useState(() => new Date());
   const [openList, setOpenList] = useState(false);
+  const [showSecurityBalloon, setShowSecurityBalloon] = useState(true);
   const { state: account } = useLocation();
 
   useEffect(() => {
@@ -63,17 +64,30 @@ function StartMenu({ onStartMenuAction }) {
         </MinimizContainer>
         <NotificationsContainer>
           <FirewallWrapper>
-            <SecurityBalloon>
-              <SecurityBalloonTitle>
-                <img src={firewall} alt="" />
-                Your computer might be at risk
-              </SecurityBalloonTitle>
-              <SecurityBalloonBody>
-                Antivirus software might not be installed.
-                <br />
-                Click this balloon to fix this problem.
-              </SecurityBalloonBody>
-            </SecurityBalloon>
+            {showSecurityBalloon && (
+              <SecurityBalloon
+                role="button"
+                tabIndex={0}
+                onClick={() => setShowSecurityBalloon(false)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setShowSecurityBalloon(false);
+                  }
+                }}
+                title="Dismiss — skepticism patched successfully"
+              >
+                <SecurityBalloonTitle>
+                  <img src={firewall} alt="" />
+                  This portfolio might not be AI-generated
+                </SecurityBalloonTitle>
+                <SecurityBalloonBody>
+                  I&apos;ve been working on this since the dawn of time.
+                  <br />
+                  Click this balloon to pretend you fixed the problem.
+                </SecurityBalloonBody>
+              </SecurityBalloon>
+            )}
             <img src={firewall} alt="Windows Security Center" />
           </FirewallWrapper>
           <img src={sound} alt="sound" />

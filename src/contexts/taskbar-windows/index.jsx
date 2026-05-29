@@ -6,13 +6,17 @@ import {
   useMemo,
   useReducer,
 } from "react";
-import { computer, folder } from "../../assets";
-import { getProjectFileName } from "../../Mocks/projectsData";
+import { computer, folder, pdfIcon } from "../../assets";
+import {
+  getProjectFileName,
+  getProjectPdfTitle,
+} from "../../Mocks/projectsData";
 
 export const EXPLORER_WINDOW_ID = "explorer-modal";
 export const WINDOW_KIND = {
   EXPLORER: "explorer",
   GIF: "gif",
+  PDF: "pdf",
 };
 
 const TaskbarWindowsContext = createContext(null);
@@ -133,6 +137,52 @@ function taskbarReducer(state, action) {
       };
     }
 
+    case "OPEN_PDF": {
+      const { project } = action.payload;
+      const id = getPdfWindowId(project.id);
+      const title = getProjectPdfTitle(project);
+      const existing = state.windows.find((w) => w.id === id);
+
+      if (existing) {
+        const zIndex = state.zIndexCounter + 1;
+        return {
+          ...state,
+          activeWindowId: id,
+          zIndexCounter: zIndex,
+          windows: state.windows.map((w) =>
+            w.id === id
+              ? {
+                  ...w,
+                  title,
+                  icon: pdfIcon,
+                  pdfProject: project,
+                  isMinimized: false,
+                  zIndex,
+                }
+              : w
+          ),
+        };
+      }
+
+      const zIndex = state.zIndexCounter + 1;
+      return {
+        activeWindowId: id,
+        zIndexCounter: zIndex,
+        windows: [
+          ...state.windows,
+          {
+            id,
+            kind: WINDOW_KIND.PDF,
+            title,
+            icon: pdfIcon,
+            pdfProject: project,
+            isMinimized: false,
+            zIndex,
+          },
+        ],
+      };
+    }
+
     case "CLOSE_WINDOW": {
       const { id } = action.payload;
       return {
@@ -242,6 +292,10 @@ export function TaskbarWindowsProvider({ children }) {
     dispatch({ type: "OPEN_GIF", payload: { project } });
   }, []);
 
+  const openPdf = useCallback((project) => {
+    dispatch({ type: "OPEN_PDF", payload: { project } });
+  }, []);
+
   const closeWindow = useCallback((id) => {
     dispatch({ type: "CLOSE_WINDOW", payload: { id } });
   }, []);
@@ -285,6 +339,14 @@ export function TaskbarWindowsProvider({ children }) {
     [state.windows]
   );
 
+  const visiblePdfWindows = useMemo(
+    () =>
+      state.windows.filter(
+        (w) => w.kind === WINDOW_KIND.PDF && !w.isMinimized
+      ),
+    [state.windows]
+  );
+
   const topVisibleWindowId = useMemo(
     () => getTopVisibleWindow(state.windows)?.id ?? null,
     [state.windows]
@@ -297,8 +359,10 @@ export function TaskbarWindowsProvider({ children }) {
       topVisibleWindowId,
       explorerWindow,
       visibleGifWindows,
+      visiblePdfWindows,
       openExplorer,
       openGif,
+      openPdf,
       closeWindow,
       updateExplorer,
       minimizeWindow,
@@ -317,8 +381,10 @@ export function TaskbarWindowsProvider({ children }) {
       topVisibleWindowId,
       explorerWindow,
       visibleGifWindows,
+      visiblePdfWindows,
       openExplorer,
       openGif,
+      openPdf,
       closeWindow,
       updateExplorer,
       minimizeWindow,
@@ -348,4 +414,8 @@ export function useTaskbarWindows() {
 
 export function getGifWindowId(projectId) {
   return `gif-${projectId}`;
+}
+
+export function getPdfWindowId(projectId) {
+  return `pdf-${projectId}`;
 }

@@ -24,6 +24,7 @@ import DesktopIcons from "../../components/DesktopIcons";
 import DesktopContextMenu from "../../components/DesktopContextMenu";
 import DesktopPropertiesDialog from "../../components/DesktopContextMenu/DesktopPropertiesDialog";
 import NotepadViewer from "../../components/ProjectsExplorer/NotepadViewer";
+import PdfViewer from "../../components/ProjectsExplorer/PdfViewer";
 import {
   autoArrangePositions,
   sortIconOrder,
@@ -31,6 +32,7 @@ import {
   DEFAULT_ICON_POSITIONS,
   ICON_ORDER,
 } from "../../utils/desktopGrid";
+import { RESUME_PROFILE } from "../../Mocks/resumeData";
 import { useDesktopSettings } from "../../hooks/useDesktopSettings";
 import { DesktopContainer } from "./styles";
 import Mobile from "../Mobile";
@@ -43,7 +45,9 @@ function MainPage() {
     explorerWindow,
     isExplorerVisible,
     visibleGifWindows,
+    visiblePdfWindows,
     openExplorer,
+    openPdf,
     closeWindow,
     minimizeWindow,
     focusWindow,
@@ -114,9 +118,13 @@ function MainPage() {
         setShowMusicPlayer(true);
         return;
       }
+      if (iconType === "myResume") {
+        openPdf(RESUME_PROFILE);
+        return;
+      }
       handleOpenExplorer(iconType);
     },
-    [handleOpenExplorer]
+    [handleOpenExplorer, openPdf]
   );
 
   const applySort = useCallback(
@@ -311,6 +319,7 @@ function MainPage() {
         >
           <DesktopIcons
             openModal={handleOpenExplorer}
+            onOpenResume={() => openPdf(RESUME_PROFILE)}
             setType={setType}
             selectedIcon={selectedIcon}
             setSelectedIcon={setSelectedIcon}
@@ -348,6 +357,16 @@ function MainPage() {
               onClose={() => closeWindow(gifWindow.id)}
               onMinimize={() => minimizeWindow(gifWindow.id)}
               onFocus={() => focusWindow(gifWindow.id)}
+            />
+          ))}
+          {visiblePdfWindows.map((pdfWindow) => (
+            <PdfViewer
+              key={pdfWindow.id}
+              windowId={pdfWindow.id}
+              file={pdfWindow.pdfProject}
+              onClose={() => closeWindow(pdfWindow.id)}
+              onMinimize={() => minimizeWindow(pdfWindow.id)}
+              onFocus={() => focusWindow(pdfWindow.id)}
             />
           ))}
           <StartMenu onStartMenuAction={handleStartMenuAction} />

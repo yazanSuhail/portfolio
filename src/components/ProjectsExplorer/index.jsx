@@ -1,15 +1,16 @@
-import { folder } from "../../assets";
+import { folder, pdfIcon } from "../../assets";
 import { useTaskbarWindows } from "../../contexts/taskbar-windows";
 import {
   PROJECT_COMPANIES,
   getProjectsForCompany,
   getProject,
   getProjectFileName,
+  getProjectPdfFileName,
 } from "../../Mocks/projectsData";
 import { ExplorerGrid, ExplorerIconButton } from "./styles";
 
 function ProjectsExplorer({ projectsPath, setProjectsPath }) {
-  const { openGif } = useTaskbarWindows();
+  const { openGif, openPdf } = useTaskbarWindows();
 
   const openCompany = (companyId) => {
     setProjectsPath({ companyId });
@@ -24,6 +25,10 @@ function ProjectsExplorer({ projectsPath, setProjectsPath }) {
 
   const openTextFile = (project) => {
     openGif(project);
+  };
+
+  const openPdfFile = (project) => {
+    openPdf(project);
   };
 
   if (!projectsPath) {
@@ -80,6 +85,14 @@ function ProjectsExplorer({ projectsPath, setProjectsPath }) {
       >
         <img src={project.image} alt="" />
         <span>{getProjectFileName(project)}</span>
+      </ExplorerIconButton>
+      <ExplorerIconButton
+        type="button"
+        onClick={() => openPdfFile(project)}
+        title={`Open ${getProjectPdfFileName(project)}`}
+      >
+        <img src={pdfIcon} alt="" />
+        <span>{getProjectPdfFileName(project)}</span>
       </ExplorerIconButton>
     </ExplorerGrid>
   );

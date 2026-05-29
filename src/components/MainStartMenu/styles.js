@@ -195,7 +195,7 @@ export const SecurityBalloon = styled.div`
   left: 30%;
   transform: translateX(-50%);
   z-index: 10000;
-  width: 200px;
+  width: 240px;
   padding: 10px 12px 12px;
   background: #ffffe1;
   border: 1px solid #000;
@@ -206,7 +206,7 @@ export const SecurityBalloon = styled.div`
   line-height: 1.35;
   color: #000;
   white-space: normal;
-  cursor: default;
+  cursor: pointer;
 
   &::before {
     content: "";
