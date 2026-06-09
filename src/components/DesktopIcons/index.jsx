@@ -1,11 +1,9 @@
 import { useRef } from "react";
-import { computer, folder, song, music, closeIcon, pdfIcon } from "../../assets";
-import Draggable from "react-draggable";
+import { computer, folder, music, pdfIcon } from "../../assets";
 import DraggableDesktopIcon from "./DraggableDesktopIcon";
 import {
   IconsContainer,
   Icon,
-  AudioPlayer,
   MobileIconsGrid,
   MobileIconButton,
 } from "./styles";
@@ -16,11 +14,10 @@ import { MOBILE_TASKBAR_HEIGHT } from "../../constants/breakpoints";
 function DesktopIcons({
   openModal,
   onOpenResume,
+  onOpenMusic,
   setType,
   selectedIcon,
   setSelectedIcon,
-  showMusicPlayer = false,
-  setShowMusicPlayer,
   showDesktopIcons = true,
   iconPositions,
   setIconPositions,
@@ -31,7 +28,6 @@ function DesktopIcons({
 }) {
   const isMobile = useIsMobile();
   const containerRef = useRef(null);
-  const audioRef = useRef(null);
   const assets = {
     myComputer: computer,
     myProjects: folder,
@@ -53,16 +49,14 @@ function DesktopIcons({
     setSelectedIcon(iconId);
     setType(iconId);
     if (iconId === "myMusic") {
-      setShowMusicPlayer?.(true);
-      audioRef.current?.play();
+      onOpenMusic?.();
     }
   };
 
   const handleOpen = (iconId) => {
     setType(iconId);
     if (iconId === "myMusic") {
-      setShowMusicPlayer?.(true);
-      audioRef.current?.play();
+      onOpenMusic?.();
       return;
     }
     if (iconId === "myResume") {
@@ -72,56 +66,38 @@ function DesktopIcons({
     openModal(iconId);
   };
 
-  const musicPlayer = showMusicPlayer && (
-    <AudioPlayer $isMobile={isMobile}>
-      This will be windows xp player
-      <div onClick={() => setShowMusicPlayer(false)}>
-        <img src={closeIcon} alt="" />
-      </div>
-      <audio ref={audioRef} controls>
-        <source src={song} type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </audio>
-    </AudioPlayer>
-  );
-
   if (!showDesktopIcons) {
-    return isMobile ? musicPlayer : <Draggable>{musicPlayer}</Draggable>;
+    return null;
   }
 
   if (isMobile) {
     return (
-      <>
-        <MobileIconsGrid $taskbarHeight={MOBILE_TASKBAR_HEIGHT}>
-          {iconOrder.map((iconId) => {
-            const meta = DESKTOP_ICON_META[iconId];
-            const iconPx = getIconPx(iconId);
+      <MobileIconsGrid $taskbarHeight={MOBILE_TASKBAR_HEIGHT}>
+        {iconOrder.map((iconId) => {
+          const meta = DESKTOP_ICON_META[iconId];
+          const isMusic = iconId === "myMusic";
+          const mobileIconPx = isMusic ? 56 : 48;
 
-            const isMusic = iconId === "myMusic";
-            const mobileIconPx = isMusic ? 56 : 48;
-
-            return (
-              <MobileIconButton
-                key={iconId}
-                type="button"
-                $large={isMusic}
-                $selected={selectedIcon === iconId}
-                onClick={() => handleOpen(iconId)}
-              >
-                <img
-                  src={assets[iconId]}
-                  alt={meta.name}
-                  width={mobileIconPx}
-                  height={mobileIconPx}
-                  draggable={false}
-                />
-                <span>{meta.name}</span>
-              </MobileIconButton>
-            );
-          })}
-        </MobileIconsGrid>
-        {musicPlayer}
-      </>
+          return (
+            <MobileIconButton
+              key={iconId}
+              type="button"
+              $large={isMusic}
+              $selected={selectedIcon === iconId}
+              onClick={() => handleOpen(iconId)}
+            >
+              <img
+                src={assets[iconId]}
+                alt={meta.name}
+                width={mobileIconPx}
+                height={mobileIconPx}
+                draggable={false}
+              />
+              <span>{meta.name}</span>
+            </MobileIconButton>
+          );
+        })}
+      </MobileIconsGrid>
     );
   }
 
@@ -165,8 +141,6 @@ function DesktopIcons({
           </DraggableDesktopIcon>
         );
       })}
-
-      {showMusicPlayer && <Draggable>{musicPlayer}</Draggable>}
     </IconsContainer>
   );
 }
