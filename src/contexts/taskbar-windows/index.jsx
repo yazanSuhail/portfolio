@@ -6,17 +6,19 @@ import {
   useMemo,
   useReducer,
 } from "react";
-import { computer, folder, pdfIcon } from "../../assets";
+import { computer, folder, music, pdfIcon } from "../../assets";
 import {
   getProjectFileName,
   getProjectPdfTitle,
 } from "../../Mocks/projectsData";
 
 export const EXPLORER_WINDOW_ID = "explorer-modal";
+export const MUSIC_WINDOW_ID = "wmp-player";
 export const WINDOW_KIND = {
   EXPLORER: "explorer",
   GIF: "gif",
   PDF: "pdf",
+  MUSIC: "music",
 };
 
 const TaskbarWindowsContext = createContext(null);
@@ -130,6 +132,41 @@ function taskbarReducer(state, action) {
             title,
             icon: project.image,
             gifProject: project,
+            isMinimized: false,
+            zIndex,
+          },
+        ],
+      };
+    }
+
+    case "OPEN_MUSIC": {
+      const existing = state.windows.find((w) => w.id === MUSIC_WINDOW_ID);
+
+      if (existing) {
+        const zIndex = state.zIndexCounter + 1;
+        return {
+          ...state,
+          activeWindowId: MUSIC_WINDOW_ID,
+          zIndexCounter: zIndex,
+          windows: state.windows.map((w) =>
+            w.id === MUSIC_WINDOW_ID
+              ? { ...w, isMinimized: false, zIndex }
+              : w
+          ),
+        };
+      }
+
+      const zIndex = state.zIndexCounter + 1;
+      return {
+        activeWindowId: MUSIC_WINDOW_ID,
+        zIndexCounter: zIndex,
+        windows: [
+          ...state.windows,
+          {
+            id: MUSIC_WINDOW_ID,
+            kind: WINDOW_KIND.MUSIC,
+            title: "Windows Media Player",
+            icon: music,
             isMinimized: false,
             zIndex,
           },
@@ -296,6 +333,10 @@ export function TaskbarWindowsProvider({ children }) {
     dispatch({ type: "OPEN_PDF", payload: { project } });
   }, []);
 
+  const openMusic = useCallback(() => {
+    dispatch({ type: "OPEN_MUSIC" });
+  }, []);
+
   const closeWindow = useCallback((id) => {
     dispatch({ type: "CLOSE_WINDOW", payload: { id } });
   }, []);
@@ -347,6 +388,13 @@ export function TaskbarWindowsProvider({ children }) {
     [state.windows]
   );
 
+  const musicWindow = useMemo(
+    () => state.windows.find((w) => w.id === MUSIC_WINDOW_ID),
+    [state.windows]
+  );
+
+  const isMusicVisible = Boolean(musicWindow && !musicWindow.isMinimized);
+
   const topVisibleWindowId = useMemo(
     () => getTopVisibleWindow(state.windows)?.id ?? null,
     [state.windows]
@@ -360,9 +408,12 @@ export function TaskbarWindowsProvider({ children }) {
       explorerWindow,
       visibleGifWindows,
       visiblePdfWindows,
+      musicWindow,
+      isMusicVisible,
       openExplorer,
       openGif,
       openPdf,
+      openMusic,
       closeWindow,
       updateExplorer,
       minimizeWindow,
@@ -382,9 +433,12 @@ export function TaskbarWindowsProvider({ children }) {
       explorerWindow,
       visibleGifWindows,
       visiblePdfWindows,
+      musicWindow,
+      isMusicVisible,
       openExplorer,
       openGif,
       openPdf,
+      openMusic,
       closeWindow,
       updateExplorer,
       minimizeWindow,

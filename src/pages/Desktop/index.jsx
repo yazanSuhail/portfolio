@@ -18,8 +18,10 @@ import {
 } from "../../Mocks/DesktopContextMenuMock";
 import {
   EXPLORER_WINDOW_ID,
+  MUSIC_WINDOW_ID,
   useTaskbarWindows,
 } from "../../contexts/taskbar-windows";
+import WindowsMediaPlayer from "../../components/WindowsMediaPlayer";
 import DesktopIcons from "../../components/DesktopIcons";
 import DesktopContextMenu from "../../components/DesktopContextMenu";
 import DesktopPropertiesDialog from "../../components/DesktopContextMenu/DesktopPropertiesDialog";
@@ -39,14 +41,15 @@ import { DesktopContainer } from "./styles";
 function MainPage() {
   const navigate = useNavigate();
   const menus = [fileMenu, editMenu, viewMenu, toolsMenu, helpMenu, favorites];
-  const [showMusicPlayer, setShowMusicPlayer] = useState(false);
   const {
     explorerWindow,
     isExplorerVisible,
     visibleGifWindows,
     visiblePdfWindows,
+    isMusicVisible,
     openExplorer,
     openPdf,
+    openMusic,
     closeWindow,
     minimizeWindow,
     focusWindow,
@@ -104,7 +107,7 @@ function MainPage() {
       setSelectedIcon(iconType);
       setType(iconType);
       if (iconType === "myMusic") {
-        setShowMusicPlayer(true);
+        openMusic();
         return;
       }
       if (iconType === "myResume") {
@@ -113,7 +116,7 @@ function MainPage() {
       }
       handleOpenExplorer(iconType);
     },
-    [handleOpenExplorer, openPdf]
+    [handleOpenExplorer, openPdf, openMusic]
   );
 
   const applySort = useCallback(
@@ -269,7 +272,7 @@ function MainPage() {
           break;
         case "myMusic":
         case "mediaPlayer":
-          setShowMusicPlayer(true);
+          openMusic();
           break;
         case "internet":
           window.open("https://github.com/yazanSuhail", "_blank", "noopener,noreferrer");
@@ -293,7 +296,7 @@ function MainPage() {
           break;
       }
     },
-    [navigate, openExplorer]
+    [navigate, openExplorer, openMusic]
   );
 
   return (
@@ -308,8 +311,7 @@ function MainPage() {
         setType={setType}
         selectedIcon={selectedIcon}
         setSelectedIcon={setSelectedIcon}
-        showMusicPlayer={showMusicPlayer}
-        setShowMusicPlayer={setShowMusicPlayer}
+        onOpenMusic={openMusic}
         showDesktopIcons={desktopPrefs.showIcons}
         iconPositions={iconPositions}
         setIconPositions={setIconPositions}
@@ -354,6 +356,14 @@ function MainPage() {
           onFocus={() => focusWindow(pdfWindow.id)}
         />
       ))}
+      {isMusicVisible && (
+        <WindowsMediaPlayer
+          windowId={MUSIC_WINDOW_ID}
+          onClose={() => closeWindow(MUSIC_WINDOW_ID)}
+          onMinimize={() => minimizeWindow(MUSIC_WINDOW_ID)}
+          onFocus={() => focusWindow(MUSIC_WINDOW_ID)}
+        />
+      )}
       <StartMenu onStartMenuAction={handleStartMenuAction} />
       {contextMenu && (
         <DesktopContextMenu
