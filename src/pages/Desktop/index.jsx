@@ -35,7 +35,6 @@ import {
 import { RESUME_PROFILE } from "../../Mocks/resumeData";
 import { useDesktopSettings } from "../../hooks/useDesktopSettings";
 import { DesktopContainer } from "./styles";
-import Mobile from "../Mobile";
 
 function MainPage() {
   const navigate = useNavigate();
@@ -54,7 +53,6 @@ function MainPage() {
   } = useTaskbarWindows();
   const [type, setType] = useState("");
   const [selectedIcon, setSelectedIcon] = useState(null);
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [iconPositions, setIconPositions] = useState(DEFAULT_ICON_POSITIONS);
   const [iconOrder, setIconOrder] = useState(ICON_ORDER);
   const [desktopPrefs, setDesktopPrefs] = useState({
@@ -91,15 +89,6 @@ function MainPage() {
     return () => {
       document.removeEventListener("click", handleDocumentClick);
     };
-  }, []);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenWidth(window.innerWidth);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const handleOpenExplorer = useCallback(
@@ -308,88 +297,82 @@ function MainPage() {
   );
 
   return (
-    <>
-      {screenWidth <= 720 ? (
-        <Mobile />
-      ) : (
-        <DesktopContainer
-          onContextMenu={handleDesktopContextMenu}
-          $wallpaperUrl={wallpaperUrl}
-          $position={wallpaperPosition}
-        >
-          <DesktopIcons
-            openModal={handleOpenExplorer}
-            onOpenResume={() => openPdf(RESUME_PROFILE)}
-            setType={setType}
-            selectedIcon={selectedIcon}
-            setSelectedIcon={setSelectedIcon}
-            showMusicPlayer={showMusicPlayer}
-            setShowMusicPlayer={setShowMusicPlayer}
-            showDesktopIcons={desktopPrefs.showIcons}
-            iconPositions={iconPositions}
-            setIconPositions={setIconPositions}
-            iconOrder={iconOrder}
-            alignToGrid={desktopPrefs.alignToGrid}
-            iconSize={iconSize}
-            onIconContextMenu={handleIconContextMenu}
-          />
-          {isExplorerVisible && (
-            <WindowsXPModal
-              windowId={EXPLORER_WINDOW_ID}
-              icone={explorerType === "myProjects" ? folder : computer}
-              title={
-                explorerType === "myProjects" ? "My Projects" : "My Computer"
-              }
-              menus={menus}
-              content={[]}
-              isVisible
-              closeModal={() => closeWindow(EXPLORER_WINDOW_ID)}
-              onMinimize={() => minimizeWindow(EXPLORER_WINDOW_ID)}
-              onFocus={() => focusWindow(EXPLORER_WINDOW_ID)}
-              type={explorerType}
-            />
-          )}
-          {visibleGifWindows.map((gifWindow) => (
-            <NotepadViewer
-              key={gifWindow.id}
-              windowId={gifWindow.id}
-              file={gifWindow.gifProject}
-              onClose={() => closeWindow(gifWindow.id)}
-              onMinimize={() => minimizeWindow(gifWindow.id)}
-              onFocus={() => focusWindow(gifWindow.id)}
-            />
-          ))}
-          {visiblePdfWindows.map((pdfWindow) => (
-            <PdfViewer
-              key={pdfWindow.id}
-              windowId={pdfWindow.id}
-              file={pdfWindow.pdfProject}
-              onClose={() => closeWindow(pdfWindow.id)}
-              onMinimize={() => minimizeWindow(pdfWindow.id)}
-              onFocus={() => focusWindow(pdfWindow.id)}
-            />
-          ))}
-          <StartMenu onStartMenuAction={handleStartMenuAction} />
-          {contextMenu && (
-            <DesktopContextMenu
-              menu={contextMenu.menu}
-              position={{ x: contextMenu.x, y: contextMenu.y }}
-              checkedIds={checkedMenuIds}
-              onAction={handleContextAction}
-              onClose={() => setContextMenu(null)}
-            />
-          )}
-          <DesktopPropertiesDialog
-            target={propertiesTarget}
-            wallpaperId={wallpaperId}
-            wallpaperPosition={wallpaperPosition}
-            iconSizeId={iconSizeId}
-            onApplyDisplay={handleApplyDisplay}
-            onClose={() => setPropertiesTarget(null)}
-          />
-        </DesktopContainer>
+    <DesktopContainer
+      onContextMenu={handleDesktopContextMenu}
+      $wallpaperUrl={wallpaperUrl}
+      $position={wallpaperPosition}
+    >
+      <DesktopIcons
+        openModal={handleOpenExplorer}
+        onOpenResume={() => openPdf(RESUME_PROFILE)}
+        setType={setType}
+        selectedIcon={selectedIcon}
+        setSelectedIcon={setSelectedIcon}
+        showMusicPlayer={showMusicPlayer}
+        setShowMusicPlayer={setShowMusicPlayer}
+        showDesktopIcons={desktopPrefs.showIcons}
+        iconPositions={iconPositions}
+        setIconPositions={setIconPositions}
+        iconOrder={iconOrder}
+        alignToGrid={desktopPrefs.alignToGrid}
+        iconSize={iconSize}
+        onIconContextMenu={handleIconContextMenu}
+      />
+      {isExplorerVisible && (
+        <WindowsXPModal
+          windowId={EXPLORER_WINDOW_ID}
+          icone={explorerType === "myProjects" ? folder : computer}
+          title={
+            explorerType === "myProjects" ? "My Projects" : "My Computer"
+          }
+          menus={menus}
+          content={[]}
+          isVisible
+          closeModal={() => closeWindow(EXPLORER_WINDOW_ID)}
+          onMinimize={() => minimizeWindow(EXPLORER_WINDOW_ID)}
+          onFocus={() => focusWindow(EXPLORER_WINDOW_ID)}
+          type={explorerType}
+        />
       )}
-    </>
+      {visibleGifWindows.map((gifWindow) => (
+        <NotepadViewer
+          key={gifWindow.id}
+          windowId={gifWindow.id}
+          file={gifWindow.gifProject}
+          onClose={() => closeWindow(gifWindow.id)}
+          onMinimize={() => minimizeWindow(gifWindow.id)}
+          onFocus={() => focusWindow(gifWindow.id)}
+        />
+      ))}
+      {visiblePdfWindows.map((pdfWindow) => (
+        <PdfViewer
+          key={pdfWindow.id}
+          windowId={pdfWindow.id}
+          file={pdfWindow.pdfProject}
+          onClose={() => closeWindow(pdfWindow.id)}
+          onMinimize={() => minimizeWindow(pdfWindow.id)}
+          onFocus={() => focusWindow(pdfWindow.id)}
+        />
+      ))}
+      <StartMenu onStartMenuAction={handleStartMenuAction} />
+      {contextMenu && (
+        <DesktopContextMenu
+          menu={contextMenu.menu}
+          position={{ x: contextMenu.x, y: contextMenu.y }}
+          checkedIds={checkedMenuIds}
+          onAction={handleContextAction}
+          onClose={() => setContextMenu(null)}
+        />
+      )}
+      <DesktopPropertiesDialog
+        target={propertiesTarget}
+        wallpaperId={wallpaperId}
+        wallpaperPosition={wallpaperPosition}
+        iconSizeId={iconSizeId}
+        onApplyDisplay={handleApplyDisplay}
+        onClose={() => setPropertiesTarget(null)}
+      />
+    </DesktopContainer>
   );
 }
 

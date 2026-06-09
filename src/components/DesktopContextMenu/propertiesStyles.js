@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { mobileQuery } from "../../constants/breakpoints";
 
 const xp = {
   face: "#ece9d8",
@@ -30,6 +31,7 @@ export const PropertiesOverlay = styled.div`
 
 export const PropertiesDialog = styled.div`
   width: ${({ $wide }) => ($wide ? "427px" : "395px")};
+  max-width: calc(100vw - 16px);
   background: ${xp.face};
   border: 1px solid #0058e6;
   border-radius: 8px 8px 0 0;
@@ -41,6 +43,12 @@ export const PropertiesDialog = styled.div`
   color: #000;
   color-scheme: light;
   overflow: hidden;
+
+  @media screen and ${mobileQuery} {
+    width: calc(100vw - 16px);
+    max-height: calc(100dvh - 16px);
+    overflow-y: auto;
+  }
 
   select,
   option,

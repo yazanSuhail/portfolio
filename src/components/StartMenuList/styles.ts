@@ -1,4 +1,8 @@
 import styled from "styled-components";
+import {
+  MOBILE_TASKBAR_HEIGHT,
+  mobileQuery,
+} from "../../constants/breakpoints";
 
 /* Windows XP Luna – from Microsoft design guidelines palette */
 const xp = {
@@ -54,6 +58,19 @@ export const StartMenuPanel = styled.div`
     2px 2px 10px rgba(0, 0, 0, 0.45);
   font-family: Tahoma, "MS Sans Serif", sans-serif;
   font-size: 11px;
+
+  @media screen and ${mobileQuery} {
+    bottom: ${MOBILE_TASKBAR_HEIGHT}px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100vw;
+    border-radius: 0;
+    max-height: calc(100dvh - ${MOBILE_TASKBAR_HEIGHT}px);
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+  }
 `;
 
 export const UserHeader = styled.div`
@@ -65,8 +82,10 @@ export const UserHeader = styled.div`
   color: ${xp.white};
   border-bottom: 1px solid ${xp.borderDark};
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  flex-shrink: 0;
 
   img {
+    display: block;
     width: 48px;
     height: 48px;
     border: 2px solid ${xp.borderDark};
@@ -87,6 +106,14 @@ export const MenuBody = styled.div`
   display: flex;
   min-height: 448px;
   background: ${xp.white};
+
+  @media screen and ${mobileQuery} {
+    flex-direction: column;
+    min-height: 0;
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 `;
 
 export const ProgramsColumn = styled.div`
@@ -95,6 +122,10 @@ export const ProgramsColumn = styled.div`
   padding: 8px 0 12px;
   background: ${xp.white};
   position: relative;
+
+  @media screen and ${mobileQuery} {
+    overflow: visible;
+  }
 `;
 
 export const PlacesColumn = styled.div`
@@ -104,6 +135,13 @@ export const PlacesColumn = styled.div`
   background: ${lunaPlaces};
   border-left: 1px solid #7ba2e7;
   box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.45);
+
+  @media screen and ${mobileQuery} {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid #7ba2e7;
+    box-shadow: none;
+  }
 `;
 
 export const SearchBox = styled.div`
@@ -156,6 +194,7 @@ export const MenuItemButton = styled.button<{ $large?: boolean }>`
   img {
     width: ${(p) => (p.$large ? "32px" : "16px")};
     height: ${(p) => (p.$large ? "32px" : "16px")};
+    display: block;
     object-fit: contain;
     flex-shrink: 0;
   }
@@ -173,6 +212,16 @@ export const MenuItemButton = styled.button<{ $large?: boolean }>`
     background: ${xp.selection};
     color: ${xp.white};
   }
+
+  @media screen and ${mobileQuery} {
+    min-height: 40px;
+    padding: 6px 10px;
+
+    img {
+      width: ${(p) => (p.$large ? "28px" : "20px")};
+      height: ${(p) => (p.$large ? "28px" : "20px")};
+    }
+  }
 `;
 
 export const MenuSeparator = styled.div<{ $onBlue?: boolean }>`
@@ -189,6 +238,10 @@ export const AllProgramsRow = styled.div`
   margin-top: 6px;
   padding-top: 6px;
   border-top: 1px solid #c5d8f4;
+
+  @media screen and ${mobileQuery} {
+    overflow: visible;
+  }
 `;
 
 export const AllProgramsButton = styled(MenuItemButton)`
@@ -214,6 +267,19 @@ export const FlyoutPanel = styled.div`
   border-radius: 4px;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
   z-index: 2;
+
+  @media screen and ${mobileQuery} {
+    left: 8px;
+    right: 8px;
+    bottom: calc(100% + 4px);
+    top: auto;
+    width: auto;
+    min-width: 0;
+    max-height: min(280px, 40dvh);
+    margin: 0;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+    z-index: 10;
+  }
 `;
 
 export const MenuFooter = styled.div`
@@ -222,6 +288,7 @@ export const MenuFooter = styled.div`
   background: ${lunaChrome};
   border-top: 1px solid ${xp.borderDark};
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
 `;
 
 export const FooterButton = styled.button`
@@ -273,6 +340,11 @@ export const RunDialog = styled.div`
   box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.4);
   font-family: Tahoma, "MS Sans Serif", sans-serif;
   font-size: 11px;
+
+  @media screen and ${mobileQuery} {
+    width: calc(100vw - 24px);
+    max-width: 360px;
+  }
 `;
 
 export const RunDialogHeader = styled.div`

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { mobileQuery } from "../../constants/breakpoints";
 
 const xp = {
   titleBar: `linear-gradient(
@@ -53,6 +54,7 @@ export const ModalHeaderContainer = styled.section`
   align-items: center;
   gap: 6px;
   height: 30px;
+  touch-action: manipulation;
   padding: 0 4px 0 6px;
   background: ${xp.titleBar};
   color: #fff;
@@ -96,6 +98,12 @@ export const Icons = styled.img`
   height: 21px;
   display: block;
   cursor: pointer;
+  touch-action: manipulation;
+
+  @media screen and ${mobileQuery} {
+    width: 28px;
+    height: 28px;
+  }
 
   &:hover {
     filter: brightness(1.08);
@@ -248,6 +256,8 @@ export const SubMenu = styled.section`
   background: ${xp.chromeFace};
   border-bottom: 1px solid ${xp.border};
   flex-shrink: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 
   button {
     display: flex;
@@ -404,6 +414,10 @@ export const LeftSideMenu = styled.div`
   padding: 10px;
   min-height: 22.5rem;
   height: 100%;
+
+  @media screen and ${mobileQuery} {
+    display: none;
+  }
 `;
 
 export const Inner = styled.div`
@@ -483,6 +497,10 @@ export const CellContent = styled.div`
   grid-template-columns: repeat(2, 2fr);
   padding: 1rem 0 1rem 0;
   font-size: 11px;
+
+  @media screen and ${mobileQuery} {
+    grid-template-columns: 1fr;
+  }
   div {
     display: flex;
     align-items: center;
@@ -496,6 +514,7 @@ export const CellContent = styled.div`
 
 export const CellTitle = styled.div`
   width: 300px;
+  max-width: 100%;
   font-weight: bolder;
   padding: 2px 0px 3px 0px;
   position: relative;
@@ -520,6 +539,7 @@ export const Project = styled.div`
   cursor: pointer;
 
   width: 300px;
+  max-width: 100%;
   font-weight: bolder;
   padding: 20px 0px 20px 10px;
   position: relative;
@@ -550,4 +570,10 @@ export const ProjectsContainer = styled.div`
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   padding: 2rem;
+
+  @media screen and ${mobileQuery} {
+    grid-template-columns: 1fr;
+    padding: 1rem 0.75rem;
+    gap: 0.5rem;
+  }
 `;

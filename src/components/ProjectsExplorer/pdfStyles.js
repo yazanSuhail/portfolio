@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { mobileQuery } from "../../constants/breakpoints";
 
 const xp = {
   chromeFace: `linear-gradient(180deg, #f6f4ec 0%, #ece9d8 100%)`,
@@ -60,6 +61,12 @@ export const PdfToolbar = styled.div`
   background: ${xp.chromeFace};
   border-bottom: 1px solid ${xp.border};
   flex-shrink: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  @media screen and ${mobileQuery} {
+    height: 32px;
+  }
 `;
 
 export const PdfToolButton = styled.button`

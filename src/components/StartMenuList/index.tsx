@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { duck, chess } from "../../assets";
+import { useIsMobile } from "../../hooks/useIsMobile";
 import {
   ALL_PROGRAMS,
   FOOTER_ACTIONS,
@@ -41,6 +42,7 @@ type StartMenuListProps = {
 };
 
 function StartMenuList({ account = "Main", handlers }: StartMenuListProps) {
+  const isMobile = useIsMobile();
   const panelRef = useRef<HTMLDivElement>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [showAllPrograms, setShowAllPrograms] = useState(false);
@@ -134,18 +136,34 @@ function StartMenuList({ account = "Main", handlers }: StartMenuListProps) {
             ))}
 
             <AllProgramsRow
-              onMouseEnter={() => setShowAllPrograms(true)}
-              onMouseLeave={() => setShowAllPrograms(false)}
+              onMouseEnter={() => {
+                if (!isMobile) setShowAllPrograms(true);
+              }}
+              onMouseLeave={() => {
+                if (!isMobile) setShowAllPrograms(false);
+              }}
             >
-              <AllProgramsButton type="button" $large>
+              <AllProgramsButton
+                type="button"
+                $large
+                onClick={() => {
+                  if (isMobile) setShowAllPrograms((prev) => !prev);
+                }}
+              >
                 <img src={Go} alt="" />
                 <span>All Programs</span>
-                <span className="arrow">▶</span>
+                <span className="arrow">
+                  {isMobile && showAllPrograms ? "▼" : "▶"}
+                </span>
               </AllProgramsButton>
               {showAllPrograms && (
                 <FlyoutPanel
-                  onMouseEnter={() => setShowAllPrograms(true)}
-                  onMouseLeave={() => setShowAllPrograms(false)}
+                  onMouseEnter={() => {
+                    if (!isMobile) setShowAllPrograms(true);
+                  }}
+                  onMouseLeave={() => {
+                    if (!isMobile) setShowAllPrograms(false);
+                  }}
                 >
                   {ALL_PROGRAMS.map((item) => (
                     <MenuItemButton

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { MOBILE_MAX, MOBILE_TASKBAR_HEIGHT } from "../../constants/breakpoints";
 import {
   ContextMenuRoot,
   ContextMenuItem,
@@ -89,8 +90,10 @@ function DesktopContextMenu({ menu, position, checkedIds, onAction, onClose }) {
     if (x + rect.width > window.innerWidth - padding) {
       x = window.innerWidth - rect.width - padding;
     }
-    if (y + rect.height > window.innerHeight - 30 - padding) {
-      y = window.innerHeight - 30 - rect.height - padding;
+    const taskbarHeight =
+      window.innerWidth <= MOBILE_MAX ? MOBILE_TASKBAR_HEIGHT : 30;
+    if (y + rect.height > window.innerHeight - taskbarHeight - padding) {
+      y = window.innerHeight - taskbarHeight - rect.height - padding;
     }
 
     setAdjustedPosition({ x: Math.max(padding, x), y: Math.max(padding, y) });

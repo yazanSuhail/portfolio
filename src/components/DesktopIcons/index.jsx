@@ -2,8 +2,16 @@ import { useRef } from "react";
 import { computer, folder, song, music, closeIcon, pdfIcon } from "../../assets";
 import Draggable from "react-draggable";
 import DraggableDesktopIcon from "./DraggableDesktopIcon";
-import { IconsContainer, Icon, AudioPlayer } from "./styles";
+import {
+  IconsContainer,
+  Icon,
+  AudioPlayer,
+  MobileIconsGrid,
+  MobileIconButton,
+} from "./styles";
 import { DESKTOP_ICON_META } from "../../Mocks/DesktopContextMenuMock";
+import { useIsMobile } from "../../hooks/useIsMobile";
+import { MOBILE_TASKBAR_HEIGHT } from "../../constants/breakpoints";
 
 function DesktopIcons({
   openModal,
@@ -21,6 +29,7 @@ function DesktopIcons({
   iconSize,
   onIconContextMenu,
 }) {
+  const isMobile = useIsMobile();
   const containerRef = useRef(null);
   const audioRef = useRef(null);
   const assets = {
@@ -63,23 +72,55 @@ function DesktopIcons({
     openModal(iconId);
   };
 
+  const musicPlayer = showMusicPlayer && (
+    <AudioPlayer $isMobile={isMobile}>
+      This will be windows xp player
+      <div onClick={() => setShowMusicPlayer(false)}>
+        <img src={closeIcon} alt="" />
+      </div>
+      <audio ref={audioRef} controls>
+        <source src={song} type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+    </AudioPlayer>
+  );
+
   if (!showDesktopIcons) {
+    return isMobile ? musicPlayer : <Draggable>{musicPlayer}</Draggable>;
+  }
+
+  if (isMobile) {
     return (
       <>
-        {showMusicPlayer && (
-          <Draggable>
-            <AudioPlayer>
-              This will be windows xp player
-              <div onClick={() => setShowMusicPlayer(false)}>
-                <img src={closeIcon} alt="" />
-              </div>
-              <audio ref={audioRef} controls>
-                <source src={song} type="audio/mpeg" />
-                Your browser does not support the audio element.
-              </audio>
-            </AudioPlayer>
-          </Draggable>
-        )}
+        <MobileIconsGrid $taskbarHeight={MOBILE_TASKBAR_HEIGHT}>
+          {iconOrder.map((iconId) => {
+            const meta = DESKTOP_ICON_META[iconId];
+            const iconPx = getIconPx(iconId);
+
+            const isMusic = iconId === "myMusic";
+            const mobileIconPx = isMusic ? 56 : 48;
+
+            return (
+              <MobileIconButton
+                key={iconId}
+                type="button"
+                $large={isMusic}
+                $selected={selectedIcon === iconId}
+                onClick={() => handleOpen(iconId)}
+              >
+                <img
+                  src={assets[iconId]}
+                  alt={meta.name}
+                  width={mobileIconPx}
+                  height={mobileIconPx}
+                  draggable={false}
+                />
+                <span>{meta.name}</span>
+              </MobileIconButton>
+            );
+          })}
+        </MobileIconsGrid>
+        {musicPlayer}
       </>
     );
   }
@@ -125,20 +166,7 @@ function DesktopIcons({
         );
       })}
 
-      {showMusicPlayer && (
-        <Draggable>
-          <AudioPlayer>
-            This will be windows xp player
-            <div onClick={() => setShowMusicPlayer(false)}>
-              <img src={closeIcon} alt="" />
-            </div>
-            <audio ref={audioRef} controls>
-              <source src={song} type="audio/mpeg" />
-              Your browser does not support the audio element.
-            </audio>
-          </AudioPlayer>
-        </Draggable>
-      )}
+      {showMusicPlayer && <Draggable>{musicPlayer}</Draggable>}
     </IconsContainer>
   );
 }

@@ -1,11 +1,15 @@
 import styled, { css } from "styled-components";
+import { mobileQuery } from "../../constants/breakpoints";
 
 export const DesktopContainer = styled.div`
   position: relative;
+  isolation: isolate;
   height: 100vh;
+  height: 100dvh;
   width: 100%;
   overflow: hidden;
   background-color: #004e98;
+  -webkit-tap-highlight-color: transparent;
 
   ${({ $wallpaperUrl, $position }) =>
     $wallpaperUrl &&
@@ -33,4 +37,9 @@ export const DesktopContainer = styled.div`
         background-position: center center;
       `}
     `}
+
+  @media screen and ${mobileQuery} {
+    background-size: cover;
+    background-position: center center;
+  }
 `;

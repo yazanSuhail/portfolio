@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { mobileQuery } from "../../constants/breakpoints";
 
 const xp = {
   selection: "#316ac5",
@@ -28,6 +29,12 @@ export const ContextMenuItem = styled.button`
   width: 100%;
   min-height: 20px;
   padding: 2px 20px 2px 24px;
+  touch-action: manipulation;
+
+  @media screen and ${mobileQuery} {
+    min-height: 36px;
+    padding: 6px 20px 6px 28px;
+  }
   border: none;
   background: transparent;
   text-align: left;

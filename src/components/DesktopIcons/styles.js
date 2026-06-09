@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { mobileQuery } from "../../constants/breakpoints";
 
 export const IconsContainer = styled.div`
   position: absolute;
@@ -77,6 +78,61 @@ export const Icon = styled.div`
     `}
 `;
 
+export const MobileIconsGrid = styled.div`
+  position: absolute;
+  inset: 0;
+  bottom: ${({ $taskbarHeight }) => $taskbarHeight}px;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px 8px;
+  padding: 24px 12px;
+  align-content: start;
+  overflow-y: auto;
+  pointer-events: auto;
+  -webkit-overflow-scrolling: touch;
+`;
+
+export const MobileIconButton = styled.button`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 4px;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-family: Tahoma, "MS Sans Serif", sans-serif;
+  font-size: 11px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.85);
+  cursor: pointer;
+  touch-action: manipulation;
+
+  img {
+    width: ${({ $large }) => ($large ? "56px" : "48px")};
+    height: ${({ $large }) => ($large ? "56px" : "48px")};
+    display: block;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  span {
+    line-height: 1.15;
+    word-break: break-word;
+    max-width: 80px;
+  }
+
+  ${({ $selected }) =>
+    $selected &&
+    css`
+      span {
+        background-color: rgb(11, 97, 255);
+        outline: 1px dotted #fff;
+        padding: 0 2px;
+      }
+    `}
+`;
+
 export const AudioPlayer = styled.div`
   position: fixed;
   top: 50%;
@@ -93,5 +149,19 @@ export const AudioPlayer = styled.div`
 
   img {
     width: 1rem;
+  }
+
+  @media screen and ${mobileQuery} {
+    top: auto;
+    bottom: calc(44px + 12px);
+    left: 8px;
+    right: 8px;
+    transform: none;
+    width: auto;
+    max-width: none;
+    height: auto;
+    padding: 8px;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
   }
 `;

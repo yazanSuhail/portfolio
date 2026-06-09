@@ -1,14 +1,20 @@
 import styled from "styled-components";
-import RightSide from "../../components/Modals/ModalStructure/ModalContent/RightSide";
+import { mobileQuery } from "../../constants/breakpoints";
 
 export const Grid = styled.div`
   height: 100vh;
+  height: 100dvh;
   width: 100%;
   background-color: #fff;
   color: #fff;
   display: grid;
   grid-template-rows: 1fr 7fr 1fr;
   padding: 0;
+  overflow: hidden;
+
+  @media screen and ${mobileQuery} {
+    grid-template-rows: auto 1fr auto;
+  }
 `;
 
 export const Head = styled.div`
@@ -49,6 +55,7 @@ export const Footer = styled.div`
   padding: 40px 80px 40px 40px;
   display: flex;
   justify-content: space-between;
+  font-size: 0.85rem;
   border-image-source: linear-gradient(
     90deg,
     #004da3 0%,
@@ -69,6 +76,20 @@ export const Footer = styled.div`
     width: 2.4rem;
     border-radius: 5px;
   }
+
+  @media screen and ${mobileQuery} {
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+    text-align: center;
+    font-size: 0.75rem;
+
+    img {
+      top: 4px;
+      left: 0;
+      width: 1.8rem;
+    }
+  }
 `;
 
 export const Center = styled.div`
@@ -79,6 +100,14 @@ export const Center = styled.div`
   height: 100%;
   gap: 2rem;
   margin: 0 auto;
+
+  @media screen and ${mobileQuery} {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 `;
 
 export const RightSideContent = styled.div`
@@ -96,6 +125,13 @@ export const RightSideContent = styled.div`
   background-clip: padding-box;
   border: 1px solid transparent;
   gap: 1rem;
+
+  @media screen and ${mobileQuery} {
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+    padding: 8px;
+  }
 `;
 
 export const LoadingMainAccountContainer = styled.div`
@@ -105,6 +141,18 @@ export const LoadingMainAccountContainer = styled.div`
     position: relative;
     left: -247px;
     bottom: -70px;
+  }
+
+  @media screen and ${mobileQuery} {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    div {
+      position: static;
+      left: auto;
+      bottom: auto;
+    }
   }
 `;
 
@@ -131,7 +179,8 @@ export const InputContainer = styled.div`
     width: 2rem;
     border-radius: 5px;
     border: 1px solid #fff;
-    box-shadow: 2px 2px 0px 0px #00489a,
+    box-shadow:
+      2px 2px 0px 0px #00489a,
       inset -1px -2px 4px 0 rgba(0, 0, 0, 0.7);
   }
   span {
@@ -152,8 +201,24 @@ export const InputContainer = styled.div`
       rgba(255, 255, 255, 0.7) 0%,
       rgba(70, 161, 252, 0) 50%
     );
-    box-shadow: 2px 2px 0px 0px #00489a,
+    box-shadow:
+      2px 2px 0px 0px #00489a,
       inset -1px -2px 4px 0 rgba(0, 0, 0, 0.7);
+  }
+
+  @media screen and ${mobileQuery} {
+    position: static;
+    top: auto;
+    left: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 8px;
+
+    input {
+      font-size: 1.25rem;
+      width: 100%;
+      max-width: 12rem;
+    }
   }
 `;
 
@@ -185,6 +250,17 @@ export const MainUser = styled.div`
       opacity: 100;
     }
   }
+
+  @media screen and ${mobileQuery} {
+    img {
+      width: 64px;
+      height: 64px;
+    }
+
+    span {
+      font-size: 1.25rem;
+    }
+  }
 `;
 
 export const ActiveMainUser = styled.div`
@@ -200,6 +276,17 @@ export const ActiveMainUser = styled.div`
 
   span {
     font-size: 1.8rem;
+  }
+
+  @media screen and ${mobileQuery} {
+    img {
+      width: 64px;
+      height: 64px;
+    }
+
+    span {
+      font-size: 1.25rem;
+    }
   }
 `;
 
@@ -230,6 +317,17 @@ export const GuestUser = styled.div`
       opacity: 100;
     }
   }
+
+  @media screen and ${mobileQuery} {
+    img {
+      width: 64px;
+      height: 64px;
+    }
+
+    span {
+      font-size: 1.25rem;
+    }
+  }
 `;
 
 export const LeftSide = styled.div`
@@ -247,6 +345,19 @@ export const LeftSide = styled.div`
   border-image-slice: 0 1 0 0;
   border-right-style: solid;
   padding: 3rem;
+
+  @media screen and ${mobileQuery} {
+    border-right: none;
+    border-image: none;
+    padding: 1rem;
+    font-size: 1.25rem;
+    text-align: center;
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
 `;
 
 export const Loading = styled.div`
@@ -272,6 +383,11 @@ export const Container = styled.div`
   position: relative;
   background-clip: padding-box;
   border: 1px solid transparent;
+
+  @media screen and ${mobileQuery} {
+    min-width: 0;
+    width: 100%;
+  }
 `;
 
 export const Error = styled.div`
@@ -279,6 +395,13 @@ export const Error = styled.div`
   top: 40px;
   max-width: 11rem;
   font-size: 0.7rem;
+
+  @media screen and ${mobileQuery} {
+    position: static;
+    max-width: 100%;
+    text-align: center;
+    margin-top: 4px;
+  }
 `;
 
 export const LoadingImageMainAccount = styled.img`

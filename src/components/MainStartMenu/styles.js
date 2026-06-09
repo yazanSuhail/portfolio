@@ -1,4 +1,8 @@
 import styled from "styled-components";
+import {
+  MOBILE_TASKBAR_HEIGHT,
+  mobileQuery,
+} from "../../constants/breakpoints";
 
 const taskbarGradient = `linear-gradient(
   rgb(31, 47, 134) 0px,
@@ -28,6 +32,16 @@ export const StartMenuContainer = styled.div`
   height: 30px;
   background: ${taskbarGradient};
   box-sizing: border-box;
+  z-index: 100001;
+  touch-action: manipulation;
+  overflow: visible;
+
+  @media screen and ${mobileQuery} {
+    height: ${MOBILE_TASKBAR_HEIGHT}px;
+    position: fixed;
+    left: 0;
+    right: 0;
+  }
 `;
 
 export const StartButtonWrapper = styled.button`
@@ -86,6 +100,7 @@ export const TaskbarWindowButton = styled.button`
   gap: 5px;
   width: 150px;
   height: 22px;
+  touch-action: manipulation;
   flex-shrink: 0;
   padding: 0 8px 0 6px;
   border: 1px solid rgb(16, 66, 175);
@@ -136,6 +151,13 @@ export const TaskbarWindowButton = styled.button`
     box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.45);
     border-color: rgb(10, 55, 120);
   `}
+
+  @media screen and ${mobileQuery} {
+    width: 120px;
+    height: 32px;
+    font-size: 12px;
+    border-radius: 4px;
+  }
 `;
 
 const trayGradient = `linear-gradient(
@@ -179,6 +201,16 @@ export const NotificationsContainer = styled.div`
     font-size: 11px;
     color: #fff;
     white-space: nowrap;
+  }
+
+  @media screen and ${mobileQuery} {
+    min-width: 72px;
+    padding: 0 6px;
+    gap: 4px;
+
+    span {
+      font-size: 10px;
+    }
   }
 `;
 
@@ -228,6 +260,19 @@ export const SecurityBalloon = styled.div`
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
     border-top: 8px solid #ffffe1;
+  }
+
+  @media screen and ${mobileQuery} {
+    position: fixed;
+    right: 8px;
+    left: 8px;
+    bottom: calc(${MOBILE_TASKBAR_HEIGHT}px + 8px);
+    top: auto;
+    width: auto;
+    max-width: none;
+    transform: none;
+    font-size: 10px;
+    z-index: 100010;
   }
 `;
 

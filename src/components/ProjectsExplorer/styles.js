@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { mobileQuery } from "../../constants/breakpoints";
 
 export const ExplorerGrid = styled.div`
   display: flex;
@@ -7,6 +8,14 @@ export const ExplorerGrid = styled.div`
   gap: 12px 8px;
   padding: 1rem 0.5rem;
   min-height: 18rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
+  @media screen and ${mobileQuery} {
+    gap: 10px 6px;
+    padding: 0.75rem 0.25rem;
+    min-height: 0;
+  }
 `;
 
 export const ExplorerIconButton = styled.button`
@@ -50,6 +59,17 @@ export const ExplorerIconButton = styled.button`
   span {
     line-height: 1.2;
     max-width: 84px;
+  }
+
+  @media screen and ${mobileQuery} {
+    width: 72px;
+    min-height: 68px;
+    touch-action: manipulation;
+
+    span {
+      max-width: 72px;
+      font-size: 10px;
+    }
   }
 `;
 

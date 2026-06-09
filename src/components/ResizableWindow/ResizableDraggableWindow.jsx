@@ -2,6 +2,8 @@ import { useCallback, useRef, useState } from "react";
 import Draggable from "react-draggable";
 import ResizeHandles from "./ResizeHandles";
 import { MaximizedShell, ResizableShell } from "./styles";
+import { MOBILE_TASKBAR_HEIGHT } from "../../constants/breakpoints";
+import { useIsMobile } from "../../hooks/useIsMobile";
 import { TASKBAR_HEIGHT, useWindowResize } from "../../hooks/useWindowResize";
 
 function ResizableDraggableWindow({
@@ -13,13 +15,16 @@ function ResizableDraggableWindow({
   minWidth,
   minHeight,
 }) {
+  const isMobile = useIsMobile();
   const nodeRef = useRef(null);
   const savedBounds = useRef(null);
   const [size, setSize] = useState(defaultSize);
   const [position, setPosition] = useState(defaultPosition);
+  const forceMaximized = isMobile || isMaximized;
+  const taskbarHeight = isMobile ? MOBILE_TASKBAR_HEIGHT : TASKBAR_HEIGHT;
 
   const { startResize } = useWindowResize({
-    enabled: !isMaximized,
+    enabled: !forceMaximized && !isMobile,
     size,
     setSize,
     position,
@@ -29,6 +34,8 @@ function ResizableDraggableWindow({
   });
 
   const handleToggleMaximize = useCallback(() => {
+    if (isMobile) return;
+
     if (!isMaximized) {
       savedBounds.current = { size, position };
       onToggleMaximize();
@@ -40,15 +47,15 @@ function ResizableDraggableWindow({
       setPosition(savedBounds.current.position);
     }
     onToggleMaximize();
-  }, [isMaximized, onToggleMaximize, size, position]);
+  }, [isMaximized, isMobile, onToggleMaximize, size, position]);
 
   const handleDragStop = useCallback((_event, data) => {
     setPosition({ x: data.x, y: data.y });
   }, []);
 
-  if (isMaximized) {
+  if (forceMaximized) {
     return (
-      <MaximizedShell $taskbarHeight={TASKBAR_HEIGHT}>
+      <MaximizedShell $taskbarHeight={taskbarHeight}>
         {children({ toggleMaximize: handleToggleMaximize, isMaximized: true })}
       </MaximizedShell>
     );
